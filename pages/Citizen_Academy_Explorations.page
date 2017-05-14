@@ -1,0 +1,239 @@
+<apex:page cache="true" expires="600" controller="HOC.cls_HOC_Generic"  standardStylesheets="false" showHeader="false" sidebar="false" >
+<head>
+    <title>{!propSiteHeader} | Year-round Partnerships </title>
+    <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}global.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}layout.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}hon.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}hon_boxes.css" />
+     <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}hon_blocks.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}themes/default/default.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}themes/bluegreen/bluegreen.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}hon_affiliate.css" />
+    
+    <!--[if IE]>
+        <link type="text/css" rel="stylesheet" media="all" href="css/ie.css" />
+    <![endif]-->
+    
+    <script type="text/javascript" src="{!JSURL}lib/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="{!JSURL}lib/jquery-ui-1.7.2.hon.min.js"></script>
+    <script type="text/javascript" src="{!JSURL}lib/jquery.toggleVal.js"></script>
+    <script type="text/javascript" src="{!JSURL}actions.js"></script>
+</head>
+<body class="for-volunteers sidebar-left section-affiliate">
+<div id="page" class="sidebar-left">
+    <div id="page-inner">
+        <div id="header">
+            <div id="header-inner">
+                <div id="header-block-left">
+                    <h1 id="logo">
+                        <a href="/HOC__Affiliate_Home_Page" title="Home" rel="home"><img src="{!bayarea_logo_jpg}" width="100" height="140" alt="HandsOn Home - Bay Area" id="logo-image" /></a>
+                    </h1>
+                </div>
+                <div id="header-block-mid">
+                     <div id="affiliate-location">
+                        <p class="org-name">{!propSiteHeader}</p>
+                        <p class="org-loc">{!propSiteSubHeader}</p>
+                    </div>
+                    <div id="menu-section-volorg" class="menu">
+                        <ul class="inline">
+                          <li class="first active"><a href="" class="vol">For Volunteers</a></li>
+                          <li class="last"><a href="{!propTopMenu6_URL}" class="org">For Organizations</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="header-block-right">
+                    <div id="menu-affiliate" class="menu">
+                    
+                     <!-------------------------------------------------------------------------------------> 
+                     <!---- START COPY AND PASTE TO HOC TEMPLATE HERE"-->  
+                     <!------ [ BEGIN EDITABLE REGION // ------> 
+                    
+                        <ul>
+                        
+                            <!-- // Set Active State of upper right verical menu in this section of code--->
+                        
+                            <li class="active"><a href="">{!propHeaderMenu1_Name}</a></li>
+                            <li><a href="{!propHeaderMenu2_URL}">{!propHeaderMenu2_Name}</a></li>
+                            <li><a href="{!propHeaderMenu3_URL}">{!propHeaderMenu3_Name}</a></li>
+                            <li><a href="{!propHeaderMenu4_URL}">{!propHeaderMenu4_Name}</a></li>
+                            <li><a href="{!propHeaderMenu5_URL}">{!propHeaderMenu5_Name}</a></li>
+                            <li><a href="{!propHeaderMenu6_URL}">{!propHeaderMenu6_Name}</a></li>
+                            
+                            <!-- // End upper right vertical menu --->
+                            
+                        </ul>
+                      
+                      <!------ [ END EDITABLE REGION // ------>                       
+                      <!---- End COPY AND PASTE TO HOC TEMPLATE HERE"--> 
+                      <!-------------------------------------------------------------------------------------> 
+                        
+                        
+                    </div>
+                  
+                    
+                    <!-- // Begin Component Code for External Templates--->
+                    
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    
+                    
+                    
+                     <HOC:Comp_Login_Logout />
+                    
+                    
+                    
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    
+                    
+                    <!-- // End Component Code for External Templates--->
+                   
+                   
+                </div>
+            </div>
+        </div>        
+        <div id="navbar">
+            <div id="navbar-inner">
+                <div id="menu-primary" class="menu">
+                    <ul class="inline">
+                    
+                      <!-- // Set Active State of main horizontal menu in this section of code--->  
+                    
+                      <li class="first"><a href="/HOC__Volunteer_Opportunity_Search_Page?p=vct" class="findopportunity">Find An Opportunity</a></li>
+                      <li><a href="{!propTopMenu2_URL}" class="specialevents">Special Events</a></li>
+                      <li><a href="/HOC__Browse_Organizations_Page" class="browseorgs">Browse Organizations</a></li>
+                      <li><a href="{!propTopMenu4_URL}" class="resources">Resources</a></li>
+                      <li class="last active"><a href="{!propTopMenu5_URL}" class="{!propTempLastMenu}">{!propBecome_a_Member}</a></li>
+                    
+                      <!-- // End main horizontal menu --->
+                    
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="main">
+            <div id="main-inner">
+            
+                <div id="sidebar-left">
+                    <div id="sidebar-left-inner" class="region region-left">
+                        <div id="menu-secondary-affiliate" class="menu">
+                        
+                        
+                        <!-------------------------------------------------------------------------------------> 
+                        <!-------------------------------------------------------------------------------------> 
+                        <!-------------------------------------------------------------------------------------> 
+                        <!-------------------------------------------------------------------------------------> 
+                        <!---- START COPY AND PASTE TO HOC TEMPLATE HERE"--> 
+                        <!------ [ BEGIN EDITABLE REGION // ------>
+                        
+                            <!-- // Set active state for middle left vertical navigation in this section of code--->
+                        
+                            <h2>About Us</h2>
+                                <ul>
+                                <li class="active"><a>Mission &amp; Vision</a></li>
+                                <li><a>Staff</a></li>
+                                <li><a>Job Opportunities</a></li>
+                                
+                                <li><a>Sponsors</a></li>
+                                <li><a>Lorem Ipsum Dolor</a></li>
+                            </ul>
+                            
+                            <!-- // End middle left vertical navigation --->
+                            
+                        <!------ // END EDITABLE REGION ] ------>
+                        <!---- END COPY AND PASTE TO HOC TEMPLATE HERE-------> 
+                        <!-------------------------------------------------------------------------------------> 
+                        <!-------------------------------------------------------------------------------------> 
+                        <!-------------------------------------------------------------------------------------> 
+                        <!-------------------------------------------------------------------------------------> 
+                             
+                                                    
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div id="content">
+                    <div id="content-inner">
+
+
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!---- START COPY AND PASTE TO HOC TEMPLATE HERE"--> 
+                    <!------ [ BEGIN EDITABLE REGION // ------>
+
+                        <div id="content-area"> 
+                        
+                            <div class="node" id="search-results">
+                                <div class="node-inner">
+                                    <h2 class="static-title">Page Headline</h2>                                   
+                                        <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                                        
+                                        <p >Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit animid est laborum.</p>                                   
+                                </div>
+                            </div>
+                        
+                        </div>
+                        <div id="content-bottom">
+                        </div>
+
+                    <!------ // END EDITABLE REGION ] ------>
+                    <!---- END COPY AND PASTE TO HOC TEMPLATE HERE-------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+
+
+                    </div>
+                </div>
+                
+                <div id="sidebar-right">
+                    <div id="sidebar-right-inner" class="region region-right">
+                    </div>
+                </div>
+                
+               <div class="clearfix"></div>
+            </div>
+        </div>
+        
+        <div id="footer">
+            <div id="footer-inner" class="region region-footer">
+                <div id="footer-block">
+                    <div class="menu" id="menu-poweredby">
+                        <p><img src="{!CSSURL}themes/default/title_poweredby.png" width="77" height="7" alt="Powered By"/></p>
+                        <ul class="inline">
+                            <li class="first"><a target="_blank" href="http://www.handsonconnect.org"><img src="{!CSSURL}themes/default/logos_hon.png" width="106" height="73" alt="HandsOn Connect" /></a></li>
+                            <li class="last"><a target="_blank" href="http://www.handsonnetwork.org"><img src="{!CSSURL}themes/default/logos_honet.png" width="58" height="81" alt="HandsOn Network" /></a></li>
+                        </ul>
+                    </div>
+                    <div class="menu" id="menu-sponsors">
+                        <p><img src="{!CSSURL}themes/default/title_sponsors.png" width="63" height="7" alt="Sponsors"/></p>
+                        <p><a href="/HOC__Sponsors" target="_blank"><img src="{!sponsorlogos_jpg}" width="592" height="56" alt="" /></a></p>
+                        <p class="more-link"><a href="/HOC__Sponsors" target="_blank" class="rover link_seeallsponsors">See all sponsors</a></p>
+                    </div>
+                </div>
+                 <div class="block" id="footer-message">
+                    <div class="block-inner">
+                        <p>&#169; {!YEAR(TODAY())} {!customerNm},&nbsp;<apex:outputLabel id="footerTxt" ></apex:outputLabel></p>
+                        <p>{!customerNm}, {!customerAdd} <img src="{!CSSURL}themes/default/footer_sep.png" width="1" height="14" alt="" /> <a href="/HOC__Privacy_Policy" target="_blank">Privacy Policy</a> 
+                        <img src="{!CSSURL}themes/default/footer_sep.png" width="1" height="14" alt="" /> <a href="/HOC__Terms_and_Conditions" target="_blank">Terms of Use</a></p>
+                    </div>
+                    <input type="hidden" value="{!footerText}" id="hdnFooterText" />
+                    <script type="text/javascript">
+                        document.getElementById('{!$Component.footerTxt}').innerHTML = document.getElementById("hdnFooterText").value;
+                   </script>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
+</body>
+</apex:page>
