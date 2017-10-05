@@ -37,21 +37,30 @@ global with sharing class OccurrenceEndpoint {
 
   // The following method is used to reassign owner of an occurrence
   @HttpPatch
-  global static String reassignOccurrence(String occurrenceId, String newVLeaderEmail){
-    HOC__Occurrence__c occ = [SELECT Id, HOC__Opportunity_Coordinator__c
-                              FROM HOC__Occurrence__c
-                              WHERE Id =: occurrenceId];
+  global static String reassignOccurrence(String volunteerOppId, Datetime startDate, Datetime endDate, String newVLeaderEmail){
 
-    User newVLeader = getOppCoordinator(newVLeaderEmail);
+    List<HOC__Occurrence__c> occList = [SELECT Id, HOC__Volunteer_Opportunity__c, HOC__Opportunity_Coordinator__c
+                                            FROM HOC__Occurrence__c
+                                            WHERE HOC__Volunteer_Opportunity__r.Id =: volunteerOppId
+                                            AND HOC__Start_Date_Time__c =: startDate
+                                            AND HOC__End_Date_Time__c =: endDate];
 
-    occ.HOC__Opportunity_Coordinator__c = newVLeader.Id;
+    if(!occList.isEmpty()){
+      HOC__Occurrence__c occ = occList[0];
 
-    try{
-      update occ;
-      return 'Occurrence Updated! New Opportunity Coordinator assigned!';
-    } catch(Exception e){
-      System.debug(e);
-      return 'Error! Occurrence was not updated!';
+      User newVLeader = getOppCoordinator(newVLeaderEmail);
+      occ.HOC__Opportunity_Coordinator__c = newVLeader.Id;
+
+      try{
+        update occ;
+        return 'Occurrence Updated! New Opportunity Coordinator assigned!';
+      } catch(Exception e){
+        System.debug(e);
+        return 'Error! Occurrence was not updated!';
+      }
+    } else {
+      System.debug('No occurrence was found with the inputted Start Date, End Date, and Volunteer Opportunity Id!');
+      return null;
     }
   }
 
