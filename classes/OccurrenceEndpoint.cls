@@ -152,7 +152,7 @@ global with sharing class OccurrenceEndpoint {
             }
         }
 
-        myOccListInsert = buildOccurrencesList(nonMatchingVLVMList, myUserList, 'Active', 'Active');
+        myOccListInsert = buildOccurrencesList(nonMatchingVLVMList, myUserList, myLocationList, 'Active', 'Active');
         return myOccListInsert;
     }
 
@@ -237,7 +237,7 @@ global with sharing class OccurrenceEndpoint {
 
 
     // This method creates Occurrences
-    public static List<HOC__Occurrence__c> buildOccurrencesList(List<VolunteerLeaderVM> volLeaderVMList, List<User> oppCoordinatorList, String status, String postingStatus){
+    public static List<HOC__Occurrence__c> buildOccurrencesList(List<VolunteerLeaderVM> volLeaderVMList, List<User> oppCoordinatorList, List<HOC__Location__c> locationList, String status, String postingStatus){
 
         List<HOC__Occurrence__c> myOccurrenceList = new List<HOC__Occurrence__c>();
 
@@ -249,6 +249,12 @@ global with sharing class OccurrenceEndpoint {
             occRecord.HOC__End_Date_Time__c = myVolLeaderVM.stopDatetime;
             occRecord.HOC__Posting_Status__c = postingStatus;
             occRecord.HOC__Status__c = status;
+
+            for(HOC__Location__c location : locationList){
+                if(location.Name == myVolLeaderVM.locationName){
+                    occRecord.HOC__Location__c = location.Id;
+                }
+            }
 
             for(User oppCoordinator : oppCoordinatorList){
                 if(oppCoordinator.Email == myVolLeaderVM.newVLEmail){
