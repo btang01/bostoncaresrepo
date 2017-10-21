@@ -41,31 +41,42 @@ global with sharing class OccurrenceEndpoint {
 
         // ***** BUILD A LIST OF RELEVANT VOLUNTEER OP IDs *****
         List<String> relevantVolOppIds = new List<String>();
+        // ***** BUILD A LIST OF RELEVANT USERS *****
+        List<String> relevantEmails = new List<String>();
+        // **** BUILD A LIST OF RELEVANT LOCATIONS ****
+        List<String> relevantLocationNames = new List<String>();
 
         for(VolunteerLeaderVM volVM : volVmList){
             relevantVolOppIds.add(volVM.volOppId);
-        }
-
-        // ***** BUILD A LIST OF RELEVANT USERS *****
-        List<String> relevantEmails = new List<String>();
-
-        for(VolunteerLeaderVM volVM : volVmList){
             relevantEmails.add(volVM.newVLEmail);
+            relevantLocationNames.add(volVM.locationName);
         }
 
-        List<User> relevantUsers = new List<User>();
-        relevantUsers = [SELECT Id, Email FROM User WHERE Id IN: relevantEmails];
+        List<User> existingUsers = [SELECT Id, Email FROM User WHERE Email IN: relevantEmails];
 
-        List<HOC__Occurrence__c> existingOccList = [
-            SELECT Id, HOC__Start_Date_Time__c, HOC__End_Date_Time__c, HOC__Volunteer_Opportunity__c, HOC__Opportunity_Coordinator__c
+        List<HOC__Occurrence__c> existingOccs = [
+            SELECT Id, HOC__Start_Date_Time__c, HOC__End_Date_Time__c,
+            HOC__Volunteer_Opportunity__c, HOC__Opportunity_Coordinator__c
             FROM HOC__Occurrence__c
-            WHERE HOC__Volunteer_Opportunity__r.Id =: relevantVolOppIds];
+            WHERE HOC__Volunteer_Opportunity__r.Id IN: relevantVolOppIds];
 
-        List<HOC__Occurrence__c> listOfOccurrencesToUpdate = returnListOfOccsToUpdate(volVmList, existingOccList, relevantUsers);
-        List<HOC__Occurrence__c> listOfOccurrencesToInsert = returnListOfOccsToInsert(volVmList, existingOccList, relevantUsers);
+
+        List<HOC__Location__c> existingLocations = [SELECT Id, Name
+                                                    FROM HOC__Location__c
+                                                    WHERE Name IN: relevantLocationNames];
+
+        List<HOC__Occurrence__c> listOfOccurrencesToUpdate = returnListOfOccsToUpdate(volVmList, existingOccs, existingUsers);
+
+        List<HOC__Occurrence__c> listOfOccurrencesToInsert = returnListOfOccsToInsert(volVmList, existingOccs, existingUsers, existingLocations);
 
         try{
             update listOfOccurrencesToUpdate;
+        } catch(Exception e){
+            System.debug(e);
+        }
+
+        try{
+            insert listOfOccurrencesToInsert;
         } catch(Exception e){
             System.debug(e);
         }
@@ -108,7 +119,7 @@ global with sharing class OccurrenceEndpoint {
     }
 
 
-    public static List<HOC__Occurrence__c> returnListOfOccsToInsert(List<VolunteerLeaderVM> myVolVMList, List<HOC__Occurrence__c> myOccList, List<User> myUserList){
+    public static List<HOC__Occurrence__c> returnListOfOccsToInsert(List<VolunteerLeaderVM> myVolVMList, List<HOC__Occurrence__c> myOccList, List<User> myUserList, List<HOC__Location__c> myLocationList){
 
         // Add to this list and update these Occurrences
         List<HOC__Occurrence__c> myOccListInsert = new List<HOC__Occurrence__c>();
@@ -135,15 +146,13 @@ global with sharing class OccurrenceEndpoint {
             }
         }
 
-        List<VolunteerLeaderVM> volVMNotFound = new List<VolunteerLeaderVM>();
-        
         for(VolunteerLeaderVM volVMUpdated : myVolVMList){
             if(!volVMUpdated.found){
-                volVMNotFound.add(volVMUpdated);
+                nonMatchingVLVMList.add(volVMUpdated);
             }
         }
 
-        myOccListInsert = buildOccurrenceList(volVMNotFound, myUserList, 'Active', 'Active');
+        myOccListInsert = buildOccurrencesList(nonMatchingVLVMList, myUserList, 'Active', 'Active');
         return myOccListInsert;
     }
 
@@ -228,7 +237,7 @@ global with sharing class OccurrenceEndpoint {
 
 
     // This method creates Occurrences
-    public static List<HOC__Occurrence__c> buildOccurrenceList(List<VolunteerLeaderVM> volLeaderVMList, List<User> oppCoordinatorList, String status, String postingStatus){
+    public static List<HOC__Occurrence__c> buildOccurrencesList(List<VolunteerLeaderVM> volLeaderVMList, List<User> oppCoordinatorList, String status, String postingStatus){
 
         List<HOC__Occurrence__c> myOccurrenceList = new List<HOC__Occurrence__c>();
 
