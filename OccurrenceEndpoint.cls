@@ -33,6 +33,7 @@ global with sharing class OccurrenceEndpoint {
         Datetime stopDatetime;
         String newVLEmail;
         String locationName;
+        Boolean found;
     }
 
     // The following method is used to reassign owner of an occurrence
@@ -87,7 +88,7 @@ global with sharing class OccurrenceEndpoint {
                         (occ.HOC__Volunteer_Opportunity__c == volVM.VolOppId))){
 
                         // Great success, I've found my occurrence!
-                        // Now set reassign the Volunteer Coordinator
+                        // Now reassign the Volunteer Coordinator
                         for(User myUser : myUserList){
                             if(volVM.newVLEmail == myUser.Email){
                                 occ.HOC__Opportunity_Coordinator__c = myUser.Id;
@@ -120,19 +121,29 @@ global with sharing class OccurrenceEndpoint {
                 // Using a combination of Volunteer Opportunity ID and Start Date
                 for(HOC__Occurrence__c occ : myOccList){
                     if((occ.HOC__Start_Date_Time__c != null &&
-                        (occ.HOC__Start_Date_Time__c != volVM.startDatetime)) &&
+                        (occ.HOC__Start_Date_Time__c == volVM.startDatetime)) &&
                         (occ.HOC__Volunteer_Opportunity__c != null &&
                         (occ.HOC__Volunteer_Opportunity__c == volVM.VolOppId))){
 
                         // Great success, I can't find an occurrence!
                         // Build List of nonMatching VLVMs
-                        nonMatchingVLVMList.add(volVM);
+                        volVM.found = TRUE;
                     }
                 }
             } else {
-                // Didn't find any occurrences, create them all!
+                volVM.found = FALSE;
             }
         }
+
+        List<VolunteerLeaderVM> volVMNotFound = new List<VolunteerLeaderVM>();
+        
+        for(VolunteerLeaderVM volVMUpdated : myVolVMList){
+            if(!volVMUpdated.found){
+                volVMNotFound.add(volVMUpdated);
+            }
+        }
+
+        myOccListInsert = buildOccurrenceList(volVMNotFound, myUserList, 'Active', 'Active');
         return myOccListInsert;
     }
 
@@ -216,63 +227,28 @@ global with sharing class OccurrenceEndpoint {
     }
 
 
-    // This method returns the id of the user whose CommunityNickname matches
-    public static String getBostonCaresStaffUserId(String bosCaresStaffName){
-      User myUser = [SELECT Id FROM User WHERE CommunityNickname =: bosCaresStaffName][0];
-      if(myUser != null){
-            String myUserId = myUser.Id;
-          return myUserId;
-      } else {
-        return null;
-      }
-    }
-
-
-    public static String getVolunteerOppId(String myVolOppName){
-      HOC__Volunteer_Opportunity__c myVolOpp = [SELECT Id FROM HOC__Volunteer_Opportunity__c WHERE Name =: myVolOppName][0];
-      if(myVolOpp != null){
-            String myVolunteerOppId = myVolOpp.Id;
-          return myVolunteerOppId;
-      } else {
-        return null;
-      }
-    }
-
-
-    public static String getLocationId(String myLocationName){
-      HOC__Location__c myLocation = [SELECT Id FROM HOC__Location__c WHERE Name =: myLocationName][0];
-      if(myLocation != null){
-            String myLocationId = myLocation.Id;
-          return myLocationId;
-      } else {
-        return null;
-      }
-    }
-
-
-    public static User getOppCoordinator(String oppCoordinatorEmail){
-      User myUser = [SELECT Id FROM User WHERE Email =: oppCoordinatorEmail][0];
-      if(myUser != null){
-          return myUser;
-      } else {
-        System.debug('No user with this email was found!');
-        return null;
-      }
-    }
-
-
     // This method creates Occurrences
-    public static HOC__Occurrence__c buildOccurrence(String volunteerOppId, String locationId, Datetime startTime, Datetime endTime, String status, String postingStatus, String oppCoordinatorId, String oppCoordinatorEmail, Integer minAttendance, Integer maxAttendance){
-      HOC__Occurrence__c occRecord = new HOC__Occurrence__c();
-        occRecord.HOC__Volunteer_Opportunity__c = volunteerOppId;
-        occRecord.HOC__Location__c = locationId;
-        occRecord.HOC__Start_Date_Time__c = startTime;
-        occRecord.HOC__End_Date_Time__c = endTime;
-        occRecord.HOC__Posting_Status__c = postingStatus;
-        occRecord.HOC__Status__c = status;
-        //occRecord.HOC__Days_Times_Needed__c = 'Tuesday Afternoon';
-        occRecord.HOC__Opportunity_Coordinator__c = oppCoordinatorId;
-        occRecord.HOC__Volunteer_Coordinator_Email__c = oppCoordinatorEmail;
-        return occRecord;
+    public static List<HOC__Occurrence__c> buildOccurrenceList(List<VolunteerLeaderVM> volLeaderVMList, List<User> oppCoordinatorList, String status, String postingStatus){
+
+        List<HOC__Occurrence__c> myOccurrenceList = new List<HOC__Occurrence__c>();
+
+        for(VolunteerLeaderVM myVolLeaderVM : volLeaderVMList){
+            HOC__Occurrence__c occRecord = new HOC__Occurrence__c();
+            occRecord.HOC__Volunteer_Opportunity__c = myVolLeaderVM.volOppId;
+            occRecord.HOC__Location__c = myVolLeaderVM.locationName;
+            occRecord.HOC__Start_Date_Time__c = myVolLeaderVM.startDatetime;
+            occRecord.HOC__End_Date_Time__c = myVolLeaderVM.stopDatetime;
+            occRecord.HOC__Posting_Status__c = postingStatus;
+            occRecord.HOC__Status__c = status;
+
+            for(User oppCoordinator : oppCoordinatorList){
+                if(oppCoordinator.Email == myVolLeaderVM.newVLEmail){
+                    occRecord.HOC__Opportunity_Coordinator__c = oppCoordinator.Id;
+                    occRecord.HOC__Volunteer_Coordinator_Email__c = oppCoordinator.Email;
+                }
+            }
+            myOccurrenceList.add(occRecord);
+        }
+        return myOccurrenceList;
     }
 }
