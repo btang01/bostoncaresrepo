@@ -33,7 +33,7 @@ global with sharing class OccurrenceEndpoint {
         Datetime stopDatetime;
         String newVLEmail;
         String locationName;
-        Boolean found;
+        Boolean found = FALSE;
     }
 
     // The following method is used to reassign owner of an occurrence
@@ -136,13 +136,9 @@ global with sharing class OccurrenceEndpoint {
                         (occ.HOC__Volunteer_Opportunity__c != null &&
                         (occ.HOC__Volunteer_Opportunity__c == volVM.VolOppId))){
 
-                        // Great success, I can't find an occurrence!
-                        // Build List of nonMatching VLVMs
                         volVM.found = TRUE;
                     }
                 }
-            } else {
-                volVM.found = FALSE;
             }
         }
 
