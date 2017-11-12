@@ -28,12 +28,12 @@ global with sharing class OccurrenceEndpoint {
 
 
     public class VolunteerLeaderVM{
-        String volOppId;
-        Datetime startDatetime;
-        Datetime stopDatetime;
-        String newVLEmail;
-        String locationName;
-        Boolean found = FALSE;
+        public String volOppId;
+        public Datetime startDatetime;
+        public Datetime stopDatetime;
+        public String newVLEmail;
+        public String locationName;
+        public Boolean found = FALSE;
     }
 
 
@@ -42,7 +42,7 @@ global with sharing class OccurrenceEndpoint {
 
         // ***** BUILD A LIST OF RELEVANT VOLUNTEER OP IDs *****
         List<String> relevantVolOppIds = new List<String>();
-        // ***** BUILD A LIST OF RELEVANT USERS *****
+        // ***** BUILD A LIST OF RELEVANT Contacts *****
         List<String> relevantEmails = new List<String>();
         // **** BUILD A LIST OF RELEVANT LOCATIONS ****
         List<String> relevantLocationNames = new List<String>();
@@ -53,7 +53,7 @@ global with sharing class OccurrenceEndpoint {
             relevantLocationNames.add(volVM.locationName);
         }
 
-        List<User> existingUsers = [SELECT Id, Email FROM User WHERE Email IN: relevantEmails];
+        List<Contact> existingContacts = [SELECT Id, Email FROM Contact WHERE Email IN: relevantEmails];
 
         List<HOC__Occurrence__c> existingOccs = [
             SELECT Id, HOC__Start_Date_Time__c, HOC__End_Date_Time__c,
@@ -67,9 +67,9 @@ global with sharing class OccurrenceEndpoint {
                                                     FROM HOC__Location__c
                                                     WHERE Name IN: relevantLocationNames];
 
-        List<HOC__Occurrence__c> listOfOccurrencesToUpdate = returnListOfOccsToUpdate(volVmList, existingOccs, existingUsers);
+        List<HOC__Occurrence__c> listOfOccurrencesToUpdate = returnListOfOccsToUpdate(volVmList, existingOccs, existingContacts);
 
-        List<HOC__Occurrence__c> listOfOccurrencesToInsert = returnListOfOccsToInsert(volVmList, existingOccs, existingUsers, existingLocations);
+        List<HOC__Occurrence__c> listOfOccurrencesToInsert = returnListOfOccsToInsert(volVmList, existingOccs, existingContacts, existingLocations);
 
         try{
             update listOfOccurrencesToUpdate;
@@ -85,7 +85,7 @@ global with sharing class OccurrenceEndpoint {
     }
 
 
-    public static List<HOC__Occurrence__c> returnListOfOccsToUpdate(List<VolunteerLeaderVM> myVolVMList, List<HOC__Occurrence__c> myOccList, List<User> myUserList){
+    public static List<HOC__Occurrence__c> returnListOfOccsToUpdate(List<VolunteerLeaderVM> myVolVMList, List<HOC__Occurrence__c> myOccList, List<Contact> myContactList){
 
         // Add to this list and update these Occurrences
         List<HOC__Occurrence__c> myOccListToUpdate = new List<HOC__Occurrence__c>();
@@ -102,13 +102,13 @@ global with sharing class OccurrenceEndpoint {
 
                         // Great success, I've found my occurrence!
                         // Now reassign the Volunteer Coordinator
-                        for(User myUser : myUserList){
-                            if(volVM.newVLEmail == myUser.Email){
-                                occ.HOC__Opportunity_Coordinator__c = myUser.Id;
-                                occ.HOC__Volunteer_Coordinator_Email__c = myUser.Email;
+                        for(Contact myCon : myContactList){
+                            if(volVM.newVLEmail == myCon.Email){
+                                occ.HOC__Opportunity_Coordinator__c = myCon.Id;
+                                occ.HOC__Volunteer_Coordinator_Email__c = myCon.Email;
                                 myOccListToUpdate.add(occ);
                             } else {
-                                System.debug('Existing user cannot be found with this Email!');
+                                System.debug('Existing Contact cannot be found with this Email!');
                             }
                         }
                     }
@@ -121,7 +121,7 @@ global with sharing class OccurrenceEndpoint {
     }
 
 
-    public static List<HOC__Occurrence__c> returnListOfOccsToInsert(List<VolunteerLeaderVM> myVolVMList, List<HOC__Occurrence__c> myOccList, List<User> myUserList, List<HOC__Location__c> myLocationList){
+    public static List<HOC__Occurrence__c> returnListOfOccsToInsert(List<VolunteerLeaderVM> myVolVMList, List<HOC__Occurrence__c> myOccList, List<Contact> myContactList, List<HOC__Location__c> myLocationList){
 
         // Add to this list and update these Occurrences
         List<HOC__Occurrence__c> myOccListInsert = new List<HOC__Occurrence__c>();
@@ -150,7 +150,7 @@ global with sharing class OccurrenceEndpoint {
             }
         }
 
-        myOccListInsert = buildOccurrencesList(nonMatchingVLVMList, myUserList, myLocationList, 'Active', 'Active');
+        myOccListInsert = buildOccurrencesList(nonMatchingVLVMList, myContactList, myLocationList, 'Active', 'Active');
         return myOccListInsert;
     }
 
@@ -207,14 +207,13 @@ global with sharing class OccurrenceEndpoint {
 
 
     // This method creates Occurrences
-    public static List<HOC__Occurrence__c> buildOccurrencesList(List<VolunteerLeaderVM> volLeaderVMList, List<User> oppCoordinatorList, List<HOC__Location__c> locationList, String status, String postingStatus){
+    public static List<HOC__Occurrence__c> buildOccurrencesList(List<VolunteerLeaderVM> volLeaderVMList, List<Contact> oppCoordinatorList, List<HOC__Location__c> locationList, String status, String postingStatus){
 
         List<HOC__Occurrence__c> myOccurrenceList = new List<HOC__Occurrence__c>();
 
         for(VolunteerLeaderVM myVolLeaderVM : volLeaderVMList){
             HOC__Occurrence__c occRecord = new HOC__Occurrence__c();
             occRecord.HOC__Volunteer_Opportunity__c = myVolLeaderVM.volOppId;
-            occRecord.HOC__Location__c = myVolLeaderVM.locationName;
             occRecord.HOC__Start_Date_Time__c = myVolLeaderVM.startDatetime;
             occRecord.HOC__End_Date_Time__c = myVolLeaderVM.stopDatetime;
             occRecord.HOC__Posting_Status__c = postingStatus;
@@ -226,7 +225,7 @@ global with sharing class OccurrenceEndpoint {
                 }
             }
 
-            for(User oppCoordinator : oppCoordinatorList){
+            for(Contact oppCoordinator : oppCoordinatorList){
                 if(oppCoordinator.Email == myVolLeaderVM.newVLEmail){
                     occRecord.HOC__Opportunity_Coordinator__c = oppCoordinator.Id;
                     occRecord.HOC__Volunteer_Coordinator_Email__c = oppCoordinator.Email;
