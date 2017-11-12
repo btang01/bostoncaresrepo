@@ -170,8 +170,19 @@ private class OccurrenceEndpointTest {
 														FROM HOC__Occurrence__c
 														WHERE HOC__Volunteer_Opportunity__c =: voloppRecord.Id];
 
+			Datetime compareDatetime = Datetime.newInstance(2017, 12, 1, 12, 30, 2);
 
-			System.debug(resultOccurrences.size());
+			HOC__Occurrence__c updatedOccurrence = [SELECT Id, HOC__Volunteer_Coordinator_Email__c
+														FROM HOC__Occurrence__c
+														WHERE HOC__Volunteer_Opportunity__c =: voloppRecord.Id
+														AND HOC__Start_Date_Time__c =: compareDatetime][0];
+
+			// Verify that we now have 2 Occurrences instead of 1 for that Vol Opp
+			System.assert(resultOccurrences.size() == 2, 'An occurrence was not created properly!');
+
+			// Verify that the existing occurrence's Volunteer Coordinator was updated
+			System.assert(updatedOccurrence.HOC__Volunteer_Coordinator_Email__c == 'test2@bostoncares.org', 'The occurrence was not reassigned as expected!');
+
 		}
 
 }
