@@ -13,11 +13,9 @@ global with sharing class OccurrenceEndpoint {
     public static String rowDelim = '\\<\\<\\|';
     public static String fieldDelim = '\\>\\>\\|';
 
-    public static String ORG_NAME = 'Name of Organization';
-    public static String EVENT_NAME = 'Name of Event';
-    public static String VL_EMAIL = 'Volunteer Leader';
-    public static String DATES_CLAIMED = 'Dates Claimed';
-    public static String EVENT_TIME = 'Time of Event';
+    public static String OPP_ID = 'ID';
+    public static String VL_EMAIL = 'VL Email';
+    public static String OCC_DATE = 'Occurrence Date';
 
     public static Map<String, Integer> fieldPositionMap = new Map<String, Integer>();
     public static ID nonprofitId = schema.SObjectType.Account.getRecordTypeInfosByName().get('Nonprofit').getRecordTypeId();
@@ -44,13 +42,10 @@ global with sharing class OccurrenceEndpoint {
         List<String> relevantVolOppIds = new List<String>();
         // ***** BUILD A LIST OF RELEVANT Contacts *****
         List<String> relevantEmails = new List<String>();
-        // **** BUILD A LIST OF RELEVANT LOCATIONS ****
-        List<String> relevantLocationNames = new List<String>();
 
         for(VolunteerLeaderVM volVM : volVmList){
             relevantVolOppIds.add(volVM.volOppId);
             relevantEmails.add(volVM.newVLEmail);
-            relevantLocationNames.add(volVM.locationName);
         }
 
         List<Contact> existingContacts = [SELECT Id, Email FROM Contact WHERE Email IN: relevantEmails];
@@ -62,14 +57,27 @@ global with sharing class OccurrenceEndpoint {
             WHERE HOC__Start_Date_Time__c >: System.Now()
             AND HOC__Volunteer_Opportunity__r.Id IN: relevantVolOppIds];
 
+        List<HOC__Volunteer_Opportunity__c> existingVolOpps = [
+            SELECT Id, HOC__Default_Location__r.Id
+            FROM HOC__Volunteer_Opportunity__c
+            WHERE Id IN: relevantVolOppIds];
 
-        List<HOC__Location__c> existingLocations = [SELECT Id, Name
-                                                    FROM HOC__Location__c
-                                                    WHERE Name IN: relevantLocationNames];
+        Map<Id, List<String>> mapKeyVolOppIdValueLocationId = new Map<Id, List<String>>();
+
+        for(HOC__Volunteer_Opportunity__c vOpp : existingVolOpps){
+            if(mapKeyVolOppIdValueLocationId.containsKey(vOpp.Id)){
+                List<String> innerList = mapKeyVolOppIdValueLocationId.get(vOpp.Id);
+                innerList.add(vOpp.HOC__Default_Location__r.Id);
+            } else {
+                List<String> innerList = new List<String>();
+                innerList.add(vOpp.HOC__Default_Location__r.Id);
+                mapKeyVolOppIdValueLocationId.put(vOpp.Id, innerList);
+            }
+        }
 
         List<HOC__Occurrence__c> listOfOccurrencesToUpdate = returnListOfOccsToUpdate(volVmList, existingOccs, existingContacts);
 
-        List<HOC__Occurrence__c> listOfOccurrencesToInsert = returnListOfOccsToInsert(volVmList, existingOccs, existingContacts, existingLocations);
+        List<HOC__Occurrence__c> listOfOccurrencesToInsert = returnListOfOccsToInsert(volVmList, existingOccs, existingContacts, mapKeyVolOppIdValueLocationId);
 
         try{
             update listOfOccurrencesToUpdate;
@@ -121,7 +129,7 @@ global with sharing class OccurrenceEndpoint {
     }
 
 
-    public static List<HOC__Occurrence__c> returnListOfOccsToInsert(List<VolunteerLeaderVM> myVolVMList, List<HOC__Occurrence__c> myOccList, List<Contact> myContactList, List<HOC__Location__c> myLocationList){
+    public static List<HOC__Occurrence__c> returnListOfOccsToInsert(List<VolunteerLeaderVM> myVolVMList, List<HOC__Occurrence__c> myOccList, List<Contact> myContactList, Map<Id, List<String>> myVolOppLocMap){
 
         // Add to this list and update these Occurrences
         List<HOC__Occurrence__c> myOccListInsert = new List<HOC__Occurrence__c>();
@@ -150,7 +158,7 @@ global with sharing class OccurrenceEndpoint {
             }
         }
 
-        myOccListInsert = buildOccurrencesList(nonMatchingVLVMList, myContactList, myLocationList, 'Active', 'Active');
+        myOccListInsert = buildOccurrencesList(nonMatchingVLVMList, myContactList, myVolOppLocMap, 'Active', 'Active');
         return myOccListInsert;
     }
 
@@ -168,46 +176,40 @@ global with sharing class OccurrenceEndpoint {
         fieldPositionMap.put(header[i], i);
       }
 
+      List<VolunteerLeaderVM> occurrences = new List<VolunteerLeaderVM>();
+
       // Go through the records we received
       for (Integer i = 1; i < rows.size(); i++) {
         String[] fields = rows[i].split(fieldDelim);
+        String oppId = getFld(OPP_ID, fields);
         String vlEmail = getFld(VL_EMAIL, fields);
-        String orgName = getFld(ORG_NAME, fields);
-        String eventName = getFld(EVENT_NAME, fields);
-        String[] dates = getFld(DATES_CLAIMED, fields).split(dateDelim);
-        String[] times = getFld(EVENT_TIME, fields).split(timeDelim);
-        List<DateTime[]> occurrences = new List<DateTime[]>();
-        for (String dt : dates) {
-          DateTime[] occ = new DateTime[2];
-          occ[0] = DateTime.newInstance(
-            Integer.valueOf(dt.substring(0, 4)),
-            Integer.valueOf(dt.substring(4, 6)),
-            Integer.valueOf(dt.substring(6, 8)),
-            Integer.valueOf(times[0].substring(0, 2)),
-            Integer.valueOf(times[0].substring(2, 4)),
-            Integer.valueOf(times[0].substring(4, 6))
-          );
-          occ[1] = DateTime.newInstance(
-            Integer.valueOf(dt.substring(0, 4)),
-            Integer.valueOf(dt.substring(4, 6)),
-            Integer.valueOf(dt.substring(6, 8)),
-            Integer.valueOf(times[1].substring(0, 2)),
-            Integer.valueOf(times[1].substring(2, 4)),
-            Integer.valueOf(times[1].substring(4, 6))
-          );
-          occurrences.add(occ);
-          //CreateObjects(vlEmail, orgName, eventName, occurrences, ...);
-          response = response + 'got date|';
-        }
+        String dd = getFld(OCC_DATE, fields);
+        System.debug('phil1 here ' + dd);
+        String[] dp = dd.split('[ \\-:]');
+        System.debug('phil here ' + dd + ', ' + dp[0] + ', ' + dp[1]);
+        VolunteerLeaderVM newocc = new VolunteerLeaderVM();
+        newocc.volOppId = oppId;
+        newocc.newVLEmail = vlEmail;
+        newocc.startDateTime = DateTime.newInstance(
+            Integer.valueOf(dp[0]),
+            Integer.valueOf(dp[1]),
+            Integer.valueOf(dp[2]),
+            Integer.valueOf(dp[3]),
+            Integer.valueOf(dp[4]),
+            0
+        );
+        occurrences.add(newocc);
+        //dt.substring(0, 4)
+
+        upsertOccurrence(occurrences);
       }
 
       RestContext.response.responseBody = Blob.valueOf(response);
-
     }
 
 
     // This method creates Occurrences
-    public static List<HOC__Occurrence__c> buildOccurrencesList(List<VolunteerLeaderVM> volLeaderVMList, List<Contact> oppCoordinatorList, List<HOC__Location__c> locationList, String status, String postingStatus){
+    public static List<HOC__Occurrence__c> buildOccurrencesList(List<VolunteerLeaderVM> volLeaderVMList, List<Contact> oppCoordinatorList, Map<Id, List<String>> myVolOppLocationMap, String status, String postingStatus){
 
         List<HOC__Occurrence__c> myOccurrenceList = new List<HOC__Occurrence__c>();
 
@@ -219,9 +221,12 @@ global with sharing class OccurrenceEndpoint {
             occRecord.HOC__Posting_Status__c = postingStatus;
             occRecord.HOC__Status__c = status;
 
-            for(HOC__Location__c location : locationList){
-                if(location.Name == myVolLeaderVM.locationName){
-                    occRecord.HOC__Location__c = location.Id;
+            for(Id volOppId : myVolOppLocationMap.keySet()){
+                String locationIdString = myVolOppLocationMap.get(volOppId)[0];
+                if(volOppId == occRecord.HOC__Volunteer_Opportunity__c){
+                    occRecord.HOC__Location__c = locationIdString;
+                } else {
+                    System.debug('No Location found for this vm!');
                 }
             }
 
