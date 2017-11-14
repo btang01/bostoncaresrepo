@@ -8,6 +8,7 @@
 @RestResource(urlMapping='/HOC__Occurrence__c/*')
 global with sharing class OccurrenceEndpoint {
 
+    public static String successErrorMessage;
     public static String dateDelim = '\\|';
     public static String timeDelim = '-';
     public static String rowDelim = '\\<\\<\\|';
@@ -36,7 +37,7 @@ global with sharing class OccurrenceEndpoint {
 
 
     // The following method is used to reassign owner of an occurrence
-    public static void upsertOccurrence(List<VolunteerLeaderVM> volVmList){
+    public static String upsertOccurrence(List<VolunteerLeaderVM> volVmList){
 
         // ***** BUILD A LIST OF RELEVANT VOLUNTEER OP IDs *****
         List<String> relevantVolOppIds = new List<String>();
@@ -89,6 +90,35 @@ global with sharing class OccurrenceEndpoint {
             insert listOfOccurrencesToInsert;
         } catch(Exception e){
             System.debug(e);
+        }
+
+        List<HOC__Occurrence__c> countOfOccurrencesToUpdateAndInsert = new List<HOC__Occurrence__c>();
+
+        if(listOfOccurrencesToUpdate != null && !listOfOccurrencesToUpdate.isEmpty()){
+            countOfOccurrencesToUpdateAndInsert.addAll(listOfOccurrencesToUpdate);
+        }
+
+        if(listOfOccurrencesToInsert != null && !listOfOccurrencesToInsert.isEmpty()){
+            countOfOccurrencesToUpdateAndInsert.addAll(listOfOccurrencesToInsert);
+        }
+
+        if(countOfOccurrencesToUpdateAndInsert != null &&
+            volVmList != null &&
+            countOfOccurrencesToUpdateAndInsert.size() == volVmList.size() &&
+            countOfOccurrencesToUpdateAndInsert.size() > 0){
+                successErrorMessage = 'SUCCESS! All entries were either inserted or updated in Salesforce!';
+                return successErrorMessage;
+        }
+        else if (countOfOccurrencesToUpdateAndInsert != null &&
+            volVmList != null &&
+            countOfOccurrencesToUpdateAndInsert.size() == volVmList.size() &&
+            countOfOccurrencesToUpdateAndInsert.size() > 0){
+            successErrorMessage = 'PARTIAL SUCCESS! Some entries were either inserted or updated in Salesforce!';
+            return successErrorMessage;
+        }
+        else {
+            successErrorMessage = 'ERROR! None of the entries were inserted or updated in Salesforce!';
+            return successErrorMessage;
         }
     }
 
