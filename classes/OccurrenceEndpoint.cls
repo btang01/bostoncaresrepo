@@ -8,7 +8,7 @@
 @RestResource(urlMapping='/HOC__Occurrence__c/*')
 global with sharing class OccurrenceEndpoint {
 
-    public static String successErrorMessage;
+    public static Map<String, String> mapVlvmSuccessError;
     public static String dateDelim = '\\|';
     public static String timeDelim = '-';
     public static String rowDelim = '\\<\\<\\|';
@@ -27,6 +27,7 @@ global with sharing class OccurrenceEndpoint {
 
 
     public class VolunteerLeaderVM{
+        public String vlvmId;
         public String volOppId;
         public Datetime startDatetime;
         public Datetime stopDatetime;
@@ -37,12 +38,17 @@ global with sharing class OccurrenceEndpoint {
 
 
     // The following method is used to reassign owner of an occurrence
-    public static String upsertOccurrence(List<VolunteerLeaderVM> volVmList){
+    public static Map<String, String> upsertOccurrence(List<VolunteerLeaderVM> volVmList){
 
         // ***** BUILD A LIST OF RELEVANT VOLUNTEER OP IDs *****
         List<String> relevantVolOppIds = new List<String>();
         // ***** BUILD A LIST OF RELEVANT Contacts *****
         List<String> relevantEmails = new List<String>();
+
+        // Create Ids for the volVmList records
+        for(VolunteerLeaderVM vlvm : volVmList){
+            vlvm.vlvmId = vlvm.volOppId + '_' + vlvm.startDatetime;
+        }
 
         for(VolunteerLeaderVM volVM : volVmList){
             relevantVolOppIds.add(volVM.volOppId);
@@ -80,46 +86,41 @@ global with sharing class OccurrenceEndpoint {
 
         List<HOC__Occurrence__c> listOfOccurrencesToInsert = returnListOfOccsToInsert(volVmList, existingOccs, existingContacts, mapKeyVolOppIdValueLocationId);
 
-        try{
-            update listOfOccurrencesToUpdate;
-        } catch(Exception e){
-            System.debug(e);
-        }
-
-        try{
-            insert listOfOccurrencesToInsert;
-        } catch(Exception e){
-            System.debug(e);
-        }
-
-        List<HOC__Occurrence__c> countOfOccurrencesToUpdateAndInsert = new List<HOC__Occurrence__c>();
+        List<HOC__Occurrence__c> allOccurrencesToUpsert = new List<HOC__Occurrence__c>();
 
         if(listOfOccurrencesToUpdate != null && !listOfOccurrencesToUpdate.isEmpty()){
-            countOfOccurrencesToUpdateAndInsert.addAll(listOfOccurrencesToUpdate);
+            allOccurrencesToUpsert.addAll(listOfOccurrencesToUpdate);
         }
 
         if(listOfOccurrencesToInsert != null && !listOfOccurrencesToInsert.isEmpty()){
-            countOfOccurrencesToUpdateAndInsert.addAll(listOfOccurrencesToInsert);
+            allOccurrencesToUpsert.addAll(listOfOccurrencesToInsert);
         }
 
-        if(countOfOccurrencesToUpdateAndInsert != null &&
-            volVmList != null &&
-            countOfOccurrencesToUpdateAndInsert.size() == volVmList.size() &&
-            countOfOccurrencesToUpdateAndInsert.size() > 0){
-                successErrorMessage = 'SUCCESS! All entries were either inserted or updated in Salesforce!';
-                return successErrorMessage;
+        // Build the success/error message per VLVM
+        if(allOccurrencesToUpsert != null && !allOccurrencesToUpsert.isEmpty()){
+            for(VolunteerLeaderVM vlvm : volVmList){
+                for(HOC__Occurrence__c occ : listOfOccurrencesToUpdate){
+                    if(vlvm.vlvmId == (occ.HOC__Volunteer_Opportunity__c + '_' + occ.HOC__Start_Date_Time__c)){
+                        mapVlvmSuccessError.put(vlvm.vlvmId, 'SUCCESS');
+                    } else {
+                        mapVlvmSuccessError.put(vlvm.vlvmId, 'ERROR');
+                    }
+                }
+            }
+
+            try{
+                upsert allOccurrencesToUpsert;
+                return mapVlvmSuccessError;
+            } catch(Exception e){
+                System.debug(e);
+                return mapVlvmSuccessError;
+            }
+
+        } else {
+            System.debug('Nothing valid to upsert!');
+            return mapVlvmSuccessError;
         }
-        else if (countOfOccurrencesToUpdateAndInsert != null &&
-            volVmList != null &&
-            countOfOccurrencesToUpdateAndInsert.size() == volVmList.size() &&
-            countOfOccurrencesToUpdateAndInsert.size() > 0){
-            successErrorMessage = 'PARTIAL SUCCESS! Some entries were either inserted or updated in Salesforce!';
-            return successErrorMessage;
-        }
-        else {
-            successErrorMessage = 'ERROR! None of the entries were inserted or updated in Salesforce!';
-            return successErrorMessage;
-        }
+
     }
 
 
