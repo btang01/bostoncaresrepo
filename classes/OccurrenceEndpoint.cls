@@ -34,6 +34,7 @@ global with sharing class OccurrenceEndpoint {
         public String newVLEmail;
         public String locationName;
         public Boolean found = FALSE;
+        public Boolean successfulUpsert = FALSE;
     }
 
 
@@ -69,6 +70,7 @@ global with sharing class OccurrenceEndpoint {
             FROM HOC__Volunteer_Opportunity__c
             WHERE Id IN: relevantVolOppIds];
 
+        // NEED TO BUILD A MAP OF VOL OPP AND LOCATION FOR INSERTING NEW OCCs
         Map<Id, List<String>> mapKeyVolOppIdValueLocationId = new Map<Id, List<String>>();
 
         for(HOC__Volunteer_Opportunity__c vOpp : existingVolOpps){
@@ -96,40 +98,52 @@ global with sharing class OccurrenceEndpoint {
             allOccurrencesToUpsert.addAll(listOfOccurrencesToInsert);
         }
 
-        // Build the success/error message per VLVM
+        List<HOC__Occurrence__c> successOccurrencesList = new List<HOC__Occurrence__c>();
+
         if(allOccurrencesToUpsert != null && !allOccurrencesToUpsert.isEmpty()){
-            for(VolunteerLeaderVM vlvm : volVmList){
-                for(HOC__Occurrence__c occ : listOfOccurrencesToUpdate){
-                    if(vlvm.vlvmId == (occ.HOC__Volunteer_Opportunity__c + '_' + occ.HOC__Start_Date_Time__c)){
-                        mapVlvmSuccessError.put(vlvm.vlvmId, 'SUCCESS');
-                    } else {
-                        mapVlvmSuccessError.put(vlvm.vlvmId, 'ERROR');
-                    }
-                }
-            }
 
-            try{
-                List<Database.upsertResult> srList = Database.upsert(allOccurrencesToUpsert, HOC__Occurrence__c.Id, true);
+            // BUILD SUCCESS LIST OF VMs
+            List<Database.upsertResult> srList = Database.upsert(allOccurrencesToUpsert, HOC__Occurrence__c.Id, true);
 
-                for(Database.upsertResult sr : srList){
-                    if(!sr.isSuccess()){
-                        for(Database.Error err : sr.getErrors()){
-                          System.debug('The following error has occurred.');
-                          System.debug(err.getStatusCode() + ': ' + err.getMessage());
+            for(Database.upsertResult sr : srList){
+                if(sr.isSuccess()){
+                    String successId = sr.getId();
+
+                    for(VolunteerLeaderVM vlvm : volVmList){
+                        for(HOC__Occurrence__c myOcc : allOccurrencesToUpsert){
+
+                            if(myOcc.Id == successId &&
+                                vlvm.vlvmId == (myOcc.HOC__Volunteer_Opportunity__c + '_' + myOcc.HOC__Start_Date_Time__c)){
+                                successOccurrencesList.add(myOcc);
+                                mapVlvmSuccessError.put(vlvm.vlvmId, 'SUCCESS');
+                            }
                         }
                     }
                 }
-                return mapVlvmSuccessError;
-            } catch(Exception e){
-                System.debug(e);
-                return mapVlvmSuccessError;
             }
+
+            // BUILD ERROR LIST OF VMs
+            for(VolunteerLeaderVM vlvm : volVmList){
+                for(HOC__Occurrence__c goodOccs : successOccurrencesList){
+                    if(vlvm.vlvmId == (goodOccs.HOC__Volunteer_Opportunity__c + '_' + goodOccs.HOC__Start_Date_Time__c)){
+                        vlvm.successfulUpsert = true;
+                    }
+                }
+            }
+
+            for(VolunteerLeaderVM vlvm : volVmList){
+                if(vlvm.successfulUpsert == false){
+                    mapVlvmSuccessError.put(vlvm.vlvmId, 'ERROR');
+                }
+            }
+
+            return mapVlvmSuccessError;
 
         } else {
             System.debug('Nothing valid to upsert!');
+            mapVlvmSuccessError.put('Everything', 'ERROR');
             return mapVlvmSuccessError;
         }
-
     }
 
 
