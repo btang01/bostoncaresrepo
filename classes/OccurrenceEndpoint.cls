@@ -109,7 +109,16 @@ global with sharing class OccurrenceEndpoint {
             }
 
             try{
-                upsert allOccurrencesToUpsert;
+                List<Database.upsertResult> srList = Database.upsert(allOccurrencesToUpsert, HOC__Occurrence__c.Id, true);
+
+                for(Database.upsertResult sr : srList){
+                    if(!sr.isSuccess()){
+                        for(Database.Error err : sr.getErrors()){
+                          System.debug('The following error has occurred.');
+                          System.debug(err.getStatusCode() + ': ' + err.getMessage());
+                        }
+                    }
+                }
                 return mapVlvmSuccessError;
             } catch(Exception e){
                 System.debug(e);
