@@ -26,7 +26,8 @@ global with sharing class OccurrenceEndpoint {
       return fields[fieldPositionMap.get(name)];
     }
     public static String getSyntheticOccurrenceId(String id, Datetime d) {
-      return id + '_' + d.format('YYYY-MM-dd HH:mm:ss', 'America/New_York');
+      //return id + '_' + d.format('YYYY-MM-dd HH:mm:ss', 'America/New_York');
+      return id + '_' + d.format('YYYY-MM-dd', 'America/New_York');
     }
 
     public class VolunteerLeaderVM{
@@ -242,9 +243,9 @@ global with sharing class OccurrenceEndpoint {
         String oppId = getFld(OPP_ID, fields);
         String vlEmail = getFld(VL_EMAIL, fields);
         String sd = getFld(START_DATE, fields);
-        String[] sp = sd.split('[ \\-:]');
+        String[] sp = sd.split('[ \\/\\-:]');
         String ed = getFld(END_DATE, fields);
-        String[] ep = ed.split('[ \\-:]');
+        String[] ep = ed.split('[ \\/\\-:]');
         VolunteerLeaderVM newocc = new VolunteerLeaderVM();
         newocc.volOppId = oppId;
         newocc.newVLEmail = vlEmail;
