@@ -25,7 +25,9 @@ global with sharing class OccurrenceEndpoint {
     public static String getFld(String name, String[] fields) {
       return fields[fieldPositionMap.get(name)];
     }
-
+    public static String getSyntheticOccurrenceId(String id, Datetime d) {
+      return id + '_' + d.format('YYYY-MM-dd HH:mm:ss', 'America/New_York');
+    }
 
     public class VolunteerLeaderVM{
         public String vlvmId;
@@ -50,8 +52,7 @@ global with sharing class OccurrenceEndpoint {
 
         // Create Ids for the volVmList records
         for(VolunteerLeaderVM vlvm : volVmList){
-            String strConvertedDate = vlvm.startDatetime.format('YYYY-MM-DD HH:MM:SS', 'America/New_York');
-            vlvm.vlvmId = vlvm.volOppId + '_' + strConvertedDate;
+            vlvm.vlvmId = getSyntheticOccurrenceId(vlvm.volOppId, vlvm.startDatetime);
         }
 
         for(VolunteerLeaderVM volVM : volVmList){
@@ -116,7 +117,7 @@ global with sharing class OccurrenceEndpoint {
                         for(HOC__Occurrence__c myOcc : allOccurrencesToUpsert){
 
                             if(myOcc.Id == successId &&
-                                vlvm.vlvmId == (myOcc.HOC__Volunteer_Opportunity__c + '_' + myOcc.HOC__Start_Date_Time__c)){
+                                vlvm.vlvmId == getSyntheticOccurrenceId(myOcc.HOC__Volunteer_Opportunity__c, myOcc.HOC__Start_Date_Time__c)){
                                 successOccurrencesList.add(myOcc);
                                 mapVlvmSuccessError.put(vlvm.vlvmId, 'SUCCESS');
                             }
@@ -128,7 +129,7 @@ global with sharing class OccurrenceEndpoint {
             // BUILD ERROR LIST OF VMs
             for(VolunteerLeaderVM vlvm : volVmList){
                 for(HOC__Occurrence__c goodOccs : successOccurrencesList){
-                    if(vlvm.vlvmId == (goodOccs.HOC__Volunteer_Opportunity__c + '_' + goodOccs.HOC__Start_Date_Time__c)){
+                    if(vlvm.vlvmId == getSyntheticOccurrenceId(goodOccs.HOC__Volunteer_Opportunity__c, goodOccs.HOC__Start_Date_Time__c)){
                         vlvm.successfulUpsert = true;
                     }
                 }
@@ -144,7 +145,7 @@ global with sharing class OccurrenceEndpoint {
 
         } else {
             System.debug('Nothing valid to upsert!');
-            mapVlvmSuccessError.put('Everything', 'ERROR');
+            mapVlvmSuccessError.put('defaultResult', 'ERROR');
             return mapVlvmSuccessError;
         }
     }
@@ -273,9 +274,10 @@ global with sharing class OccurrenceEndpoint {
       for (String key : mapVlvmSuccessError.keySet()) {
         String result = mapVlvmSuccessError.get(key);
         if (i > 0) {
-          response += rowDelim;
+          response += rowDelim.replace('\\', '');
         }
-        response += key + fieldDelim + result;
+        response += key + fieldDelim.replace('\\', '') + result;
+        i++;
       }
       System.debug('phil response ' + response);
       RestContext.response.responseBody = Blob.valueOf(response);
