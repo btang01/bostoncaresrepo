@@ -162,7 +162,7 @@ global with sharing class OccurrenceEndpoint {
                 // Using a combination of Volunteer Opportunity ID and Start Date
                 for(HOC__Occurrence__c occ : myOccList){
                     if((occ.HOC__Start_Date_Time__c != null &&
-                        (occ.HOC__Start_Date_Time__c == volVM.startDatetime)) &&
+                        (occ.HOC__Start_Date_Time__c.date() == volVM.startDatetime.date())) &&
                         (occ.HOC__Volunteer_Opportunity__c != null &&
                         (occ.HOC__Volunteer_Opportunity__c == volVM.VolOppId))){
 
@@ -200,7 +200,7 @@ global with sharing class OccurrenceEndpoint {
                 // Using a combination of Volunteer Opportunity ID and Start Date
                 for(HOC__Occurrence__c occ : myOccList){
                     if((occ.HOC__Start_Date_Time__c != null &&
-                        (occ.HOC__Start_Date_Time__c == volVM.startDatetime)) &&
+                        (occ.HOC__Start_Date_Time__c.date() == volVM.startDatetime.date())) &&
                         (occ.HOC__Volunteer_Opportunity__c != null &&
                         (occ.HOC__Volunteer_Opportunity__c == volVM.VolOppId))){
 
