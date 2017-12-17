@@ -50,7 +50,8 @@ global with sharing class OccurrenceEndpoint {
 
         // Create Ids for the volVmList records
         for(VolunteerLeaderVM vlvm : volVmList){
-            vlvm.vlvmId = vlvm.volOppId + '_' + vlvm.startDatetime;
+            String strConvertedDate = vlvm.startDatetime.format('YYYY-MM-DD HH:MM:SS', 'America/New_York');
+            vlvm.vlvmId = vlvm.volOppId + '_' + strConvertedDate;
         }
 
         for(VolunteerLeaderVM volVM : volVmList){
@@ -240,11 +241,9 @@ global with sharing class OccurrenceEndpoint {
         String oppId = getFld(OPP_ID, fields);
         String vlEmail = getFld(VL_EMAIL, fields);
         String sd = getFld(START_DATE, fields);
-        System.debug('phil1 here ' + sd);
         String[] sp = sd.split('[ \\-:]');
         String ed = getFld(END_DATE, fields);
         String[] ep = ed.split('[ \\-:]');
-        System.debug('phil here ' + sd + ', ' + sp[0] + ', ' + sp[1]);
         VolunteerLeaderVM newocc = new VolunteerLeaderVM();
         newocc.volOppId = oppId;
         newocc.newVLEmail = vlEmail;
@@ -270,6 +269,15 @@ global with sharing class OccurrenceEndpoint {
         upsertOccurrence(occurrences);
       }
 
+      Integer i = 0;
+      for (String key : mapVlvmSuccessError.keySet()) {
+        String result = mapVlvmSuccessError.get(key);
+        if (i > 0) {
+          response += rowDelim;
+        }
+        response += key + fieldDelim + result;
+      }
+      System.debug('phil response ' + response);
       RestContext.response.responseBody = Blob.valueOf(response);
     }
 
