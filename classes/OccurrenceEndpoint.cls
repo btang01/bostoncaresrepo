@@ -16,7 +16,8 @@ global with sharing class OccurrenceEndpoint {
 
     public static String OPP_ID = 'ID';
     public static String VL_EMAIL = 'VL Email';
-    public static String OCC_DATE = 'Occurrence Date';
+    public static String START_DATE = 'Start Time';
+    public static String END_DATE = 'End Time';
 
     public static Map<String, Integer> fieldPositionMap = new Map<String, Integer>();
     public static ID nonprofitId = schema.SObjectType.Account.getRecordTypeInfosByName().get('Nonprofit').getRecordTypeId();
@@ -24,7 +25,10 @@ global with sharing class OccurrenceEndpoint {
     public static String getFld(String name, String[] fields) {
       return fields[fieldPositionMap.get(name)];
     }
-
+    public static String getSyntheticOccurrenceId(String id, Datetime d) {
+      //return id + '_' + d.format('YYYY-MM-dd HH:mm:ss', 'America/New_York');
+      return id + '_' + d.format('YYYY-MM-dd', 'America/New_York');
+    }
 
     public class VolunteerLeaderVM{
         public String vlvmId;
@@ -40,6 +44,7 @@ global with sharing class OccurrenceEndpoint {
 
     // The following method is used to reassign owner of an occurrence
     public static Map<String, String> upsertOccurrence(List<VolunteerLeaderVM> volVmList){
+        mapVlvmSuccessError = new Map<String, String>();
 
         // ***** BUILD A LIST OF RELEVANT VOLUNTEER OP IDs *****
         List<String> relevantVolOppIds = new List<String>();
@@ -48,7 +53,7 @@ global with sharing class OccurrenceEndpoint {
 
         // Create Ids for the volVmList records
         for(VolunteerLeaderVM vlvm : volVmList){
-            vlvm.vlvmId = vlvm.volOppId + '_' + vlvm.startDatetime;
+            vlvm.vlvmId = getSyntheticOccurrenceId(vlvm.volOppId, vlvm.startDatetime);
         }
 
         for(VolunteerLeaderVM volVM : volVmList){
@@ -113,7 +118,7 @@ global with sharing class OccurrenceEndpoint {
                         for(HOC__Occurrence__c myOcc : allOccurrencesToUpsert){
 
                             if(myOcc.Id == successId &&
-                                vlvm.vlvmId == (myOcc.HOC__Volunteer_Opportunity__c + '_' + myOcc.HOC__Start_Date_Time__c)){
+                                vlvm.vlvmId == getSyntheticOccurrenceId(myOcc.HOC__Volunteer_Opportunity__c, myOcc.HOC__Start_Date_Time__c)){
                                 successOccurrencesList.add(myOcc);
                                 mapVlvmSuccessError.put(vlvm.vlvmId, 'SUCCESS');
                             }
@@ -125,7 +130,7 @@ global with sharing class OccurrenceEndpoint {
             // BUILD ERROR LIST OF VMs
             for(VolunteerLeaderVM vlvm : volVmList){
                 for(HOC__Occurrence__c goodOccs : successOccurrencesList){
-                    if(vlvm.vlvmId == (goodOccs.HOC__Volunteer_Opportunity__c + '_' + goodOccs.HOC__Start_Date_Time__c)){
+                    if(vlvm.vlvmId == getSyntheticOccurrenceId(goodOccs.HOC__Volunteer_Opportunity__c, goodOccs.HOC__Start_Date_Time__c)){
                         vlvm.successfulUpsert = true;
                     }
                 }
@@ -141,7 +146,7 @@ global with sharing class OccurrenceEndpoint {
 
         } else {
             System.debug('Nothing valid to upsert!');
-            mapVlvmSuccessError.put('Everything', 'ERROR');
+            mapVlvmSuccessError.put('defaultResult', 'ERROR');
             return mapVlvmSuccessError;
         }
     }
@@ -158,7 +163,7 @@ global with sharing class OccurrenceEndpoint {
                 // Using a combination of Volunteer Opportunity ID and Start Date
                 for(HOC__Occurrence__c occ : myOccList){
                     if((occ.HOC__Start_Date_Time__c != null &&
-                        (occ.HOC__Start_Date_Time__c == volVM.startDatetime)) &&
+                        (occ.HOC__Start_Date_Time__c.date() == volVM.startDatetime.date())) &&
                         (occ.HOC__Volunteer_Opportunity__c != null &&
                         (occ.HOC__Volunteer_Opportunity__c == volVM.VolOppId))){
 
@@ -196,7 +201,7 @@ global with sharing class OccurrenceEndpoint {
                 // Using a combination of Volunteer Opportunity ID and Start Date
                 for(HOC__Occurrence__c occ : myOccList){
                     if((occ.HOC__Start_Date_Time__c != null &&
-                        (occ.HOC__Start_Date_Time__c == volVM.startDatetime)) &&
+                        (occ.HOC__Start_Date_Time__c.date() == volVM.startDatetime.date())) &&
                         (occ.HOC__Volunteer_Opportunity__c != null &&
                         (occ.HOC__Volunteer_Opportunity__c == volVM.VolOppId))){
 
@@ -237,19 +242,27 @@ global with sharing class OccurrenceEndpoint {
         String[] fields = rows[i].split(fieldDelim);
         String oppId = getFld(OPP_ID, fields);
         String vlEmail = getFld(VL_EMAIL, fields);
-        String dd = getFld(OCC_DATE, fields);
-        System.debug('phil1 here ' + dd);
-        String[] dp = dd.split('[ \\-:]');
-        System.debug('phil here ' + dd + ', ' + dp[0] + ', ' + dp[1]);
+        String sd = getFld(START_DATE, fields);
+        String[] sp = sd.split('[ \\/\\-:]');
+        String ed = getFld(END_DATE, fields);
+        String[] ep = ed.split('[ \\/\\-:]');
         VolunteerLeaderVM newocc = new VolunteerLeaderVM();
         newocc.volOppId = oppId;
         newocc.newVLEmail = vlEmail;
         newocc.startDateTime = DateTime.newInstance(
-            Integer.valueOf(dp[0]),
-            Integer.valueOf(dp[1]),
-            Integer.valueOf(dp[2]),
-            Integer.valueOf(dp[3]),
-            Integer.valueOf(dp[4]),
+            Integer.valueOf(sp[0]),
+            Integer.valueOf(sp[1]),
+            Integer.valueOf(sp[2]),
+            Integer.valueOf(sp[3]),
+            Integer.valueOf(sp[4]),
+            0
+        );
+        newocc.stopDateTime = DateTime.newInstance(
+            Integer.valueOf(ep[0]),
+            Integer.valueOf(ep[1]),
+            Integer.valueOf(ep[2]),
+            Integer.valueOf(ep[3]),
+            Integer.valueOf(ep[4]),
             0
         );
         occurrences.add(newocc);
@@ -258,6 +271,16 @@ global with sharing class OccurrenceEndpoint {
         upsertOccurrence(occurrences);
       }
 
+      Integer i = 0;
+      for (String key : mapVlvmSuccessError.keySet()) {
+        String result = mapVlvmSuccessError.get(key);
+        if (i > 0) {
+          response += rowDelim.replace('\\', '');
+        }
+        response += key + fieldDelim.replace('\\', '') + result;
+        i++;
+      }
+      System.debug('phil response ' + response);
       RestContext.response.responseBody = Blob.valueOf(response);
     }
 

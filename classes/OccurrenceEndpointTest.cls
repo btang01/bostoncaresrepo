@@ -11,6 +11,8 @@ private class OccurrenceEndpointTest {
 			User emily = [SELECT Id FROM User WHERE CommunityNickname =: 'erackleff'][0];
 			String emilyId = emily.Id;
 
+			Datetime testDatetime = System.now();
+
 			// Create an Organization
 			Account acc = new Account();
 			acc.Name = 'Test Nonprofit 1';
@@ -122,8 +124,8 @@ private class OccurrenceEndpointTest {
 			HOC__Occurrence__c occRecord = new HOC__Occurrence__c();
 			occRecord.HOC__Volunteer_Opportunity__c = volOppRecord.id;
 			occRecord.HOC__Location__c = locationRecord.id;
-			occRecord.HOC__Start_Date_Time__c = Datetime.newInstance(2017, 12, 1, 12, 30, 2);
-			occRecord.HOC__End_Date_Time__c = Datetime.newInstance(2017, 12, 2, 12, 30, 2);
+			occRecord.HOC__Start_Date_Time__c = testDatetime.addDays(3);
+			occRecord.HOC__End_Date_Time__c = testDatetime.addDays(4);
 			occRecord.HOC__Posting_Status__c = 'This is not published. The Volunteer Opportunity is not active.';
 			occRecord.HOC__Status__c = 'Active';
 			//occRecord.HOC__Days_Times_Needed__c = 'Tuesday Afternoon';
@@ -146,16 +148,16 @@ private class OccurrenceEndpointTest {
 			// This is an occurrence to update
 			OccurrenceEndpoint.VolunteerLeaderVM volVM1 = new OccurrenceEndpoint.VolunteerLeaderVM();
 			volVM1.volOppId = volOppRecord.Id;
-			volVM1.startDatetime = Datetime.newInstance(2017, 12, 1, 12, 30, 2);
-			volVM1.stopDatetime = Datetime.newInstance(2017, 12, 2, 12, 30, 2);
+			volVM1.startDatetime = testDatetime.addDays(3);
+			volVM1.stopDatetime = testDatetime.addDays(4);
 			volVm1.newVLEmail = 'test2@bostoncares.org';
 			volVm1.locationName = 'WhateverLocation';
 
 			// This is an occurrence to insert
 			OccurrenceEndpoint.VolunteerLeaderVM volVM2 = new OccurrenceEndpoint.VolunteerLeaderVM();
 			volVM2.volOppId = volOppRecord.Id;
-			volVM2.startDatetime = Datetime.newInstance(2017, 12, 5, 12, 30, 2);
-			volVM2.stopDatetime = Datetime.newInstance(2017, 12, 6, 12, 30, 2);
+			volVM2.startDatetime = testDatetime.addDays(5);
+			volVM2.stopDatetime = testDatetime.addDays(6);
 			volVm2.newVLEmail = 'test2@bostoncares.org';
 			volVm2.locationName = 'Test Location';
 
@@ -170,7 +172,7 @@ private class OccurrenceEndpointTest {
 														FROM HOC__Occurrence__c
 														WHERE HOC__Volunteer_Opportunity__c =: voloppRecord.Id];
 
-			Datetime compareDatetime = Datetime.newInstance(2017, 12, 1, 12, 30, 2);
+			Datetime compareDatetime = testDatetime.addDays(3);
 
 			HOC__Occurrence__c updatedOccurrence = [SELECT Id, HOC__Volunteer_Coordinator_Email__c
 														FROM HOC__Occurrence__c
@@ -182,7 +184,6 @@ private class OccurrenceEndpointTest {
 
 			// Verify that the existing occurrence's Volunteer Coordinator was updated
 			System.assert(updatedOccurrence.HOC__Volunteer_Coordinator_Email__c == 'test2@bostoncares.org', 'The occurrence was not reassigned as expected!');
-
 		}
 
 }

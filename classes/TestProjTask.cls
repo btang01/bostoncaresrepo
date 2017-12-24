@@ -7,11 +7,24 @@
         Account agency = new Account();
         agency.RecordTypeId = nonprofit;
         agency.Name = 'Pine St Inn';
+        agency.Walk_in_or_Appointment_Only__c = 'Walk-in';
+        agency.HOC__Primary_Address__c = 'Shipping';
+        agency.HOC__Address_Visibility__c = 'City and Zip only';
+        agency.HOC__Status__c = 'Active Partner';
         agency.HOC__Genders_Served__c = 'Female';
         agency.HOC__Impact_Area__c = 'Hunger & Homelessness';
         agency.HOC__Age_Groups_Served__c = 'All ages';
-        insert agency;
+        agency.ShippingStreet = '123 Fake Street';
+  			agency.ShippingCity = 'Fake City';
+  			agency.ShippingState = 'MA';
+  			agency.ShippingPostalCode = '02446';
+  			agency.ShippingCountry = 'USA';
 
+        try{
+            insert agency;
+        } catch (Exception e){
+            System.debug(e);
+        }
 
         // List<Account> agencyList = [select Id from Account where Name = 'Pine St Inn'];
         // System.assertEquals (agencyList.size(), 1, 'Pine St Inn insert failed.');
@@ -93,5 +106,6 @@
         task.Name = 'Make Doughnuts';
         task.Project_Site_Visit__c = psv2.Id;
         insert task;
+
     }
 }
