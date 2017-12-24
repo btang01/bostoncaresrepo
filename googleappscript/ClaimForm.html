@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <!-- Form in which VL selects which opportunities they want to lead -->
+  <head>
+    <!-- Include the Google CSS package -->
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css"/>
+    <script>
+      function claimLocal() {
+        var email = document.getElementById('emailBox').value;
+        if (!email) {
+          alert('Please enter your email address!');
+          return false;
+        }
+        
+        document.getElementById('claimButton').disabled = true;
+        document.getElementById('output').innerHTML = 'Contacting server, please wait...';
+        
+        var dates = [];
+        var form = document.getElementById('claimform');
+        for (var i = 0; i < form.elements.length; i++) {
+          if (form.elements[i].name.startsWith('checkbox_') && form.elements[i].checked) {
+            //dates.push({ 'id': form.elements[i].id, 'value': form.elements[i].value });
+            dates.push(form.elements[i].id.replace('checkbox_', ''));
+          }
+        }
+        google.script.run
+            .withSuccessHandler(claimDone)
+            .withFailureHandler(error)
+            .claimDates(email, dates);
+        return false;
+      }
+      function claimDone(status) {
+        document.getElementById('claimform').reset();
+        document.getElementById('output').innerHTML = status;
+        document.getElementById('claimButton').disabled = false;
+      }
+      function error(error, user) {
+        var error = 'ERROR: ' + error + '; user: ' + user;
+        alert(error);
+        claimDone(error);
+      }
+    </script>
+    <style>
+      body {
+        margin: 10px;
+        padding: 10px;
+      }
+      .submitDiv {
+        text-align: center;
+      }
+    </style>
+    <base target="_top">
+  </head>
+  <body>
+    <form id="claimform">
+      <strong>Your email address:</strong>
+      <input type="text" id="emailBox" size="40" placeholder="Enter your email address here">
+      <br/>
+      <br/>
+      <strong>This project might be available on multiple dates. Please select the date(s) on which you would like to lead this project:</strong>
+      <br/>
+      <!-- Create checkboxes with unique ids for each survey -->
+      <? for (var i = 0; i < dates.length; i++) { ?>
+        <label>
+          <input type="checkbox" name="checkbox_<?= dates[i]['id'] ?>" id="checkbox_<?= dates[i]['id'] ?>" value="<?= dates[i]['value'] ?>"><?= dates[i]['value'] ?>
+        </label>
+        <br/>
+      <? } ?>
+      <br/>
+      <br/>
+      <div class="submitDiv">
+        <input type="submit" id="claimButton" value="Claim these Dates" 
+               onclick="claimLocal();return false;">
+      </div>
+      <br/>
+    </form>
+
+    <!-- Here the results of the form submission will be displayed -->
+    <div id="output"></div>
+  </body>
+</html>

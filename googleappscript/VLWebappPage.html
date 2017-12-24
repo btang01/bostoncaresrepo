@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Include the Google CSS package -->
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css"/>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.3/css/select.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.3/css/select.foundation.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.3/css/select.jqueryui.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.0/css/responsive.dataTables.min.css"/>
+    <style>
+      #outer {
+        height: 100%;
+        width: 100%;
+      }
+      .center {
+        text-align: center;
+      }
+      .action {
+        //height: 58px;
+        //min-width: 288px;
+      }
+    </style>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.2.3/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.0/js/dataTables.responsive.min.js"></script>
+    
+    <script>
+      var idPosition = 0;  // 0-based position of the ID column in master sheet
+      var startPosition = 11;
+      var endPosition = 12;
+      var datesPosition = 33;  // 0-based position of the hidden "Date List" column in master sheet
+      var dataTable = null;
+      var dateList = [];
+      
+      // When the page loads, query the server for the values we should put in dropdown menus
+      // (would be better to use template scriptlets for this, but they were invisible in the
+      // code editor so I gave up on that approach)
+      window.onload = function() {
+        google.script.run
+            .withSuccessHandler(gotStartingData)
+            .withFailureHandler(error)
+            .getStartingData();
+      };
+      
+      function gotStartingData(values) {
+        dataTable = $('#projects').dataTable({
+          paging: false,
+          //scrollY: true,
+          responsive: true,
+          data: values['data'],
+          columns: values['columns'],
+          order: [],
+          select: {
+            style: 'single'
+          }
+        });
+        // fixme dataTable.columns.adjust().draw();
+        
+        dateList = values['dates'];
+      }
+      
+      function claimProject(btn) {
+        //alert('dates: ' + dataTable.api().row({ selected: true }).data()[datesPosition]);
+        if ($("#dateCheckboxes").is(':empty')) {
+          var dates = dataTable.api().row({ selected: true }).data()[datesPosition].split(',');
+          for (var i = 0; i < dates.length; i++) {
+            $("#dateCheckboxes").append(
+              "<label><input type=\"checkbox\" name=\"checkbox_" + i + "\" id=\"checkbox_" + i + "\" value=\"" + dates[i] + "\">" + dates[i] + "</label><br/>"
+            );
+          }
+        }
+        $("#dialog").dialog({minHeight: 400, minWidth: 400});
+      }
+      
+      // This function will be called after the form is submitted
+      function reallyClaimProject(btn) {
+        var email = document.getElementById('emailBox').value;
+        if (!email) {
+          alert('Please enter your email address!');
+          return false;
+        }
+        var id = dataTable.api().row({ selected: true }).data()[idPosition];
+        var startTime = dataTable.api().row({ selected: true }).data()[startPosition];
+        var endTime = dataTable.api().row({ selected: true }).data()[endPosition];
+        
+        btn.disabled = true;
+        document.getElementById('claimOutput').innerHTML = 'Contacting server, please wait...';
+        
+        var dates = [];
+        var form = document.getElementById('claimForm');
+        for (var i = 0; i < form.elements.length; i++) {
+          if (form.elements[i].name.startsWith('checkbox_') && form.elements[i].checked) {
+            //dates.push({ 'id': form.elements[i].id, 'value': form.elements[i].value });
+            dates.push(form.elements[i].value);
+          }
+        }
+        
+        google.script.run
+            .withSuccessHandler(claimDone)
+            .withFailureHandler(error)
+            .claimDates(id, startTime, endTime, email, dates);
+        return false;
+      }
+  
+      // This function will be called after the Google Script has executed
+      function claimDone(status) {
+        if (status.length == 0) {
+          // This means success, so clear the form and write success message
+          status = "Done!";
+        }
+        document.getElementById('claimForm').reset();
+        document.getElementById('claimButton').disabled = false;
+        document.getElementById('claimOutput').innerHTML = status;
+      }
+      
+      function error(error, user) {
+        var error = 'ERROR: ' + error + '; user: ' + user;
+        alert(error);
+        claimDone(error);
+      }
+    </script>
+    <base target="_top">
+  </head>
+  <body>
+    <div id="dialog" title="Claim Project Dates" style="display: none">
+      <form id="claimForm">
+        <strong>Your email address:</strong>
+        <input type="text" id="emailBox" size="40" placeholder="Enter your email address here">
+        <br/>
+        <br/>
+        <strong>This project might be available on multiple dates. Please select the date(s) on which you would like to lead this project:</strong>
+        <br/>
+        <div id="dateCheckboxes"></div>
+        <br/>
+        <br/>
+        <div class="submitDiv">
+          <button type="button" id="claimButton" value="Claim these Dates" onclick="reallyClaimProject(this);">Claim these Dates</button>
+        </div>
+        <br/>
+        <!-- Here the results of the form submission will be displayed -->
+        <div class="bottom">
+          <span id="claimOutput" class="gray"/>
+        </div>
+      </form>
+
+      <!-- Here the results of the form submission will be displayed -->
+      <div id="output"></div>
+    </div>
+    <div id="outer">
+      <h1 class="center">Projects that Currently Need a Volunteer Leader</h1>
+      <table id="projects" class="display" cellspacing="0" width="100%">
+      </table>
+      <br/>
+      <br/>
+      <form id="projectsForm">
+        <div class="center">
+          <!--  onclick="claimOpportunities(this);" -->
+          <button id="claimBtn" type="button" class="action" onclick="claimProject(this);return false;">Sign Up as Volunteer Leader for Selected Project</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
