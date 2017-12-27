@@ -57,17 +57,27 @@ function processClaims(sheet, rowRange, headerFields, sheetValues, startRow, num
   // Salesforce's apex json parser is braindead, and xml is overkill,
   // so send the data as delimited text
   //var data = headerFields.join(fieldDelim);
+  var count = 0;
+  var rightNow = new Date();
   var data = headerFields[idIdx] + fieldDelim + headerFields[stIdx] + fieldDelim + headerFields[endIdx] + fieldDelim + headerFields[emailIdx];
   for (var row = 0; row < sheetValues.length; row++) {
     data += rowDelim + sheetValues[row][idIdx];
+    var startDate = new Date(sheetValues[row][stIdx]);
+    if (startDate < rightNow || new Date(sheetValues[row][endIdx]) < startDate) {
+      continue;
+    }
     data += fieldDelim + dateToYYYYMMDDHHMISS(sheetValues[row][stIdx], '-', ' ', ':');
     data += fieldDelim + dateToYYYYMMDDHHMISS(sheetValues[row][endIdx], '-', ' ', ':');
     data += fieldDelim + sheetValues[row][emailIdx];
     idMap[sheetValues[row][idIdx] + keyFieldDelim + dateToYYYYMMDD(sheetValues[row][stIdx], '-')] = row;
+    count++;
   }
   //SpreadsheetApp.getUi().alert(data);
   //Logger.log(data);
   
+  if (count == 0) {
+    return;
+  }
   var postResult = UrlFetchApp.fetch(url, {
     "method" : "post",
     "contentType" : "text/plain",
