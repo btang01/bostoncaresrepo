@@ -280,7 +280,6 @@ global with sharing class OccurrenceEndpoint {
         response += key + fieldDelim.replace('\\', '') + result;
         i++;
       }
-      System.debug('phil response ' + response);
       RestContext.response.responseBody = Blob.valueOf(response);
     }
 
