@@ -146,7 +146,9 @@ global with sharing class OccurrenceEndpoint {
 
         } else {
             System.debug('Nothing valid to upsert!');
-            mapVlvmSuccessError.put('defaultResult', 'ERROR');
+            for(VolunteerLeaderVM vlvm : volVmList){
+                mapVlvmSuccessError.put('defaultResult', 'ERROR');
+            }
             return mapVlvmSuccessError;
         }
     }
