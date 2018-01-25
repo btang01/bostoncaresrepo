@@ -217,7 +217,7 @@ global with sharing class OccurrenceEndpoint {
             }
         }
 
-        myOccListInsert = buildOccurrencesList(nonMatchingVLVMList, myContactList, myVolOppLocMap, 'Active', 'Active');
+        myOccListInsert = buildOccurrencesList(nonMatchingVLVMList, myContactList, myVolOppLocMap, 'Active');
         return myOccListInsert;
     }
 
@@ -286,16 +286,17 @@ global with sharing class OccurrenceEndpoint {
 
 
     // This method creates Occurrences
-    public static List<HOC__Occurrence__c> buildOccurrencesList(List<VolunteerLeaderVM> volLeaderVMList, List<Contact> oppCoordinatorList, Map<Id, List<String>> myVolOppLocationMap, String status, String postingStatus){
+    public static List<HOC__Occurrence__c> buildOccurrencesList(List<VolunteerLeaderVM> volLeaderVMList, List<Contact> oppCoordinatorList, Map<Id, List<String>> myVolOppLocationMap, String status){
 
         List<HOC__Occurrence__c> myOccurrenceList = new List<HOC__Occurrence__c>();
 
         for(VolunteerLeaderVM myVolLeaderVM : volLeaderVMList){
+            Boolean createThisOccurrence = false;
+
             HOC__Occurrence__c occRecord = new HOC__Occurrence__c();
             occRecord.HOC__Volunteer_Opportunity__c = myVolLeaderVM.volOppId;
             occRecord.HOC__Start_Date_Time__c = myVolLeaderVM.startDatetime;
             occRecord.HOC__End_Date_Time__c = myVolLeaderVM.stopDatetime;
-            occRecord.HOC__Posting_Status__c = postingStatus;
             occRecord.HOC__Status__c = status;
 
             for(Id volOppId : myVolOppLocationMap.keySet()){
@@ -311,10 +312,18 @@ global with sharing class OccurrenceEndpoint {
                 if(oppCoordinator.Email == myVolLeaderVM.newVLEmail){
                     occRecord.HOC__Opportunity_Coordinator__c = oppCoordinator.Id;
                     occRecord.HOC__Volunteer_Coordinator_Email__c = oppCoordinator.Email;
+
+                    createThisOccurrence = true;
                 }
             }
-            myOccurrenceList.add(occRecord);
+
+            if(createThisOccurrence == true){
+                myOccurrenceList.add(occRecord);
+            } else {
+                System.debug('No matching Contact found so did not add Occurrence to insert list!');
+            }
         }
         return myOccurrenceList;
     }
+
 }
