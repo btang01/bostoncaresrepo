@@ -4,8 +4,6 @@ var MasterSheetName = 'Master List';
 
 // FIXME TODO: STUFF TO DO IN SPREADSHEET:
 // - delete contents past last column
-// - make a hidden empty column to put in human readable description of date ranges (instead of event recurrence)
-// - make a hidden empty column at the very end for the "claim" button
 
 function doGet(e) {
   return handleRequest();
@@ -34,6 +32,8 @@ function getStartingData() {
   var startTime = fieldPos['Start Time'];
   var endTime = fieldPos['End Time'];
   var dateListIdx = fieldPos['Date List'];
+  var whenIdx = fieldPos['When is Event'];
+  var activeIdx = fieldPos['Is Active'];
   
   var fieldIndexesToDelay = [
     fieldPos['Description of Event'],
@@ -80,9 +80,12 @@ function getStartingData() {
   for (var row = 1; row < values.length; row++) {
     if (values[row]) {
       var myrow = [];
+      if (values[row][activeIdx] != 1) {
+        continue;
+      }
       for (var col = 0; col < values[row].length; col++) {
         var val = String(values[row][col]);
-        if (col == fieldPos['When is Event']) {
+        if (col == whenIdx) {
           var recurrence = ttl(values[row][eventRecurrence]);
           var type = ttl(values[row][recurrenceType]);
           var days = ttl(values[row][daysIdx]);
@@ -104,7 +107,7 @@ function getStartingData() {
     }
   }
     
-  return { data: newvals, columns: cols, dates: datelist };
+  return { data: newvals, columns: cols, dates: datelist, header: fieldPos };
 }
 
 // Returns the active spreadsheet

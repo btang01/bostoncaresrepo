@@ -30,10 +30,10 @@
     <script src="https://cdn.datatables.net/responsive/2.2.0/js/dataTables.responsive.min.js"></script>
     
     <script>
-      var idPosition = 0;  // 0-based position of the ID column in master sheet
-      var startPosition = 11;
-      var endPosition = 12;
-      var datesPosition = 33;  // 0-based position of the hidden "Date List" column in master sheet
+      var idPosition;  // 0-based position of the ID column in master sheet
+      var startPosition;
+      var endPosition;
+      var datesPosition;  // 0-based position of the hidden "Date List" column in master sheet
       var dataTable = null;
       var dateList = [];
       
@@ -48,6 +48,11 @@
       };
       
       function gotStartingData(values) {
+        idPosition = values['header']['ID'];
+        startPosition = values['header']['Start Time'];
+        endPosition = values['header']['End Time'];
+        datesPosition = values['header']['Date List'];
+        
         dataTable = $('#projects').dataTable({
           paging: false,
           //scrollY: true,
@@ -59,7 +64,7 @@
             style: 'single'
           }
         });
-        // fixme dataTable.columns.adjust().draw();
+        //dataTable.columns.adjust().draw();
         
         dateList = values['dates'];
       }
