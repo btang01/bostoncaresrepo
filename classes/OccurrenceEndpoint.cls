@@ -8,7 +8,6 @@
 @RestResource(urlMapping='/HOC__Occurrence__c/*')
 global with sharing class OccurrenceEndpoint {
 
-    public static Map<String, String> mapVlvmSuccessError;
     public static String dateDelim = '\\|';
     public static String timeDelim = '-';
     public static String rowDelim = '\\<\\<\\|';
@@ -37,8 +36,8 @@ global with sharing class OccurrenceEndpoint {
     }
 
 
-    public class VolunteerLeaderVM{
-        public String vlvmId;
+    public class OccurrenceReassignRequest{
+        public String occReassignReqId;
         public String volOppId;
         public Datetime startDatetime;
         public Datetime stopDatetime;
@@ -50,8 +49,8 @@ global with sharing class OccurrenceEndpoint {
 
 
     // The following method is used to reassign owner of an occurrence
-    public static Map<String, String> upsertOccurrence(List<VolunteerLeaderVM> volVmList){
-      mapVlvmSuccessError = new Map<String, String>();
+    public static Map<String, String> upsertOccurrence(List<OccurrenceReassignRequest> occReassignReqList){
+      Map<String, String> mapOccReassignReqSuccessError = new Map<String, String>();
 
       // ***** BUILD A LIST OF RELEVANT VOLUNTEER OP IDs *****
       List<String> relevantVolOppIds = new List<String>();
@@ -59,13 +58,13 @@ global with sharing class OccurrenceEndpoint {
       List<String> relevantEmails = new List<String>();
 
       // Create Ids for the volVmList records
-      for(VolunteerLeaderVM vlvm : volVmList){
-        vlvm.vlvmId = getSyntheticOccurrenceId(vlvm.volOppId, vlvm.startDatetime);
+      for(OccurrenceReassignRequest myOccReassignReq : occReassignReqList){
+        myOccReassignReq.occReassignReqId = getSyntheticOccurrenceId(myOccReassignReq.volOppId, myOccReassignReq.startDatetime);
       }
 
-      for(VolunteerLeaderVM volVM : volVmList){
-        relevantVolOppIds.add(volVM.volOppId);
-        relevantEmails.add(volVM.newVLEmail);
+      for(OccurrenceReassignRequest myOccReassignReq : occReassignReqList){
+        relevantVolOppIds.add(myOccReassignReq.volOppId);
+        relevantEmails.add(myOccReassignReq.newVLEmail);
       }
 
       List<Contact> existingContacts = [SELECT Id, Email FROM Contact WHERE Email IN: relevantEmails];
@@ -76,9 +75,9 @@ global with sharing class OccurrenceEndpoint {
       // NEED TO BUILD A MAP OF VOL OPP AND LOCATION FOR INSERTING NEW OCCs
       Map<Id, List<String>> mapKeyVolOppIdValueLocationId = returnVolOppLocationMap(existingVolOpps);
 
-      List<HOC__Occurrence__c> listOfOccurrencesToUpdate = returnListOfOccsToUpdate(volVmList, existingOccs, existingContacts);
+      List<HOC__Occurrence__c> listOfOccurrencesToUpdate = returnListOfOccsToUpdate(occReassignReqList, existingOccs, existingContacts);
 
-      List<HOC__Occurrence__c> listOfOccurrencesToInsert = returnListOfOccsToInsert(volVmList, existingOccs, existingContacts, mapKeyVolOppIdValueLocationId);
+      List<HOC__Occurrence__c> listOfOccurrencesToInsert = returnListOfOccsToInsert(occReassignReqList, existingOccs, existingContacts, mapKeyVolOppIdValueLocationId);
 
       // *** START BUILDING LIST OF OCCURRENCES TO UPSERT
       // list of Occurrences to Update + list of Occurrences to Insert
@@ -94,11 +93,11 @@ global with sharing class OccurrenceEndpoint {
       // *** DONE BUILDING LIST OF OCCURRENCES TO UPSERT ***
 
       if(allOccurrencesToUpsert != null && !allOccurrencesToUpsert.isEmpty()){
-        mapVlvmSuccessError = upsertOccsAndReturnResult(allOccurrencesToUpsert, HOC__Occurrence__c.Id, true, volVmList);
-
-        declineExistingVolLeaderConnections(volVmList, allOccurrencesToUpsert);
+        mapOccReassignReqSuccessError = upsertOccsAndReturnResult(allOccurrencesToUpsert, HOC__Occurrence__c.Id, true, occReassignReqList);
+        declineExistingVolLeaderConnections(occReassignReqList, allOccurrencesToUpsert);
       }
-      return mapVlvmSuccessError;
+
+      return mapOccReassignReqSuccessError;
     }
 
 
@@ -125,7 +124,7 @@ global with sharing class OccurrenceEndpoint {
     }
 
 
-    public static Map<String, String> upsertOccsAndReturnResult(List<HOC__Occurrence__c> myOccsToUpsert, Schema.SObjectField myMatchingIdField, Boolean allOrNoneFlag, List<VolunteerLeaderVM> volVmListParam){
+    public static Map<String, String> upsertOccsAndReturnResult(List<HOC__Occurrence__c> myOccsToUpsert, Schema.SObjectField myMatchingIdField, Boolean allOrNoneFlag, List<OccurrenceReassignRequest> myOccReassignReqs){
 
       Map<String, String> returnSuccessErrorMessage = new Map<String, String>();
 
@@ -140,29 +139,29 @@ global with sharing class OccurrenceEndpoint {
           if(sr.isSuccess()){
             String successId = sr.getId();
 
-            for(VolunteerLeaderVM vlvm : volVmListParam){
+            for(OccurrenceReassignRequest occReassignReq : myOccReassignReqs){
               for(HOC__Occurrence__c myOcc : myOccsToUpsert){
                 if(myOcc.Id == successId &&
-                    vlvm.vlvmId == getSyntheticOccurrenceId(myOcc.HOC__Volunteer_Opportunity__c, myOcc.HOC__Start_Date_Time__c)){
+                    occReassignReq.occReassignReqId == getSyntheticOccurrenceId(myOcc.HOC__Volunteer_Opportunity__c, myOcc.HOC__Start_Date_Time__c)){
                     successOccurrencesList.add(myOcc);
-                    returnSuccessErrorMessage.put(vlvm.vlvmId, 'SUCCESS');
+                    returnSuccessErrorMessage.put(occReassignReq.occReassignReqId, 'SUCCESS');
                 }
               }
             }
           }
         }
 
-        for(VolunteerLeaderVM vlvm : volVmListParam){
+        for(OccurrenceReassignRequest occReassignReq : myOccReassignReqs){
             for(HOC__Occurrence__c goodOccs : successOccurrencesList){
-                if(vlvm.vlvmId == getSyntheticOccurrenceId(goodOccs.HOC__Volunteer_Opportunity__c, goodOccs.HOC__Start_Date_Time__c)){
-                    vlvm.successfulUpsert = true;
+                if(occReassignReq.occReassignReqId == getSyntheticOccurrenceId(goodOccs.HOC__Volunteer_Opportunity__c, goodOccs.HOC__Start_Date_Time__c)){
+                    occReassignReq.successfulUpsert = true;
                 }
             }
         }
 
-        for(VolunteerLeaderVM vlvm : volVmListParam){
-            if(vlvm.successfulUpsert == false){
-                returnSuccessErrorMessage.put(vlvm.vlvmId, 'ERROR');
+        for(OccurrenceReassignRequest occReassignReq : myOccReassignReqs){
+            if(occReassignReq.successfulUpsert == false){
+                returnSuccessErrorMessage.put(occReassignReq.occReassignReqId, 'ERROR');
             }
         }
 
@@ -170,8 +169,8 @@ global with sharing class OccurrenceEndpoint {
 
       } else {
           System.debug('Nothing valid to upsert!');
-          for(VolunteerLeaderVM vlvm : volVmListParam){
-              returnSuccessErrorMessage.put(vlvm.vlvmId, 'ERROR');
+          for(OccurrenceReassignRequest occReassignReq : myOccReassignReqs){
+              returnSuccessErrorMessage.put(occReassignReq.occReassignReqId, 'ERROR');
           }
           return returnSuccessErrorMessage;
       }
@@ -192,30 +191,29 @@ global with sharing class OccurrenceEndpoint {
               myVolOppLocationMap.put(vOpp.Id, innerList);
           }
       }
-
       return myVolOppLocationMap;
     }
 
 
-    public static List<HOC__Occurrence__c> returnListOfOccsToUpdate(List<VolunteerLeaderVM> myVolVMList, List<HOC__Occurrence__c> myOccList, List<Contact> myContactList){
+    public static List<HOC__Occurrence__c> returnListOfOccsToUpdate(List<OccurrenceReassignRequest> myOccReassignReqs, List<HOC__Occurrence__c> myOccList, List<Contact> myContactList){
 
         // Add to this list and update these Occurrences
         List<HOC__Occurrence__c> myOccListToUpdate = new List<HOC__Occurrence__c>();
 
-        for(VolunteerLeaderVM volVM : myVolVMList){
+        for(OccurrenceReassignRequest myOccReassignReq : myOccReassignReqs){
             if(!myOccList.isEmpty()){
                 // Match Occurrence record to the info in the VL VM
                 // Using a combination of Volunteer Opportunity ID and Start Date
                 for(HOC__Occurrence__c occ : myOccList){
                     if((occ.HOC__Start_Date_Time__c != null &&
-                        (occ.HOC__Start_Date_Time__c.date() == volVM.startDatetime.date())) &&
+                        (occ.HOC__Start_Date_Time__c.date() == myOccReassignReq.startDatetime.date())) &&
                         (occ.HOC__Volunteer_Opportunity__c != null &&
-                        (occ.HOC__Volunteer_Opportunity__c == volVM.VolOppId))){
+                        (occ.HOC__Volunteer_Opportunity__c == myOccReassignReq.VolOppId))){
 
                         // Great success, I've found my occurrence!
                         // Now reassign the Volunteer Coordinator
                         for(Contact myCon : myContactList){
-                            if(volVM.newVLEmail == myCon.Email){
+                            if(myOccReassignReq.newVLEmail == myCon.Email){
                                 occ.HOC__Opportunity_Coordinator__c = myCon.Id;
                                 occ.HOC__Volunteer_Coordinator_Email__c = myCon.Email;
                                 myOccListToUpdate.add(occ);
@@ -233,51 +231,51 @@ global with sharing class OccurrenceEndpoint {
     }
 
 
-    public static List<HOC__Occurrence__c> returnListOfOccsToInsert(List<VolunteerLeaderVM> myVolVMList, List<HOC__Occurrence__c> myOccList, List<Contact> myContactList, Map<Id, List<String>> myVolOppLocMap){
+    public static List<HOC__Occurrence__c> returnListOfOccsToInsert(List<OccurrenceReassignRequest> myOccReassignReqs, List<HOC__Occurrence__c> myOccList, List<Contact> myContactList, Map<Id, List<String>> myVolOppLocMap){
       // Add to this list and update these Occurrences
       List<HOC__Occurrence__c> myOccListInsert = new List<HOC__Occurrence__c>();
-      List<VolunteerLeaderVM> nonMatchingVLVMList = new List<VolunteerLeaderVM>();
+      List<OccurrenceReassignRequest> nonMatchingORRList = new List<OccurrenceReassignRequest>();
 
-      for(VolunteerLeaderVM volVM : myVolVMList){
+      for(OccurrenceReassignRequest occReassignReq : myOccReassignReqs){
         // If there are occurrences, make sure that these occs are not in that list
         if(!myOccList.isEmpty()){
           // Match Occurrence record to the info in the VL VM
           // Using a combination of Volunteer Opportunity ID and Start Date
           for(HOC__Occurrence__c occ : myOccList){
             if((occ.HOC__Start_Date_Time__c != null &&
-                (occ.HOC__Start_Date_Time__c.date() == volVM.startDatetime.date())) &&
+                (occ.HOC__Start_Date_Time__c.date() == occReassignReq.startDatetime.date())) &&
                 (occ.HOC__Volunteer_Opportunity__c != null &&
-                (occ.HOC__Volunteer_Opportunity__c == volVM.VolOppId))){
+                (occ.HOC__Volunteer_Opportunity__c == occReassignReq.VolOppId))){
 
-                volVM.found = TRUE;
+                occReassignReq.found = TRUE;
             }
           }
         }
       }
 
-      for(VolunteerLeaderVM volVMUpdated : myVolVMList){
-          if(!volVMUpdated.found){
-              nonMatchingVLVMList.add(volVMUpdated);
+      for(OccurrenceReassignRequest occReassignReqUpdated : myOccReassignReqs){
+          if(!occReassignReqUpdated.found){
+              nonMatchingORRList.add(occReassignReqUpdated);
           }
       }
 
-      myOccListInsert = buildOccurrencesToInsertList(nonMatchingVLVMList, myContactList, myVolOppLocMap, 'Active', 'This is approved and published for volunteers to sign-up.');
+      myOccListInsert = buildOccurrencesToInsertList(nonMatchingORRList, myContactList, myVolOppLocMap, 'Active', 'This is approved and published for volunteers to sign-up.');
       return myOccListInsert;
     }
 
 
     // This method creates Occurrences
-    public static List<HOC__Occurrence__c> buildOccurrencesToInsertList(List<VolunteerLeaderVM> volLeaderVMList, List<Contact> oppCoordinatorList, Map<Id, List<String>> myVolOppLocationMap, String status, String postingStatus){
+    public static List<HOC__Occurrence__c> buildOccurrencesToInsertList(List<OccurrenceReassignRequest> occReassignReqs, List<Contact> oppCoordinatorList, Map<Id, List<String>> myVolOppLocationMap, String status, String postingStatus){
 
         List<HOC__Occurrence__c> myOccurrenceList = new List<HOC__Occurrence__c>();
 
-        for(VolunteerLeaderVM myVolLeaderVM : volLeaderVMList){
+        for(OccurrenceReassignRequest myOccReassignReq : occReassignReqs){
             Boolean createThisOccurrence = false;
 
             HOC__Occurrence__c occRecord = new HOC__Occurrence__c();
-            occRecord.HOC__Volunteer_Opportunity__c = myVolLeaderVM.volOppId;
-            occRecord.HOC__Start_Date_Time__c = myVolLeaderVM.startDatetime;
-            occRecord.HOC__End_Date_Time__c = myVolLeaderVM.stopDatetime;
+            occRecord.HOC__Volunteer_Opportunity__c = myOccReassignReq.volOppId;
+            occRecord.HOC__Start_Date_Time__c = myOccReassignReq.startDatetime;
+            occRecord.HOC__End_Date_Time__c = myOccReassignReq.stopDatetime;
             occRecord.HOC__Status__c = status;
             occRecord.HOC__Posting_Status__c = postingStatus;
 
@@ -286,12 +284,12 @@ global with sharing class OccurrenceEndpoint {
                 if(volOppId == occRecord.HOC__Volunteer_Opportunity__c){
                     occRecord.HOC__Location__c = locationIdString;
                 } else {
-                    System.debug('No Location found for this vm!');
+                    System.debug('No Location found for this Occurrence Reassignment Request!');
                 }
             }
 
             for(Contact oppCoordinator : oppCoordinatorList){
-                if(oppCoordinator.Email == myVolLeaderVM.newVLEmail){
+                if(oppCoordinator.Email == myOccReassignReq.newVLEmail){
                     occRecord.HOC__Opportunity_Coordinator__c = oppCoordinator.Id;
                     occRecord.HOC__Volunteer_Coordinator_Email__c = oppCoordinator.Email;
 
@@ -309,8 +307,8 @@ global with sharing class OccurrenceEndpoint {
     }
 
 
-    public static void declineExistingVolLeaderConnections(List<VolunteerLeaderVM> listOfVlvm, List<HOC__Occurrence__c> myOccsToUpsert){
-      List<HOC__Connection__c> connectionsToDecline = returnConnectionsToDecline(listOfVlvm, myOccsToUpsert);
+    public static void declineExistingVolLeaderConnections(List<OccurrenceReassignRequest> occReassignReqList, List<HOC__Occurrence__c> myOccsToUpsert){
+      List<HOC__Connection__c> connectionsToDecline = returnConnectionsToDecline(occReassignReqList, myOccsToUpsert);
 
       if(connectionsToDecline != null && connectionsToDecline.size()>0){
         for(HOC__Connection__c connection : connectionsToDecline){
@@ -327,7 +325,7 @@ global with sharing class OccurrenceEndpoint {
     }
     
 
-    public static List<HOC__Connection__c> returnConnectionsToDecline(List<VolunteerLeaderVM> myVlvms, List<HOC__Occurrence__c> occList){
+    public static List<HOC__Connection__c> returnConnectionsToDecline(List<OccurrenceReassignRequest> occReassignReqList, List<HOC__Occurrence__c> occList){
 
       List<HOC__Connection__c> listOfConnectionsToDecline = new List<HOC__Connection__c>();
       Set<Id> relevantOccIds = new Set<Id>();
@@ -344,10 +342,10 @@ global with sharing class OccurrenceEndpoint {
           AND HOC__Status__c = 'Confirmed'
           AND HOC__Attendance_Status__c = 'Please Verify'];
 
-      for(VolunteerLeaderVM volVm : myVlvms){
+      for(OccurrenceReassignRequest occReassignReq : occReassignReqList){
         for(HOC__Connection__c relevantConnection : listOfVolLeaderConnections){
-          if(volVM.startDatetime == relevantConnection.HOC__Start_Date_Time__c
-            && volVM.newVLEmail != relevantConnection.HOC__Contact_Email__c){
+          if(occReassignReq.startDatetime == relevantConnection.HOC__Start_Date_Time__c
+            && occReassignReq.newVLEmail != relevantConnection.HOC__Contact_Email__c){
             listOfConnectionsToDecline.add(relevantConnection);
           }
         }
@@ -358,6 +356,9 @@ global with sharing class OccurrenceEndpoint {
 
     @HttpPost
     global static void postVLSheetUpdates() {
+
+      Map<String, String> mySuccessErrors = new Map<String, String>();
+      
       RestRequest request = RestContext.request;
       String response = '';
       String body = request.requestBody.toString();
@@ -369,7 +370,7 @@ global with sharing class OccurrenceEndpoint {
         fieldPositionMap.put(header[i], i);
       }
 
-      List<VolunteerLeaderVM> occurrences = new List<VolunteerLeaderVM>();
+      List<OccurrenceReassignRequest> occurrences = new List<OccurrenceReassignRequest>();
 
       // Go through the records we received
       for (Integer i = 1; i < rows.size(); i++) {
@@ -380,7 +381,7 @@ global with sharing class OccurrenceEndpoint {
         String[] sp = sd.split('[ \\/\\-:]');
         String ed = getFld(END_DATE, fields);
         String[] ep = ed.split('[ \\/\\-:]');
-        VolunteerLeaderVM newocc = new VolunteerLeaderVM();
+        OccurrenceReassignRequest newocc = new OccurrenceReassignRequest();
         newocc.volOppId = oppId;
         newocc.newVLEmail = vlEmail;
         newocc.startDateTime = DateTime.newInstance(
@@ -402,12 +403,12 @@ global with sharing class OccurrenceEndpoint {
         occurrences.add(newocc);
         //dt.substring(0, 4)
 
-        upsertOccurrence(occurrences);
+        mySuccessErrors = upsertOccurrence(occurrences);
       }
 
       Integer i = 0;
-      for (String key : mapVlvmSuccessError.keySet()) {
-        String result = mapVlvmSuccessError.get(key);
+      for (String key : mySuccessErrors.keySet()) {
+        String result = mySuccessErrors.get(key);
         if (i > 0) {
           response += rowDelim.replace('\\', '');
         }
