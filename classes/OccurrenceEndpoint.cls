@@ -92,9 +92,10 @@ global with sharing class OccurrenceEndpoint {
       }
       // *** DONE BUILDING LIST OF OCCURRENCES TO UPSERT ***
 
+      mapOccReassignReqSuccessError = upsertOccsAndReturnResult(allOccurrencesToUpsert, HOC__Occurrence__c.Id, true, occReassignReqList);
+
       if(allOccurrencesToUpsert != null && !allOccurrencesToUpsert.isEmpty()){
-        mapOccReassignReqSuccessError = upsertOccsAndReturnResult(allOccurrencesToUpsert, HOC__Occurrence__c.Id, true, occReassignReqList);
-        declineExistingVolLeaderConnections(occReassignReqList, allOccurrencesToUpsert);
+          declineExistingVolLeaderConnections(occReassignReqList, allOccurrencesToUpsert);
       }
 
       return mapOccReassignReqSuccessError;
@@ -358,7 +359,7 @@ global with sharing class OccurrenceEndpoint {
     global static void postVLSheetUpdates() {
 
       Map<String, String> mySuccessErrors = new Map<String, String>();
-      
+
       RestRequest request = RestContext.request;
       String response = '';
       String body = request.requestBody.toString();
