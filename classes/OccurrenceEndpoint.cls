@@ -67,7 +67,9 @@ global with sharing class OccurrenceEndpoint {
         relevantEmails.add(myOccReassignReq.newVLEmail);
       }
 
-      List<Contact> existingContacts = [SELECT Id, Email FROM Contact WHERE Email IN: relevantEmails];
+      List<Contact> existingContacts = [SELECT Id, Email FROM Contact
+                                        WHERE HOC__Contact_Login_Profile__c = 'Volunteer Leader'
+                                        AND Email IN: relevantEmails];
 
       List<HOC__Occurrence__c> existingOccs = returnExistingOccurrences(relevantVolOppIds);
       List<HOC__Volunteer_Opportunity__c> existingVolOpps = returnExistingVolOpps(relevantVolOppIds);
@@ -82,7 +84,7 @@ global with sharing class OccurrenceEndpoint {
       // *** START BUILDING LIST OF OCCURRENCES TO UPSERT
       // list of Occurrences to Update + list of Occurrences to Insert
       List<HOC__Occurrence__c> allOccurrencesToUpsert = new List<HOC__Occurrence__c>();
-      
+
       if(listOfOccurrencesToUpdate != null && !listOfOccurrencesToUpdate.isEmpty()){
         allOccurrencesToUpsert.addAll(listOfOccurrencesToUpdate);
       }
@@ -95,7 +97,7 @@ global with sharing class OccurrenceEndpoint {
       mapOccReassignReqSuccessError = upsertOccsAndReturnResult(allOccurrencesToUpsert, HOC__Occurrence__c.Id, true, occReassignReqList);
 
       if(allOccurrencesToUpsert != null && !allOccurrencesToUpsert.isEmpty()){
-          declineExistingVolLeaderConnections(occReassignReqList, allOccurrencesToUpsert);
+        declineExistingVolLeaderConnections(occReassignReqList, allOccurrencesToUpsert);
       }
 
       return mapOccReassignReqSuccessError;
@@ -324,7 +326,7 @@ global with sharing class OccurrenceEndpoint {
         }
       }
     }
-    
+
 
     public static List<HOC__Connection__c> returnConnectionsToDecline(List<OccurrenceReassignRequest> occReassignReqList, List<HOC__Occurrence__c> occList){
 
@@ -335,7 +337,7 @@ global with sharing class OccurrenceEndpoint {
         relevantOccIds.add(occ.Id);
       }
 
-      List<HOC__Connection__c> listOfVolLeaderConnections = 
+      List<HOC__Connection__c> listOfVolLeaderConnections =
         [SELECT Id, HOC__Start_Date_Time__c, HOC__Contact_Email__c
           FROM HOC__Connection__c
           WHERE HOC__Occurrence__c IN: relevantOccIds
