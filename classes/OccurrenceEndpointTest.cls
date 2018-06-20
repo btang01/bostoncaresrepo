@@ -12,12 +12,12 @@
 private class OccurrenceEndpointTest {
 
 	public static ID eitcId = schema.SObjectType.Account.getRecordTypeInfosByName().get('EITC Site').getRecordTypeId();
-	public static UserRole myUserRole = [SELECT Id FROM UserRole WHERE Name =: 'Test 2 Customer User'][0];
+	public static UserRole myUserRole = [SELECT Id FROM UserRole WHERE PortalType =: 'CustomerPortal' AND PortalRole = 'Worker'][0];
 	public static String test2CustomerId = myUserRole.Id; 
 	public static ID volOppEitcId = schema.SObjectType.HOC__Volunteer_Opportunity__c.getRecordTypeInfosByName().get('EITC Site').getRecordTypeId();
 	public static Datetime testDatetime = System.now();
 
-	@isTest static void testOccurrenceEndpoint() {
+	@isTest static void testOccurrenceEndpointReassignOccurrence() {
 
 			User emily = [SELECT Id FROM User WHERE CommunityNickname =: 'erackleff'][0];
 			String emilyId = emily.Id;
@@ -47,6 +47,7 @@ private class OccurrenceEndpointTest {
 			con.HOC__Orientation_Completed__c = TRUE;
 			con.VL_Training_Completed__c = TRUE;
 			con.HOC__Registration_Status__c = 'Registered';
+			con.HOC__Contact_Login_Profile__c = 'Volunteer Leader';
 			conList.add(con);
 
 			Contact con2 = new Contact();
@@ -71,58 +72,25 @@ private class OccurrenceEndpointTest {
 
 			insert conList;
 
-			List<User> userList = new List<User>();
+			// You cannot simply insert a Contact with this value populated
+			// HOC trigger only kicks in properly if you update the Contact
+			con2.HOC__Contact_Login_Profile__c = 'Volunteer Leader';
+			update con2;
 
+
+			// **** START CREATE SUPER USER ****
 			String uniqueUserName = 'standarduser' + DateTime.now().getTime() + '@testorg.com';
-	        // This code runs as the system user
+	        
 	        Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator'];
-	        User u = new User(Alias = 'standt', Email='standarduser@testorg.com',
+	        
+	        User superUser = new User(Alias = 'standt', Email='standarduser@testorg.com',
 	        EmailEncodingKey = 'UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
 	        LocaleSidKey = 'en_US', ProfileId = p.Id,
 	        TimeZoneSidKey = 'America/Los_Angeles',
 	        UserName = uniqueUserName);
 
-	        System.runAs(u) {
-		        Profile portalProfile = [SELECT Id FROM Profile WHERE Name =: 'Volunteer Leader'];
-				
-				User user1 = new User(
-				Username = System.now().millisecond() + 'tester12365@bostoncares.org',
-				ContactId = con.Id,
-				ProfileId = portalProfile.Id,
-				UserRoleId = test2CustomerId,
-				Alias = '99988',
-				Email = 'test12345@test.com',
-				EmailEncodingKey = 'UTF-8',
-				LastName = 'McTesty',
-				CommunityNickname = 'test12345',
-				TimeZoneSidKey = 'America/Los_Angeles',
-				LocaleSidKey = 'en_US',
-				LanguageLocaleKey = 'en_US'
-				);
-				userList.add(user1);
-
-				User user2 = new User(
-				Username = System.now().millisecond() + '12366test@bostoncares.org',
-				ContactId = con2.Id,
-				ProfileId = portalProfile.Id,
-				UserRoleId = test2CustomerId,
-				Alias = '99987',
-				Email = 'test12345@test.com',
-				EmailEncodingKey = 'UTF-8',
-				LastName = 'McTesty',
-				CommunityNickname = 'test123456789',
-				TimeZoneSidKey = 'America/Los_Angeles',
-				LocaleSidKey = 'en_US',
-				LanguageLocaleKey = 'en_US'
-				);
-
-				userList.add(user2);
-				try{
-				insert userList;
-				} catch (Exception e){
-					System.debug(e);
-				}
-          	}
+	        insert superUser;
+	        // **** END CREATE SUPER USER ****
 
 			// Create a Zip Code
 			HOC__ZipCode__c zipCodeRecord = new HOC__ZipCode__c();
@@ -138,29 +106,42 @@ private class OccurrenceEndpointTest {
 			insert voloppRecord;
 
 			// Create an Occurrence
-			HOC__Occurrence__c occRecord = returnOccRecord(volOppRecord.Id, locationRecord.Id, 3, 4, con.Id, u.Id);
+			HOC__Occurrence__c occRecord = returnOccRecord(volOppRecord.Id, locationRecord.Id, 3, 4, con.Id, superUser.Id);
 			insert occRecord;
 
 			// Create a Connection
-			HOC__Connection__c connectionRecord = returnConnectionRecord(volOppRecord.Id, occRecord.Id, con.Id);
+			HOC__Connection__c connectionRecord = returnConnectionRecord(volOppRecord.Id, occRecord.Id, con.Id, occRecord.HOC__Start_Date_Time__c);
 			insert connectionRecord;
+
+			// There is an HOC Trigger that prevents me from inserting a connection record
+			// with Volunteer Leader Role - I can only update to VL - whatever.
+			connectionRecord.HOC__Role__c = 'Volunteer Leader';
+			update connectionRecord;
 
 			List<OccurrenceEndpoint.OccurrenceReassignRequest> occReassignReqList = new List<OccurrenceEndpoint.OccurrenceReassignRequest>();
 
 			// This is an occurrence to update
-			OccurrenceEndpoint.OccurrenceReassignRequest occReassignReq1 = returnOccReassignReq(volOppRecord.Id, 'test2@bostoncares.org', 'WhateverLocation', 3, 4);
+			OccurrenceEndpoint.OccurrenceReassignRequest occReassignReq1 = returnOccReassignReq(volOppRecord.Id, 'test2@bostoncares.org', 'Test Location', 3, 4);
 
 			// This is an occurrence to insert
 			OccurrenceEndpoint.OccurrenceReassignRequest occReassignReq2 = returnOccReassignReq(volOppRecord.Id, 'test2@bostoncares.org', 'Test Location', 5, 6);
 
+			// This is a bad occurrence request
+			OccurrenceEndpoint.OccurrenceReassignRequest myBadOccReassignReq = new OccurrenceEndpoint.OccurrenceReassignRequest();
+			myBadOccReassignReq.newVLEmail = 'kapooey@badEmail923.com';
+			myBadOccReassignReq.volOppId = volOppRecord.Id;
+			myBadOccReassignReq.locationName = 'badLocation';
+			myBadOCcReassignReq.startDatetime = System.now();
+
 			occReassignReqList.add(occReassignReq1);
 			occReassignReqList.add(occReassignReq2);
+			occReassignReqList.add(myBadOccReassignReq);
 
 			OccurrenceEndpoint.upsertOccurrence(occReassignReqList);
 
 			List<HOC__Occurrence__c> resultOccurrences = new List<HOC__Occurrence__c>();
 
-			resultOccurrences = [SELECT Id, HOC__Volunteer_Coordinator_Email__c
+			resultOccurrences = [SELECT Id, HOC__Volunteer_Coordinator_Email__c, HOC__Start_Date_Time__c
 									FROM HOC__Occurrence__c
 									WHERE HOC__Volunteer_Opportunity__c =: voloppRecord.Id];
 
@@ -174,10 +155,23 @@ private class OccurrenceEndpointTest {
 			// Verify that we now have 2 Occurrences instead of 1 for that Vol Opp
 			System.assert(resultOccurrences.size() == 2, 'An occurrence was not created properly!');
 
+            List<HOC__Connection__c> listOfVolLeaderConnections =
+		        [SELECT Id, HOC__Start_Date_Time__c, HOC__Contact_Email__c,
+		        	HOC__Role__c, HOC__Status__c, HOC__Attendance_Status__c,
+		        	HOC__Occurrence__c
+		          FROM HOC__Connection__c
+		          WHERE HOC__Occurrence__c =: updatedOccurrence.Id];
+
+		    System.debug(listOfVolLeaderConnections);
+		    System.debug('New number of VL Connections: ' + listOfVolLeaderConnections.size());
+		    System.debug(occReassignReq1);
+		    System.debug('Number of Result Occurrences: ' + resultOccurrences.size());
+		    System.debug(resultOccurrences);
+		    System.debug(updatedOccurrence);
+
 			// Verify that the existing occurrence's Volunteer Coordinator was updated
 			System.assert(updatedOccurrence.HOC__Volunteer_Coordinator_Email__c == 'test2@bostoncares.org', 'The occurrence was not reassigned as expected!');
 		}
-
 
 		@isTest static void postVLSheetUpdates(){
 			try{
@@ -275,7 +269,7 @@ private class OccurrenceEndpointTest {
 		}
 
 
-		public static HOC__Connection__c returnConnectionRecord(Id myVolOppId, Id myOccId, Id myConId){
+		public static HOC__Connection__c returnConnectionRecord(Id myVolOppId, Id myOccId, Id myConId, Datetime occStartDateTime){
 			HOC__Connection__c myConnectionRecord = new HOC__Connection__c();
 
 			myConnectionRecord.HOC__Volunteer_Opportunity__c = myVolOppId;
@@ -283,7 +277,8 @@ private class OccurrenceEndpointTest {
 			myConnectionRecord.HOC__Contact__c = myConId;
 			myConnectionRecord.HOC__Role__c = 'Volunteer';
 			myConnectionRecord.HOC__Status__c = 'Confirmed';
-			myConnectionRecord.HOC__Attendance_Status__c = 'Attended (and Hours Verified)';
+			myConnectionRecord.HOC__Attendance_Status__c = 'Please Verify';
+			myConnectionRecord.HOC__Start_Date_Time__c = occStartDateTime;
 
 			return myConnectionRecord;
 		}

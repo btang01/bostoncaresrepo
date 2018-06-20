@@ -75,11 +75,16 @@ global with sharing class OccurrenceEndpoint {
       List<HOC__Volunteer_Opportunity__c> existingVolOpps = returnExistingVolOpps(relevantVolOppIds);
 
       // NEED TO BUILD A MAP OF VOL OPP AND LOCATION FOR INSERTING NEW OCCs
+      // We use the Vol Opp's Location to set the new Occs' the correct Location ID
       Map<Id, List<String>> mapKeyVolOppIdValueLocationId = returnVolOppLocationMap(existingVolOpps);
 
       List<HOC__Occurrence__c> listOfOccurrencesToUpdate = returnListOfOccsToUpdate(occReassignReqList, existingOccs, existingContacts);
 
+      system.debug('list of Occurrences to Update returned: ' + listOfOccurrencesToUpdate);
+
       List<HOC__Occurrence__c> listOfOccurrencesToInsert = returnListOfOccsToInsert(occReassignReqList, existingOccs, existingContacts, mapKeyVolOppIdValueLocationId);
+
+      system.debug('list of Occurrences to Insert returned: ' + listOfOccurrencesToInsert);
 
       // *** START BUILDING LIST OF OCCURRENCES TO UPSERT
       // list of Occurrences to Update + list of Occurrences to Insert
@@ -208,11 +213,8 @@ global with sharing class OccurrenceEndpoint {
                 // Match Occurrence record to the info in the VL VM
                 // Using a combination of Volunteer Opportunity ID and Start Date
                 for(HOC__Occurrence__c occ : myOccList){
-                    if((occ.HOC__Start_Date_Time__c != null &&
-                        (occ.HOC__Start_Date_Time__c.date() == myOccReassignReq.startDatetime.date())) &&
-                        (occ.HOC__Volunteer_Opportunity__c != null &&
-                        (occ.HOC__Volunteer_Opportunity__c == myOccReassignReq.VolOppId))){
-
+                    if((occ.HOC__Start_Date_Time__c.format() == myOccReassignReq.startDatetime.format())
+                        && (occ.HOC__Volunteer_Opportunity__c == myOccReassignReq.VolOppId)){ 
                         // Great success, I've found my occurrence!
                         // Now reassign the Volunteer Coordinator
                         for(Contact myCon : myContactList){
@@ -224,6 +226,8 @@ global with sharing class OccurrenceEndpoint {
                                 System.debug('Existing Contact cannot be found with this Email!');
                             }
                         }
+                    } else {
+                      System.debug('Nothing was reassigned!');
                     }
                 }
             } else {
@@ -245,11 +249,8 @@ global with sharing class OccurrenceEndpoint {
           // Match Occurrence record to the info in the VL VM
           // Using a combination of Volunteer Opportunity ID and Start Date
           for(HOC__Occurrence__c occ : myOccList){
-            if((occ.HOC__Start_Date_Time__c != null &&
-                (occ.HOC__Start_Date_Time__c.date() == occReassignReq.startDatetime.date())) &&
-                (occ.HOC__Volunteer_Opportunity__c != null &&
-                (occ.HOC__Volunteer_Opportunity__c == occReassignReq.VolOppId))){
-
+            if((occ.HOC__Start_Date_Time__c.format() == occReassignReq.startDatetime.format()) &&
+                (occ.HOC__Volunteer_Opportunity__c == occReassignReq.VolOppId)){
                 occReassignReq.found = TRUE;
             }
           }
@@ -263,6 +264,7 @@ global with sharing class OccurrenceEndpoint {
       }
 
       myOccListInsert = buildOccurrencesToInsertList(nonMatchingORRList, myContactList, myVolOppLocMap, 'Active', 'This is approved and published for volunteers to sign-up.');
+      System.debug('myOccReassignRequests in the insert method: ' + myOccReassignReqs);
       return myOccListInsert;
     }
 
@@ -311,6 +313,7 @@ global with sharing class OccurrenceEndpoint {
 
 
     public static void declineExistingVolLeaderConnections(List<OccurrenceReassignRequest> occReassignReqList, List<HOC__Occurrence__c> myOccsToUpsert){
+
       List<HOC__Connection__c> connectionsToDecline = returnConnectionsToDecline(occReassignReqList, myOccsToUpsert);
 
       if(connectionsToDecline != null && connectionsToDecline.size()>0){
@@ -338,21 +341,31 @@ global with sharing class OccurrenceEndpoint {
       }
 
       List<HOC__Connection__c> listOfVolLeaderConnections =
-        [SELECT Id, HOC__Start_Date_Time__c, HOC__Contact_Email__c
+        [SELECT Id, HOC__Start_Date_Time__c, HOC__Contact_Email__c, HOC__Volunteer_Opportunity__c
           FROM HOC__Connection__c
           WHERE HOC__Occurrence__c IN: relevantOccIds
           AND HOC__Role__c = 'Volunteer Leader'
           AND HOC__Status__c = 'Confirmed'
           AND HOC__Attendance_Status__c = 'Please Verify'];
 
+      System.debug('VL Connections to Decline: ' + listOfVolLeaderConnections);
+
       for(OccurrenceReassignRequest occReassignReq : occReassignReqList){
         for(HOC__Connection__c relevantConnection : listOfVolLeaderConnections){
-          if(occReassignReq.startDatetime == relevantConnection.HOC__Start_Date_Time__c
-            && occReassignReq.newVLEmail != relevantConnection.HOC__Contact_Email__c){
-            listOfConnectionsToDecline.add(relevantConnection);
+          if(
+            (String.valueOf(occReassignReq.startDatetime) == String.valueOf(relevantConnection.HOC__Start_Date_Time__c))
+            && (occReassignReq.newVLEmail != relevantConnection.HOC__Contact_Email__c)
+            && (occReassignReq.volOppId == relevantConnection.HOC__Volunteer_Opportunity__c)
+          ){
+              listOfConnectionsToDecline.add(relevantConnection);
+          }
+          else {
+            System.debug('No connection found to decline for this occReassignReq!');
           }
         }
       }
+
+      System.debug('List of Connections to Decline' + listOfConnectionsToDecline);
       return listOfConnectionsToDecline;
     }
 
