@@ -132,13 +132,13 @@ private class TestCompAgencyMatchInsert
       System.debug('Company Intake: ' + compIntake);
 
       Contact con = new Contact();
-  		con.HOC__Username__c = 'test@bostoncares1.org';
+  		con.HOC__Username__c = 'test91000@bostoncaresisdabest.org';
   		con.HOC__Registration_Status__c = 'Registered';
   		con.FirstName = 'Test';
   		con.LastName = 'User1';
   		con.AccountId = acc.id;
   		con.HOC__Primary_Phoneno__c = 'Home';
-  		con.Email = 'test@bostoncares.org';
+  		con.Email = 'test91000@bostoncaresisdabest.org';
   		con.HOC__Primary_Address__c = 'Home';
   		con.MailingStreet = '234 Fake Street';
   		con.MailingCity = 'Boston';
