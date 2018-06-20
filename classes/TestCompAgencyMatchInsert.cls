@@ -22,7 +22,7 @@ private class TestCompAgencyMatchInsert
       emily.Alias = 'erack';
       emily.CommunityNickname = 'erackleffwackawackawacka';
       emily.Email = 'erackleff@testgmail.com';
-      emily.Username = 'erackleff@bostoncares123.com';
+      emily.Username = 'erackleff@testgmail.com';
       emily.LanguageLocaleKey='en_US';
       emily.LocaleSidKey='en_US';
       emily.TimeZoneSidKey='America/Los_Angeles';
@@ -59,7 +59,7 @@ private class TestCompAgencyMatchInsert
   		vol.FirstName = 'Test';
   		vol.LastName = 'User1';
   		vol.HOC__Primary_Phoneno__c = 'Home';
-  		vol.Email = 'test@bostoncares.org';
+  		vol.Email = 'test@bostoncares.org222';
   		vol.HOC__Primary_Address__c = 'Home';
   		vol.MailingStreet = '234 Fake Street';
   		vol.MailingCity = 'Boston';
