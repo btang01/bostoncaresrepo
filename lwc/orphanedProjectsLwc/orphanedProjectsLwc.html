@@ -1,0 +1,65 @@
+<template>
+    <div style="padding:20px">
+        <lightning-card title="Orphaned Projects" icon-name="action:announcement">
+            <div class="slds-m-around_medium">
+                <template if:true={orphanedProjects}>
+                    <lightning-datatable
+                        key-field="Id"
+                        data={orphanedProjects}
+                        columns={columns_edit}
+                        onsave={handleSave}
+                        draft-values={draftValues}
+                        hide-checkbox-column>
+                    </lightning-datatable>
+                </template>
+            </div>
+        </lightning-card>
+    </div>
+    <div style="padding:20px">
+        <lightning-card title="Claimed Projects (Pending BC Approval)" icon-name="action:approval">
+            <div class="slds-m-around_medium">
+                <template if:true={claimedProjects}>
+                    <lightning-datatable
+                        key-field="Id"
+                        data={claimedProjects}
+                        columns={columns_read}
+                        hide-checkbox-column>
+                    </lightning-datatable>
+                </template>
+            </div>
+        </lightning-card>
+    </div>
+    <template if:true={successful}>
+        <div style="position:absolute;top:1rem;left:1rem;right:1rem">
+            <div class="slds-notify_container slds-is-relative">
+                <div class="slds-notify slds-notify_toast slds-theme_default slds-box slds-box_small" style="border-color:green;" role="success">
+                    <div class="slds-align_absolute-center">
+                        <h2 class="slds-text-heading_medium" style="color:green;">Success</h2>
+                        <lightning-icon icon-name="utility:success" alternative-text="success" variant="Success" size="small" ></lightning-icon>
+                        Your request to claim the orphaned project was successful.
+                    </div>
+                    <lightning-button-icon icon-name="utility:close" alternative-text="close" variant="close" class="slds-m-left_small" onclick={handleCloseSuccess}></lightning-button-icon>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template if:true={error}>
+        <div style="position:absolute;top:1rem;left:1rem;right:1rem">
+            <div class="slds-notify_container slds-is-relative">
+                <div class="slds-notify slds-notify_toast slds-theme_error slds-box slds-box_small" role="error">
+                    <div class="slds-align_absolute-center">
+                        <h2 class="slds-text-heading_medium" style="color:white;">Error</h2>
+                        <lightning-icon icon-name="utility:error" alternative-text="error" variant="inverse" size="small" ></lightning-icon>
+                        {error}
+                    </div>
+                    <lightning-button-icon icon-name="utility:close" alternative-text="close" variant="close" class="slds-m-left_small" onclick={handleCloseError}></lightning-button-icon>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template if:false={isLoaded}>
+        <div class="slds-is-relative" if:false={isLoaded}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </template>
+</template>
