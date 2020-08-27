@@ -1,0 +1,1072 @@
+label .req,
+.form-required .req {
+	color: #5A80DA;       /** Color1 **/
+}
+.calendar-controls .calendar-legend li.opps {
+    color: #5A80DA;  /** Color1 **/
+}
+.calendar-controls .calendar-legend li.special {
+    color: #B98A13; /** Color2 **/
+}
+#calendar-controls .calendar-legend li.opps {
+	border-color: #5A80DA;       /** Color1 **/
+}
+#calendar-controls .calendar-legend li.special {
+	border-color: #B98A13;       /** Color2 **/
+}
+#page .calendar-table td .wrap-eventlist li a {
+    color: #5A80DA;     /** Color1 **/
+}
+#page .calendar-table td .wrap-eventlist li a:hover {
+    color: #B98A13;      /** Color2 **/
+}
+.calendar-table td .wrap-eventdetail a:hover, .calendar-table td .wrap-eventlist li a:hover {
+    color: #B98A13 !important;	 /** Color2 **/
+}
+#page .calendar-table td .opps a, #page .calendar-table td .wrap-eventlist li.opps a, .calendar-table td .wrap-eventlist li.opps .event-tip h4 {
+    color: #5A80DA;	 /** Color1 **/
+}
+#page .aw-grid-cell a:hover {
+    color: #B98A13;      /** Color2 **/
+    border-bottom-color: #B98A13;     /** Color2 **/
+}
+#page .aw-column-0 a {
+    color: #5A80DA;     /** Color1 **/
+}
+.aw-grid-header:hover {
+    color: #B98A13;     /** Color2 **/
+}
+#page #node-iam-captain .aw-column-4 a,
+#page #node-iam-member .aw-column-3 a,
+#page #node-upcoming-opportunities .aw-column-3 a,
+#page #node-volunteer-history .aw-column-4 a {
+    color: #B98A13;     /** Color2 **/
+}
+#page #node-iam-captain .aw-column-4 a:hover,
+#page #node-iam-member .aw-column-3 a:hover,
+#page #node-upcoming-opportunities .aw-column-3 a:hover,
+#page #node-volunteer-history .aw-column-4 a:hover {
+    color: #5A80DA;    /** Color1 **/
+}
+body{
+    background: #5071B9;    /**  BAKGROUND COLOR - Color1:Darker Shade **/
+}
+#page a{
+    color: #B98A13;    /** Color2 **/
+}
+#page a:hover{
+    color: #5A80DA;   /** Color1 **/
+}
+#block-account-profile .stats .num {
+    color: #5A80DA;     /** Color1 **/
+}
+.box-popup a {
+    color: #B98A13;    /** Color2 **/
+}
+.box-popup a:hover {
+    color: #5A80DA;   /** Color1 **/
+}
+.form-item .fake-label {
+    color: #B98A13;     /** Color2 **/
+}
+div.multiSelectOptions label.hover,
+div.selectbox-wrapper ul li.selected,
+.selectwrapper ul li.hoverclass,
+.selectwrapper ul li.selectedclass {
+    background-color: #B98A13;     /** Color2 **/
+}
+#menu-primary a {
+    color: white; 
+}
+#menu-primary .active a, #menu-primary a:hover {
+    color: #B98A13;  /** Color 2 **/
+}
+#affiliate-member a.link_login{
+background-image: url("images/link_affiliate-login_blgr.png")
+}
+#navbar {
+    background-image: url("images/bg_nav_bl-bl.png");
+}
+#footer-block {
+    background-color: white;
+    background-image: url("images/bg_footer_wh-bl.png");
+}
+#menu-section-volorg .active a, #menu-section-volorg .active a:hover {
+    background-image: url("images/bg_nav_active_bl-bl.png");
+}
+#affiliate-member a.link_returntoorganizationportal {
+background-image: url("images/link_returntoorganizationportal_blgr.png");
+}
+#header {
+    background-image: url("images/bg_header_wh-bl-su.png");
+}
+#main {
+    background-image: url("images/bg_main_wh-bl.png");
+}
+#affiliate-member {
+    background-image: url("images/bg_header-sep_bl-su.png");
+}
+#menu-section-volorg li {
+    background-image: url("images/bg_nav-volorg-sep_blgr.png");
+}
+#menu-poweredby {
+    background-image: url("images/bg_footer-sep_bl.png");
+}
+.all_small_bg{
+ background:url("images/all_small.png") no-repeat center center; 
+ }
+.all_small_bg:hover{
+ background:url("images/all_small_bg.png")no-repeat center center; 
+ }
+.a_gr{
+ background:url("images/a_gr.png") no-repeat center center; 
+ }
+.a_gr:hover{
+ background:url("images/a_bl.png") no-repeat center center; 
+}
+.b_gr{
+ background:url("images/b_gr.png") no-repeat center center; 
+ }
+.b_gr:hover{
+ background:url("images/b_bl.png") no-repeat center center; 
+}
+.c_gr{
+ background:url("images/c_gr.png") no-repeat center center; 
+}
+.c_gr:hover{
+ background:url("images/c_bl.png") no-repeat center center; 
+}
+.d_gr{
+ background:url("images/d_gr.png") no-repeat center center; 
+ }
+.d_gr:hover{
+ background:url("images/d_bl.png") no-repeat center center; 
+ }
+.e_gr{
+ background:url("images/e_gr.png") no-repeat center center; 
+ }
+.e_gr:hover{
+ background:url("images/e_bl.png") no-repeat center center; 
+}
+.f_gr{
+ background:url("images/f_gr.png") no-repeat center center; 
+}
+.f_gr:hover{
+ background:url("images/f_bl.png") no-repeat center center; 
+}
+.g_gr{
+ background:url("images/g_gr.png") no-repeat center center; 
+}
+.g_gr:hover{
+ background:url("images/g_bl.png") no-repeat center center; 
+}
+.h_gr{
+ background:url("images/h_gr.png") no-repeat center center; 
+}
+.h_gr:hover{
+ background:url("images/h_bl.png") no-repeat center center; 
+}
+.i_gr{
+ background:url("images/i_gr.png") no-repeat center center; 
+}
+.i_gr:hover{
+ background:url("images/i_bl.png") no-repeat center center; 
+}
+.j_gr{
+ background:url("images/j_gr.png") no-repeat center center; 
+}
+.j_gr:hover{
+ background:url("images/j_bl.png") no-repeat center center; 
+}
+.k_gr{
+ background:url("images/k_gr.png") no-repeat center center; 
+}
+.k_gr:hover{
+ background:url("images/k_bl.png") no-repeat center center; 
+}
+.l_gr{
+ background:url("images/l_gr.png") no-repeat center center; 
+}
+.l_gr:hover{
+ background:url("images/l_bl.png") no-repeat center center; 
+}
+.m_gr{
+ background:url("images/m_gr.png") no-repeat center center; 
+}
+.m_gr:hover{
+ background:url("images/m_bl.png") no-repeat center center; 
+}
+.n_gr{
+ background:url("images/n_gr.png") no-repeat center center; 
+}
+.n_gr:hover{
+ background:url("images/n_bl.png") no-repeat center center; 
+ }
+ .o_gr{
+ background:url("images/o_gr.png") no-repeat center center; 
+}
+.o_gr:hover{
+ background:url("images/o_bl.png") no-repeat center center; 
+ }
+.p_gr{
+ background:url("images/p_gr.png") no-repeat center center; 
+}
+.p_gr:hover{
+ background:url("images/p_bl.png") no-repeat center center; 
+ }
+ .q_gr{
+ background:url("images/q_gr.png") no-repeat center center; 
+}
+.q_gr:hover{
+ background:url("images/q_bl.png") no-repeat center center; 
+ }
+ .r_gr{
+ background:url("images/r_gr.png") no-repeat center center; 
+}
+.r_gr:hover{
+ background:url("images/r_bl.png") no-repeat center center; 
+ }
+ .s_gr{
+ background:url("images/s_gr.png") no-repeat center center; 
+}
+.s_gr:hover{
+ background:url("images/s_bl.png") no-repeat center center; 
+ }
+ .t_gr{
+ background:url("images/t_gr.png") no-repeat center center; 
+}
+.t_gr:hover{
+ background:url("images/t_bl.png") no-repeat center center; 
+ }
+ .u_gr{
+ background:url("images/u_gr.png") no-repeat center center; 
+}
+.u_gr:hover{
+ background:url("images/u_bl.png") no-repeat center center; 
+ }
+ .v_gr{
+ background:url("images/v_gr.png") no-repeat center center; 
+}
+.v_gr:hover{
+ background:url("images/v_bl.png") no-repeat center center; 
+ }
+ .w_gr{
+ background:url("images/w_gr.png") no-repeat center center; 
+}
+.w_gr:hover{
+ background:url("images/w_bl.png") no-repeat center center; 
+ }
+.x_gr{
+ background:url("images/x_gr.png") no-repeat center center;  
+}
+.x_gr:hover{
+ background:url("images/x_bl.png") no-repeat center center; 
+ }
+ .y_gr{
+ background:url("images/y_gr.png") no-repeat center center; 
+}
+.y_gr:hover{
+ background:url("images/y_bl.png") no-repeat center center; 
+ }
+ .z_gr{
+ background:url("images/z_gr.png") no-repeat center center; 
+}
+.z_gr:hover{
+ background:url("images/z_bl.png") no-repeat center center; 
+ }
+
+#box-basic-search .box-top {
+    background-image: url("images/box_bg_top-half_grgr.png");
+}
+.box_title_basicsearch_gr {
+    background: url("images/box_title_basicsearch_gr.png") no-repeat scroll center center transparent;
+	}
+#box-basic-search .box-content {
+    background-image: url("images/box_bg_mid-half_grgr.png");
+}
+#box-basic-search .box-btm {
+    background-image: url("images/box_bg_btm-half_grgr.png");
+}
+.btn_search_bl-gr {
+    background: url("images/btn_search_bl-gr.png") no-repeat scroll center center transparent;
+	}
+.btn_search_bl-gr:hover {
+    background: url("images/btn_search_bl-gr.png") no-repeat scroll center center transparent;
+	}
+#node-volunteer-advanced-search .box-width-half.box-collapsed .box-top  {
+    background-image: url("images/box_bg_top-half-collapsed_gr.png");
+}
+#node-volunteer-advanced-search a.link_boxopen {
+    background-image: url("images/link_boxopen_blgr-gr.png");
+}
+#node-volunteer-advanced-search .box-width-half.box-expanded .box-top {
+    background-image: url("images/box_bg_top-half_gr.png");
+}
+.box_title_findvolunteeropportunities_gr {
+    background: url("images/box_title_findvolunteeropportunities_gr.png") no-repeat scroll center center transparent;
+}
+#node-find-volunteer-opportunities {
+    background-image: url("images/bg_node-findvolunteeropportunities_gr.png");
+}
+.box_title_findvolunteeropportunities_gr {
+    background: url("images/box_title_findvolunteeropportunities_gr.png") no-repeat scroll center center transparent;
+ }
+ #box-find-volunteer-opportunities .keyword .text-wrapper {
+    background-image: url("images/form_input_findvol-long_gr.png");
+}
+#box-find-volunteer-opportunities .zip .text-wrapper {
+    background-image: url("images/form_input_findvol-short_gr.png");
+}
+.for-volunteers #navbar-old, .section-affiliate.for-volunteers #navbar-old {
+    background-image: url("images/bg_nav-vol_bl-bl.png");
+}
+#menu-primary-old a.findopportunity {
+    background-image: url("images/nav_volunteer_findanopportunity_bl.png");
+}
+#menu-primary-old a.specialevents {
+    background-image: url("images/nav_volunteer_specialevents_bl.png");
+}
+#menu-primary-old a.browseorgs {
+    background-image: url("images/nav_volunteer_browseorganizations_bl.png");
+}
+.for-volunteers #menu-primary-old a.resources {
+    background-image: url("images/nav_volunteer_resources_bl.png");
+}
+#menu-primary-old a.becomeamember {
+    background-image: url("images/nav_volunteer_becomeamember_bl.png");
+}
+#menu-section-volorg-old .active a.vol {
+    background-image: url("images/bg_nav-volorg-vol-active_blgr.png");
+}
+#menu-section-volorg-old a.org {
+    background-image: url("images/bg_nav-volorg-org_blgr.png");
+}
+.for-organizations.has-secondary #navbar-old {
+    background-image: url("images/bg_nav-org-sec_bl-bl.png");
+}
+#menu-secondary {
+    background-image: url("images/bg_navsec-mid_bl-bl.png");
+}
+.for-volunteers.has-secondary #navbar-old {
+    background-image: url("images/bg_nav-vol-sec_bl-bl.png");
+}
+.for-volunteers.has-secondary #navbar-old {
+    background-image: url("images/bg_nav-vol-sec_bl-bl.png");
+}
+.box_title_whenareyouavailable_gr {
+    background: url("images/box_title_whenareyouavailable_gr.png") no-repeat scroll center center transparent;
+}
+.box_title_whatwouldyouliketodo_gr {
+    background: url("images/box_title_whatwouldyouliketodo_gr.png") no-repeat scroll center center transparent;
+}
+.box_title_appropriatefor_gr {
+    background: url("images/box_title_appropriatefor_gr.png") no-repeat scroll center center transparent;
+}
+.box_title_invitationcode_gr {
+    background: url("images/box_title_invitationcode_gr.png") no-repeat scroll center center transparent;
+}
+.box_title_whowouldyouliketoserve_gr {
+    background: url("images/box_title_whowouldyouliketoserve_gr.png") no-repeat scroll center center transparent;
+ }
+#menu-secondary ul {
+    background-image: url("images/bg_navsec-btm_bl-bl.png");
+}
+#menu-secondary ul li {
+    background-image: url("images/li_menu-secondary_gr-bl.png");
+}
+a.link_performanationalsearch {
+    background-image: url("images/link_performanationalsearch.png");
+}
+#box-basic-search span.width-249 {
+    background-image: url("images/form_input_249_gr.png");
+}
+#box-basic-search span.width-114 {
+    background-image: url("images/form_input_114_gr.png");
+}
+#box-basic-search span.width-81 {
+    background-image: url("images/form_input_81_gr.png");
+}
+#node-volunteer-advanced-search a.link_boxclose {
+    background-image: url("images/link_boxclose_blgr-gr.png");
+}
+.btn_save_search_blgr {
+    background: url("images/btn_save_search_blgr.png") no-repeat scroll center center transparent;
+}
+.btn_save_search_blgr :hover{
+    background: url("images/btn_save_search_blgr_ovr.png") no-repeat scroll center center transparent;
+}
+.btn_save_blgr {
+    background: url("images/btn_save_blgr.png") no-repeat scroll center center transparent;
+}
+.btn_save_blgr:hover {
+    background: url("images/btn_save_blgr_ovr.png") no-repeat scroll center center transparent;
+}
+.btn_refine_blgr {
+    background: url("images/btn_refine_blgr.png") no-repeat scroll center center transparent;
+	}
+#menu-sponsors a {
+    background-image: url("images/link_seeallsponsors_blgr.png");
+}
+.img_box_title_findvolunteeropportunities_gr{
+	background : url("images/box_title_findvolunteeropportunities_gr.png") no-repeat center center;
+}
+.img_btn_search_bl-gr{
+	background : url("images/btn_search_bl-gr.png") no-repeat center center;
+}
+.img_btn_search_bl-gr:hover{
+background : url("images/btn_search_bl-gr_ovr.png") no-repeat center center;
+}
+#node-find-volunteer-opportunities a.link_advancedsearch {
+    background-image: url("images/link_advancedsearch_wh-gr.png");
+}
+a.link_readmore{
+	background-image : url("images/link_readmore_gr.png");
+}
+#page #footer-message a {
+color: #B98A13;  /** Color2 **/
+}
+#page #footer-message a:hover {
+border-bottom: 1px dotted #B98A13;  /** Color2 **/
+}
+#menu-primary a.findopportunity{
+ background-image: url("images/nav_volunteer_findanopportunity_bl.png");
+}
+.img_all_small_bg {
+    background: url("images/all_small.png") no-repeat scroll center center transparent;
+	}
+.img_a_gr {
+    background: url("images/a_gr.png") no-repeat scroll
+}
+.img_b_gr {
+    background: url("images/b_gr.png") no-repeat scroll
+}
+.img_c_gr {
+    background: url("images/c_gr.png") no-repeat scroll
+}
+.img_d_gr {
+    background: url("images/d_gr.png") no-repeat scroll
+}
+.img_e_gr {
+    background: url("images/e_gr.png") no-repeat scroll
+}
+.img_f_gr {
+    background: url("images/f_gr.png") no-repeat scroll
+}
+.img_g_gr {
+    background: url("images/g_gr.png") no-repeat scroll
+}
+.img_h_gr {
+    background: url("images/h_gr.png") no-repeat scroll
+}
+.img_i_gr {
+    background: url("images/i_gr.png") no-repeat scroll
+}
+.img_j_gr {
+    background: url("images/j_gr.png") no-repeat scroll
+}
+.img_k_gr {
+    background: url("images/k_gr.png") no-repeat scroll
+}
+.img_l_gr {
+    background: url("images/l_gr.png") no-repeat scroll
+}
+.img_m_gr {
+    background: url("images/m_gr.png") no-repeat scroll
+}
+.img_n_gr {
+    background: url("images/n_gr.png") no-repeat scroll
+}
+.img_o_gr {
+    background: url("images/o_gr.png") no-repeat scroll
+}
+.img_p_gr {
+    background: url("images/p_gr.png") no-repeat scroll
+}
+.img_q_gr {
+    background: url("images/q_gr.png") no-repeat scroll
+}
+.img_r_gr {
+    background: url("images/r_gr.png") no-repeat scroll
+}
+.img_s_gr {
+    background: url("images/s_gr.png") no-repeat scroll
+}
+.img_t_gr {
+    background: url("images/t_gr.png") no-repeat scroll
+}
+.img_u_gr {
+    background: url("images/u_gr.png") no-repeat scroll
+}
+.img_v_gr {
+    background: url("images/v_gr.png") no-repeat scroll
+}
+.img_w_gr {
+    background: url("images/w_gr.png") no-repeat scroll
+}
+.img_x_gr {
+    background: url("images/x_gr.png") no-repeat scroll
+}
+.img_y_gr {
+    background: url("images/y_gr.png") no-repeat scroll
+}
+.img_z_gr {
+    background: url("images/z_gr.png") no-repeat scroll
+}
+.img_all_small_bg :hover{
+    background: url("images/all_small.png") no-repeat scroll center center transparent;
+	}
+.img_a_gr:hover {
+    background: url("images/a_bl.png") no-repeat scroll
+}
+.img_b_gr:hover{
+    background: url("images/b_bl.png") no-repeat scroll
+}
+.img_c_gr:hover{
+    background: url("images/c_bl.png") no-repeat scroll
+}
+.img_d_gr:hover{
+    background: url("images/d_bl.png") no-repeat scroll
+}
+.img_e_gr:hover{
+    background: url("images/e_bl.png") no-repeat scroll
+}
+.img_f_gr:hover{
+    background: url("images/f_bl.png") no-repeat scroll
+}
+.img_g_gr:hover{
+    background: url("images/g_bl.png") no-repeat scroll
+}
+.img_h_gr:hover{
+    background: url("images/h_bl.png") no-repeat scroll
+}
+.img_i_gr:hover{
+    background: url("images/i_bl.png") no-repeat scroll
+}
+.img_j_gr:hover{
+    background: url("images/j_bl.png") no-repeat scroll
+}
+.img_k_gr:hover{
+    background: url("images/k_bl.png") no-repeat scroll
+}
+.img_l_gr:hover{
+    background: url("images/l_bl.png") no-repeat scroll
+}
+.img_m_gr:hover{
+    background: url("images/m_bl.png") no-repeat scroll
+}
+.img_n_gr:hover{
+    background: url("images/n_bl.png") no-repeat scroll
+}
+.img_o_gr:hover{
+    background: url("images/o_bl.png") no-repeat scroll
+}
+.img_p_gr :hover{
+    background: url("images/p_bl.png") no-repeat scroll
+}
+.img_q_gr:hover{
+    background: url("images/q_bl.png") no-repeat scroll
+}
+.img_r_gr:hover{
+    background: url("images/r_bl.png") no-repeat scroll
+}
+.img_s_gr:hover{
+    background: url("images/s_bl.png") no-repeat scroll
+}
+.img_t_gr:hover{
+    background: url("images/t_bl.png") no-repeat scroll
+}
+.img_u_gr:hover{
+    background: url("images/u_bl.png") no-repeat scroll
+}
+.img_v_gr:hover{
+    background: url("images/v_bl.png") no-repeat scroll
+}
+.img_w_gr:hover{
+    background: url("images/w_bl.png") no-repeat scroll
+}
+.img_x_gr:hover{
+    background: url("images/x_bl.png") no-repeat scroll
+}
+.img_y_gr:hover{
+    background: url("images/y_bl.png") no-repeat scroll
+}
+.img_z_gr:hover{
+    background: url("images/z_bl.png") no-repeat scroll
+}
+.img_all_small_bg-active{
+    background: url("images/all_small.png") no-repeat scroll center center transparent;
+	}
+.img_a_gr-active {
+    background: url("images/a_bl.png") no-repeat scroll
+}
+.img_b_gr-active{
+    background: url("images/b_bl.png") no-repeat scroll
+}
+.img_c_gr-active{
+    background: url("images/c_bl.png") no-repeat scroll
+}
+.img_d_gr-active{
+    background: url("images/d_bl.png") no-repeat scroll
+}
+.img_e_gr-active{
+    background: url("images/e_bl.png") no-repeat scroll
+}
+.img_f_gr-active{
+    background: url("images/f_bl.png") no-repeat scroll
+}
+.img_g_gr-active{
+    background: url("images/g_bl.png") no-repeat scroll
+}
+.img_h_gr-active{
+    background: url("images/h_bl.png") no-repeat scroll
+}
+.img_i_gr-active{
+    background: url("images/i_bl.png") no-repeat scroll
+}
+.img_j_gr-active{
+    background: url("images/j_bl.png") no-repeat scroll
+}
+.img_k_gr-active{
+    background: url("images/k_bl.png") no-repeat scroll
+}
+.img_l_gr-active{
+    background: url("images/l_bl.png") no-repeat scroll
+}
+.img_m_gr-active{
+    background: url("images/m_bl.png") no-repeat scroll
+}
+.img_n_gr-active{
+    background: url("images/n_bl.png") no-repeat scroll
+}
+.img_o_gr-active{
+    background: url("images/o_bl.png") no-repeat scroll
+}
+.img_p_gr-active{
+    background: url("images/p_bl.png") no-repeat scroll
+}
+.img_q_gr-active{
+    background: url("images/q_bl.png") no-repeat scroll
+}
+.img_r_gr-active{
+    background: url("images/r_bl.png") no-repeat scroll
+}
+.img_s_gr-active{
+    background: url("images/s_bl.png") no-repeat scroll
+}
+.img_t_gr-active{
+    background: url("images/t_bl.png") no-repeat scroll
+}
+.img_u_gr-active{
+    background: url("images/u_bl.png") no-repeat scroll
+}
+.img_v_gr-active{
+    background: url("images/v_bl.png") no-repeat scroll
+}
+.img_w_gr-active{
+    background: url("images/w_bl.png") no-repeat scroll
+}
+.img_x_gr-active{
+    background: url("images/x_bl.png") no-repeat scroll
+}
+.img_y_gr-active{
+    background: url("images/y_bl.png") no-repeat scroll
+}
+.img_z_gr-active{
+    background: url("images/z_bl.png") no-repeat scroll
+}
+#affiliate-member.expand a.link_login {
+    background-image: url("images/link_affiliate-login-expand_blgr.png");
+}
+#affiliate-member  .affiliate-login {
+    background-image: url("images/bg_affiliatelogin.png");
+}
+a.link_forgotyourpassword {
+background-image: url("images/link_forgotyourpassword_bl-gr.png");
+}
+a.link_notyetamember {
+background-image: url("images/link_notyetamember_bl-gr.png");
+}
+.img_btn_login_bl-gr {
+    background: url("images/btn_login_bl-gr.png");
+	}
+#affiliate-member a.link_logout {
+background-image: url("images/link_affiliate-logout_blgr.png");
+}
+a.link_popuphelp {
+    background-image: url("images/link_popuphelp_blgr.png");
+}
+a.link_boxopen {
+    background-image: url("images/link_boxopen_blgr.png");
+}
+.img_btn_submit_blgr_ovr_wh {
+    background-image: url("images/btn_submit_blgr_wh.png");
+}
+a.link_uploadphoto {
+    background-image: url("images/link_uploadphoto_gr.png");
+}
+#menu-section-volorg-old a.vol {
+    background-image: url("images/bg_nav-volorg-vol_blgr.png");
+	}
+#menu-section-volorg-old .active a.org {
+    background-image: url("images/bg_nav-volorg-org-active_blgr.png");
+	}
+#menu-primary-old a.becomeapartner {
+    background-image: url("images/nav_organization_becomeapartner_bl.png");
+}
+.for-organizations #menu-primary-old a.resources {
+    background-image: url("images/nav_organization_resources_bl.png");
+}
+#menu-primary-old a.searchwidget {
+    background-image: url("images/nav_organization_searchwidget_bl.png");
+}
+.section-affiliate.for-organizations #navbar-old {
+    background-image: url("images/bg_nav-org_bl-bl.png");
+}
+#menu-primary-old a.myaccount {
+	background-image: url("images/nav_volunteer_myaccount_bl.png");
+}
+#block-account-profile a.link_popuphelp {
+background-image: url("images/link_popuphelp_blgr2.png");
+}
+.img_btn_update_blgr:hover {
+	background: url("images/btn_update_blgr_ovr.png") ;
+}
+.img_btn_update_blgr{
+	background: url("images/btn_update_blgr.png") ;
+}
+.ui-widget-content .ui-state-default, .ui-widget-content .ui-state-hover, .ui-widget-content .ui-state-active, .ui-widget-content .ui-state-focus {
+background-image: url("images/form_slider_marker_blgr.png");
+}
+a.link_boxclose {
+background-image: url("images/link_boxclose_blgr.png");
+}
+a.link_joinpublicteam {
+	background-image: url("images/link_joinpublicteam_blgr.png");
+}
+a.link_createnewteam {
+	background-image: url("images/link_createnewteam_blgr.png");
+}
+.img_btn_createteam_blgr{
+background-image: url("images/btn_createteam_blgr.png");
+}
+.img_btn_createteam_blgr:hover {
+background-image: url("images/btn_createteam_blgr_ovr.png"); 
+}
+.img_link_20more_gr:hover {
+background-image: url("images/link_20more_bl.png");
+}
+.img_link_20more_gr {
+background-image: url("images/link_20more_gr.png");
+}
+.img_btn_search_blgr_green {
+background-image: url("images/btn_search_blgr_green.png") ;
+}
+#menu-section-volorg .active a, #menu-section-volorg a:hover {
+color: #5A80DA;  /** Color1 **/
+}
+.for-volunteers  #navbar {
+    background-image: url("images/bg_nav_bl-bl.png");
+}
+.for-volunteers.has-secondary #navbar {
+	background-image: url("images/bg_nav-active_bl-bl.png");
+}
+.for-organizations #navbar {
+    background-image: url("images/bg_nav_bl-bl.png");
+}
+.section-affiliate.for-volunteers #navbar {
+background-image: url("images/bg_nav_bl-bl.png");
+}
+.for-organizations.has-secondary #navbar{
+	background-image: url("images/bg_nav_bl-bl.png");
+}
+.img_btn_submit_blgr_ovr_wh:hover {
+    background-image: url("images/btn_submit_blgr_ovr_wh.png");
+	}
+.img_btn_submit_blgr_ovr_wh:hover {
+    background-image: url("images/btn_submit_blgr_ovr_wh.png");
+	}
+.img_btn_submit_blgr_ovr_wh:hover {
+background-image: url("images/btn_submit_blgr_ovr_wh.png");
+}
+a.link_select {
+	background-image: url("images/btn_select.png");
+}
+a.link_createteam {
+background-image: url("images/link_createteam_blgr.png");
+}
+.img_btn_submit_blgr:hover {
+background-image: url("images/btn_submit_blgr_ovr.png");
+}
+.img_box_title_whenareyouavailable_gr {
+background-image: url("images/box_title_whenareyouavailable_gr.png");
+}
+.img_btn_refine_blgr {
+background-image: url("images/btn_refine_blgr.png");
+}
+.img_box_title_whatwouldyouliketodo_gr {
+background-image: url("images/box_title_whatwouldyouliketodo_gr.png");
+}
+.img_box_title_whowouldyouliketoserve_gr {
+background-image: url("images/box_title_whowouldyouliketoserve_gr.png");
+}
+.img_box_title_appropriatefor_gr {
+background-image: url("images/box_title_appropriatefor_gr.png");
+}
+.img_btn_refine_blgr {
+background-image: url("images/btn_refine_blgr.png");
+}
+.img_box_title_invitationcode_gr {
+background-image: url("images/box_title_invitationcode_gr.png") ;
+}
+.img_btn_refine_blgr:hover {
+background-image: url("images/btn_refine_blgr_ovr.png");
+}
+.img_box_title_basicsearch_gr {
+background-image: url("images/box_title_basicsearch_gr.png");
+}
+.img_btn_save_search_blgr {
+background-image: url("images/btn_save_search_blgr.png");
+}
+.img_btn_save_blgr {
+background-image: url("images/btn_save_blgr.png");
+}
+.img_btn_save_blgr:hover {
+background-image: url("images/btn_save_blgr_ovr.png");
+}
+.img_btn_save_search_blgr:hover {
+background-image: url("images/btn_save_search_blgr_ovr.png");
+}
+a.link_expressinterest {
+    background-image: url("images/link_expressinterest_blgr.png");
+}
+.img_btn_submit_blgr {
+background-image: url("images/btn_submit_blgr.png");
+}
+a.link_calendar_next {
+background-image: url("images/calendar_link_calendar_next.png");
+}
+a.link_calendar_prev {
+background-image: url("images/calendar_link_calendar_prev.png");
+}
+.calendar-controls .calendar-legend li.opps {
+    background-image: url("images/calendar_legend-opps.png");
+}
+.calendar-controls .calendar-legend li.special {
+    background-image: url("images/calendar_legend-special.png");
+}
+.img_btn_search_blgr_green:hover {
+background-image: url("images/btn_search_blgr_ovr_blue.png");
+}
+a.link_share {
+background-image: url("images/link_share_blgr.png");
+}
+ .img_btn_search_blgr {
+	background: url("images/btn_search_bl-gr.png") no-repeat center center;
+ }
+ .img_btn_search_blgr :hover {
+	background: url("images/btn_search_blgr_ovr.png") no-repeat center center;
+ }
+ #menu-section-volorg-old li.first {
+    background-image: url("images/bg_nav-volorg-sep_blgr.png");
+ }
+ #page .calendar-table td .special a, #page .calendar-table td .wrap-eventlist li.special a, .calendar-table td .wrap-eventlist li.special .event-tip h4 {
+    color: #B98A13;  /** Color2 **/
+}
+ #page .calendar-table td .special a:hover, #page .calendar-table td .wrap-eventlist li.special a:hover, .calendar-table td .wrap-eventlist li.special .event-tip h4 {
+    color: #5A80DA  !important;  /** Color1 **/
+}
+.img_calendar_event-arr-gr {
+    background-image: url("images/calendar_event-arr-gr.png"); 
+}
+.ui-slider-horizontal .ui-slider-range {
+    background-image: url("images/form_slider_fill_gr.png"); 
+}
+a.link_signup {
+    background-image: url("images/link_signup_blgr.png");
+}
+a.img_link_uploadlogo_01 {
+    background-image: url("images/link_uploadlogo_01.png");
+}
+a.img_link_uploadlogo_01:hover {
+    background-image: url("images/link_uploadlogo_02.png");
+}
+a.link_invite_accept {
+background-image: url("images/link_invite_accept_blgr.png");
+}
+#node-latest-news a.link_readmore {
+    background-image: url("images/link_readmore_gr-gy.png");
+}
+a.link_invite_decline {
+background-image: url("images/link_invite_decline_blgr.png");
+}
+a.link_email {
+background-image: url("images/link_email_blgr.png");
+}
+a.link_manageteam {
+background-image: url("images/link_manageteam_blgr.png");
+}
+a.link_removemefromteam {
+background-image: url("images/link_removemefromteam_blgr.png");
+}
+a.link_clickhere {
+background-image: url("images/link_clickhere_blgr.png");
+}
+a.link_popupclose {
+background-image: url("images/link_popupclose_blgr.png");
+}
+.img_save_gr {
+    background-image: url("images/save_gr.png"); 
+}
+.img_save_gr:hover {
+background-image: url("images/save_bl.png");
+}
+/*NEW RULES*/
+a.link_rss {
+    background-image: url("images/link_rss_gr-gy.png");
+}
+.box a.link_email {
+	background-image: url("images/link_email_blgr-gr.png");
+}
+.img_btn_login_bl-gr:hover{
+	background: url("images/btn_login_bl-gr_ovr.png")no-repeat center center;
+	background-image: url("images/btn_login_bl-gr_ovr.png");
+}
+#block-account-profile .stats .hours-volunteered{
+	background-image : url("images/hr_profilestats.png");
+}
+#block-find-us-on {
+    background-image: url("images/bg_block-finduson.png");
+}
+#block-find-us-on .block-inner {
+    background-image: url("images/bg_block-finduson.png");
+}
+.img_all_small_bg:hover{
+	background : url("images/all_small_bg.png") no-repeat center center;
+}
+p.quote {
+    background-image: url("images/blockquote-lt_gr.png");
+}
+blockquote .source {
+    background-image: url("images/blockquote-rt_gr.png");
+}
+#menu-secondary-affiliate li.active a {
+    background-image: url("images/li_menu-affiliate_gr.png");
+}
+#menu-affiliate li.active a {
+    background-image: url("images/li_menu-affiliate_gr.png");
+}
+#block-account-profile .stats .captain-of {
+    background-image: url("images/hr_profilestats.png");
+}
+a.link_addnewmembers {
+    background-image: url("images/link_addnewmembers_blgr.png");
+}
+a.link_emailmembers {
+    background-image: url("images/link_emailmembers_blgr.png");
+}
+a.link_removemember {
+    background-image: url("images/link_removemember_blgr.png");
+}
+a.link_makecaptain {
+    background-image: url("images/link_makecaptain_blgr.png");
+}
+a.link_deleteteam {
+    background-image: url("images/link_deleteteam_blgr.png");
+}
+a.link_20more {
+    background-image: url("images/link_20more_gr.png");
+}
+a:hover.link_20more {
+    background-image: url("images/link_20more_bl.png");
+}
+.img_btn_addthesemembers_blgr {
+    background-image: url("images/btn_addthesemembers_blgr.png");
+}
+.img_btn_addthesemembers_blgr:hover {
+    background-image: url("images/btn_addthesemembers_blgr_ovr.png");
+}
+.form-required {
+    color: #5A80DA;       /** Color1 **/
+}
+.box a.link_clickhere {
+    background-image: url("images/link_clickhere_blgr-gr.png");
+}
+/*Even Newer Jan 19*/
+
+#affiliate-member #affiliate-login .text-wrapper {
+    background-image: url("images/form_input_affiliatelogin.png");
+}
+div.selectwrapper {
+    background-image: url("images/bg_select_bl.png");
+}
+/*Newer for old no cms compatible VF Custom Pages*/
+
+#menu-section-volorg li.first {
+    background-image: url("images/bg_nav-volorg-sep_blgr.png");
+ }
+ #menu-primary a.myaccount {
+	background-image: url("images/nav_volunteer_myaccount_bl.png");
+}
+.section-affiliate.for-organizations #navbar {
+    background-image: url("images/bg_nav-org_bl-bl.png");
+}
+#menu-primary a.searchwidget {
+    background-image: url("images/nav_organization_searchwidget_bl.png");
+}
+.for-organizations #menu-primary a.resources {
+    background-image: url("images/nav_organization_resources_bl.png");
+}
+#menu-primary a.becomeapartner {
+    background-image: url("images/nav_organization_becomeapartner_bl.png");
+}
+#menu-section-volorg .active a.org {
+    background-image: url("images/bg_nav-volorg-org-active_blgr.png");
+	}
+#menu-section-volorg a.vol {
+    background-image: url("images/bg_nav-volorg-vol_blgr.png");
+	}
+.for-volunteers.has-secondary #navbar {
+    background-image: url("images/bg_nav-vol-sec_bl-bl.png");
+}
+.for-volunteers.has-secondary #navbar {
+    background-image: url("images/bg_nav-vol-sec_bl-bl.png");
+}
+.for-organizations.has-secondary #navbar {
+    background-image: url("images/bg_nav-org-sec_bl-bl.png");
+}
+#menu-section-volorg a.org {
+    background-image: url("images/bg_nav-volorg-org_blgr.png");
+}
+#menu-section-volorg .active a.vol {
+    background-image: url("images/bg_nav-volorg-vol-active_blgr.png");
+}
+#menu-primary a.becomeamember {
+    background-image: url("images/nav_volunteer_becomeamember_bl.png");
+}
+.for-volunteers #menu-primary a.resources {
+    background-image: url("images/nav_volunteer_resources_bl.png");
+}
+#menu-primary a.browseorgs {
+    background-image: url("images/nav_volunteer_browseorganizations_bl.png");
+}
+#menu-primary a.specialevents {
+    background-image: url("images/nav_volunteer_specialevents_bl.png");
+}
+#menu-primary a.findopportunity {
+    background-image: url("images/nav_volunteer_findanopportunity_bl.png");
+}
+.for-volunteers #navbar, .section-affiliate.for-volunteers #navbar {
+    background-image: url("images/bg_nav-vol_bl-bl.png");
+}
+#navbar.has-secondary {
+    background-image: url("images/bg_nav-active_bl-bl.png");
+}
+#page #menu-secondary .active a.active, #page #menu-secondary a:hover {
+    color: #B98A13; /* Color 2 */
+}
+.for-organizations #navbar-old {
+    background-image: url("images/bg_nav-org_bl-bl.png");
+}
+#page .aw-column-0 a.opps {
+        color: #5A80DA !important;
+}

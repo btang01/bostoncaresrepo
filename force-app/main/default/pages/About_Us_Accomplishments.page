@@ -1,0 +1,274 @@
+<apex:page cache="true" expires="600" controller="HOC.cls_HOC_Generic"  standardStylesheets="false" showHeader="false" sidebar="false" >
+<head>
+    <title>{!propSiteHeader} | Accomplishments </title>
+    <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}global.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}layout.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}hon.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}hon_boxes.css" />
+     <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}hon_blocks.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}themes/default/default.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}themes/bluegreen/bluegreen.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="{!CSSURL}hon_affiliate.css" />
+    
+    <!--[if IE]>
+        <link type="text/css" rel="stylesheet" media="all" href="css/ie.css" />
+    <![endif]-->
+    
+    <script type="text/javascript" src="{!JSURL}lib/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="{!JSURL}lib/jquery-ui-1.7.2.hon.min.js"></script>
+    <script type="text/javascript" src="{!JSURL}lib/jquery.toggleVal.js"></script>
+    <script type="text/javascript" src="{!JSURL}actions.js"></script>
+</head>
+<body class="for-volunteers sidebar-left section-affiliate">
+<div id="page" class="sidebar-left">
+    <div id="page-inner">
+        <div id="header">
+            <div id="header-inner">
+                <div id="header-block-left">
+                    <h1 id="logo">
+                        <a href="/HOC__Affiliate_Home_Page" title="Home" rel="home"><img src="{!bayarea_logo_jpg}" width="100" height="140" alt="HandsOn Home - Bay Area" id="logo-image" /></a>
+                    </h1>
+                </div>
+                <div id="header-block-mid">
+                     <div id="affiliate-location">
+                        <p class="org-name">{!propSiteHeader}</p>
+                        <p class="org-loc">{!propSiteSubHeader}</p>
+                    </div>
+                    <div id="menu-section-volorg" class="menu">
+                        <ul class="inline">
+                          <li class="first active"><a href="" class="vol">For Volunteers</a></li>
+                          <li class="last"><a href="{!propTopMenu6_URL}" class="org">For Organizations</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="header-block-right">
+                    <div id="menu-affiliate" class="menu">
+                    
+                     <!-------------------------------------------------------------------------------------> 
+                     <!---- START COPY AND PASTE TO HOC TEMPLATE HERE"-->  
+                     <!------ [ BEGIN EDITABLE REGION // ------> 
+                    
+                        <ul>
+                        
+                            <!-- // Set Active State of upper right verical menu in this section of code--->
+                        
+                            <li class="active"><a href="">{!propHeaderMenu1_Name}</a></li>
+                            <li><a href="{!propHeaderMenu2_URL}">{!propHeaderMenu2_Name}</a></li>
+                            <li><a href="{!propHeaderMenu3_URL}">{!propHeaderMenu3_Name}</a></li>
+                            <li><a href="{!propHeaderMenu4_URL}">{!propHeaderMenu4_Name}</a></li>
+                            <li><a href="{!propHeaderMenu5_URL}">{!propHeaderMenu5_Name}</a></li>
+                            <li><a href="{!propHeaderMenu6_URL}">{!propHeaderMenu6_Name}</a></li>
+                            
+                            <!-- // End upper right vertical menu --->
+                            
+                        </ul>
+                      
+                      <!------ [ END EDITABLE REGION // ------>                       
+                      <!---- End COPY AND PASTE TO HOC TEMPLATE HERE"--> 
+                      <!-------------------------------------------------------------------------------------> 
+                        
+                        
+                    </div>
+                  
+                    
+                    <!-- // Begin Component Code for External Templates--->
+                    
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    
+                    
+                    
+                     <HOC:Comp_Login_Logout />
+                    
+                    
+                    
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    
+                    
+                    <!-- // End Component Code for External Templates--->
+                   
+                   
+                </div>
+            </div>
+        </div>        
+        <div id="navbar">
+            <div id="navbar-inner">
+                <div id="menu-primary" class="menu">
+                    <ul class="inline">
+                    
+                      <!-- // Set Active State of main horizontal menu in this section of code--->  
+                    
+                      <li class="first"><a href="/HOC__Volunteer_Opportunity_Search_Page?p=vct" class="findopportunity">Find An Opportunity</a></li>
+                      <li><a href="{!propTopMenu2_URL}" class="specialevents">Special Events</a></li>
+                      <li><a href="/HOC__Browse_Organizations_Page" class="browseorgs">Browse Organizations</a></li>
+                      <li><a href="{!propTopMenu4_URL}" class="resources">Resources</a></li>
+                      <li class="last active"><a href="{!propTopMenu5_URL}" class="{!propTempLastMenu}">{!propBecome_a_Member}</a></li>
+                    
+                      <!-- // End main horizontal menu --->
+                    
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="main">
+            <div id="main-inner">
+            
+                <div id="sidebar-left">
+                    <div id="sidebar-left-inner" class="region region-left">
+                        <div id="menu-secondary-affiliate" class="menu">
+                        
+                        
+                        <!-------------------------------------------------------------------------------------> 
+                        <!-------------------------------------------------------------------------------------> 
+                        <!-------------------------------------------------------------------------------------> 
+                        <!-------------------------------------------------------------------------------------> 
+                        <!---- START COPY AND PASTE TO HOC TEMPLATE HERE"--> 
+                        <!------ [ BEGIN EDITABLE REGION // ------>
+                        
+                            <!-- // Set active state for middle left vertical navigation in this section of code--->
+                        
+                            <h2>About Us</h2>
+                                <ul>
+                                <li><a href="http://bostoncares.force.com/About_Us_Mission_Values">Mission &amp; Values</a></li>
+                                <li><a href="http://bostoncares.force.com/About_Us_Our_Story">Our Story</a></li>
+                                <li class="active"><a href="http://bostoncares.force.com/About_Us_Accomplishments">Accomplishments</a></li>
+                                <li><a href="http://bostoncares.force.com/About_Us_Programs">Programs</a></li>
+                                <li><a href="http://bostoncares.force.com/About_Us_Board_of_Directors">Board of Directors</a></li>
+                                <li><a href="http://bostoncares.force.com/About_Us_Staff">Staff</a></li>
+                                <li><a href="http://bostoncares.force.com/About_Us_Directions">Directions</a></li>
+                            </ul>
+                            
+                            <!-- // End middle left vertical navigation --->
+                            
+                        <!------ // END EDITABLE REGION ] ------>
+                        <!---- END COPY AND PASTE TO HOC TEMPLATE HERE-------> 
+                        <!-------------------------------------------------------------------------------------> 
+                        <!-------------------------------------------------------------------------------------> 
+                        <!-------------------------------------------------------------------------------------> 
+                        <!-------------------------------------------------------------------------------------> 
+                             
+                                                    
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div id="content">
+                    <div id="content-inner">
+
+
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!---- START COPY AND PASTE TO HOC TEMPLATE HERE"--> 
+                    <!------ [ BEGIN EDITABLE REGION // ------>
+
+                        <div id="content-area"> 
+                        
+                            <div class="node" id="search-results">
+                                <div class="node-inner">
+                                    <h2 class="static-title">Accomplishments</h2>                                   
+                                  <h3>Awards and Commendations Since 2000</h3>
+<ul>
+<li>Presidential Volunteer Service Awards granted to 79 Boston Cares members and groups, 2011</li>
+<li>Certificate of Appreciation/Birthday Wishes 2010</li>
+<li>Presidential Volunteer Service Awards granted to 48 Boston Cares members, 2010</li>
+<li>HopeFound Volunteer Appreciation Award, 2009</li>
+<li>Presidential Volunteer Service Awards granted to 29 Boston Cares members, 2009</li>
+<li>Hands On Network National Leadership Award, 2008</li>
+<li>Presidential Call To Service Award presented to Boston Cares by US Secretary of Agriculture, for service at Greater Boston Food Bank, 2008</li>
+<li>Presidential Volunteer Service Awards granted to 33 Boston Cares members, 2008</li>
+<li>Certificate of Appreciation/Lemuel Shattuck Hospital, 2008</li>
+<li>Community Partner Certificate of Appreciation/Scott-Ross Center for Community Service at Simmons College, 2007 &amp; 2008</li>
+<li>Edward J. Samp Award for Exceptional Service/Recording for the Blind &amp; Dyslexic, 2007</li>
+<li>Greater Salem Boys &amp; Girls Club Award for Community Partnership, 2007</li>
+<li>Certificate of Appreciation/Friday Night Supper Program, 2007</li>
+<li>Essential Piece Certificate of Appreciation/Somerville Cambridge Elder Services, 2007</li>
+<li>MVP (Motivated Volunteer for the Park) Award/Esplanade Association, for BOOYAH!, 2007</li>
+<li>Presidential Volunteer Service Awards granted to 14 Boston Cares members, 2007</li>
+<li>MVP (Motivated Volunteer for the Park) Award/Esplanade Association, 2006</li>
+<li>Presidential Volunteer Service Awards granted to 12 Boston Cares members, 2006</li>
+<li>Presidential Volunteer Service Awards granted to 11 Boston Cares members, 2005</li>
+<li>Presidential Volunteer Service Awards granted to 14 Boston Cares members, 2004</li>
+<li>MVP (Motivated Volunteer for the Park) Award/Esplanade Association, 2004</li>
+<li>Annual Meeting Salute/Mattapan Health Center-Reach Out &amp; Read Program, 2004</li>
+<li>Certificate of Appreciation/Lowell Community Health Center, 2004</li>
+<li>Volunteer Appreciation Award/Charles River Conservancy, 2004</li>
+<li>Certificate of Appreciation/WGBH Channel 2, 2003 &amp; 2004</li>
+<li>Regional Sponsor Recognition Award/American Red Cross, 2003</li>
+<li>Volunteer Group of the Year/Greater Boston Food Bank, 2003</li>
+<li>Distinguished Community Service Award/JFY Networks, 2003</li>
+<li>Innovation in Communication/CityCares National Leadership Conference, 2003</li>
+<li>Certificate of Appreciation/Prison Book Program, 2002</li>
+<li>Corporate/Group Volunteer Organization of the Year/NE Aquarium, 2002</li>
+<li>Volunteer Appreciation Award/ Soul Food Salon at the Boston Living Center, 2002</li>
+<li>Volunteer Award/Metropolitan District Commission at SW Corridor Park, 2000</li>
+<li>Team Volunteer Award/Metropolitan District Commission, 2000</li>
+</ul>
+                              </div>
+                            </div>
+                        
+                        </div>
+                        <div id="content-bottom">
+                        </div>
+
+                    <!------ // END EDITABLE REGION ] ------>
+                    <!---- END COPY AND PASTE TO HOC TEMPLATE HERE-------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+                    <!-------------------------------------------------------------------------------------> 
+
+
+                    </div>
+                </div>
+                
+                <div id="sidebar-right">
+                    <div id="sidebar-right-inner" class="region region-right">
+                    </div>
+                </div>
+                
+               <div class="clearfix"></div>
+            </div>
+        </div>
+        
+        <div id="footer">
+            <div id="footer-inner" class="region region-footer">
+                <div id="footer-block">
+                    <div class="menu" id="menu-poweredby">
+                        <p><img src="{!CSSURL}themes/default/title_poweredby.png" width="77" height="7" alt="Powered By"/></p>
+                        <ul class="inline">
+                            <li class="first"><a target="_blank" href="http://www.handsonconnect.org"><img src="{!CSSURL}themes/default/logos_hon.png" width="106" height="73" alt="HandsOn Connect" /></a></li>
+                            <li class="last"><a target="_blank" href="http://www.handsonnetwork.org"><img src="{!CSSURL}themes/default/logos_honet.png" width="58" height="81" alt="HandsOn Network" /></a></li>
+                        </ul>
+                    </div>
+                    <div class="menu" id="menu-sponsors">
+                        <p><img src="{!CSSURL}themes/default/title_sponsors.png" width="63" height="7" alt="Sponsors"/></p>
+                        <p><a href="/HOC__Sponsors" target="_blank"><img src="{!sponsorlogos_jpg}" width="592" height="56" alt="" /></a></p>
+                        <p class="more-link"><a href="/HOC__Sponsors" target="_blank" class="rover link_seeallsponsors">See all sponsors</a></p>
+                    </div>
+                </div>
+                 <div class="block" id="footer-message">
+                    <div class="block-inner">
+                        <p>&#169; {!YEAR(TODAY())} {!customerNm},&nbsp;<apex:outputLabel id="footerTxt" ></apex:outputLabel></p>
+                        <p>{!customerNm}, {!customerAdd} <img src="{!CSSURL}themes/default/footer_sep.png" width="1" height="14" alt="" /> <a href="/HOC__Privacy_Policy" target="_blank">Privacy Policy</a> 
+                        <img src="{!CSSURL}themes/default/footer_sep.png" width="1" height="14" alt="" /> <a href="/HOC__Terms_and_Conditions" target="_blank">Terms of Use</a></p>
+                    </div>
+                    <input type="hidden" value="{!footerText}" id="hdnFooterText" />
+                    <script type="text/javascript">
+                        document.getElementById('{!$Component.footerTxt}').innerHTML = document.getElementById("hdnFooterText").value;
+                   </script>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
+</body>
+</apex:page>

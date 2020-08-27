@@ -1,0 +1,18 @@
+<apex:page standardController="HOC__Volunteer_Opportunity__c" extensions="VoWizardControllerv2">
+<style>
+@media only screen and (max-device-width: 480px) {
+select, textarea {
+    width:220px; 
+}
+.multiSelectPicklistRow select {
+    width:100px !important;
+}
+.datePicker select {
+    width: auto;
+}
+}
+</style>
+<flow:interview name="Vounteer_Opportunity_Wizard" interview="{!VOWizardFlow2}" finishLocation="{!backToVO}">
+    <apex:param name="VAR_UserContactID" value="{!$User.ContactId}"/>
+</flow:interview>
+</apex:page>
