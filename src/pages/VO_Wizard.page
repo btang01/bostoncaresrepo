@@ -1,6 +1,0 @@
-<apex:page standardController="HOC__Volunteer_Opportunity__c" extensions="VoWizardController">
-<flow:interview name="Volunteer_Opportunity_Wizard_Flow" interview="{!VOWizardFlow}" finishLocation="{!backToVO}">
-    <apex:param name="VAR_UserContactID" value="{!$User.ContactId}"/>
-    <!-- <apex:param name="ContactName" value="{!$User.FirstName}"/> -->                           
-</flow:interview>
-</apex:page>
