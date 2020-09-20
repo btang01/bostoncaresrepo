@@ -14,5 +14,10 @@
     "mobileSettings": {
         "enableS1EncryptedStoragePref2": false
     }
+  },
+  "objectSettings": {
+    "contact": {
+      "sharingModel": "private"
+    }
   }
 }
