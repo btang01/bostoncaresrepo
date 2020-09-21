@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>End_Date__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>If none provided Volunteer Opportunity will use the Project End Date from the Project Site Visit.  If that is not provided then this defaults to the start date for a one-day project.</inlineHelpText>
+    <label>End Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>
