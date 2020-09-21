@@ -16,6 +16,9 @@
     }
   },
   "objectSettings": {
+    "account": {
+      "defaultRecordType": "BusinessAccount"
+    },
     "contact": {
       "sharingModel": "private"
     }
