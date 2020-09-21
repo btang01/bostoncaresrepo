@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_of_Projects_Attended_and_Verified__c</fullName>
+    <description>This field captures the number of projects that the Contact has attended, and where his/her hours have been verified</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field captures the number of projects that the Contact has attended, and where his/her hours have been verified</inlineHelpText>
+    <label>Number of Projects Attended and Verified</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
