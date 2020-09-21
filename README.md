@@ -6,14 +6,9 @@ This repo contains metadata for the Salesforce org used by Boston Cares staff.
 
 ## How to contribute
 
-We are still in the process of pulling down missing metadata,
-so that developers can use simple `sfdx` commands to spin up a scratch org
-for immediate development.
+Use `sfdx` to spin up a scratch org for immediate development.
 
 ```sh
-# Create a scratch org
-sfdx force:org:create -f config/project-scratch-def.json -s
-
-# Push source to the scratch org
-sfdx force:source:push
+# Create a scratch org, deploy dependencies and push source
+zsh bin/force-org-create.sh
 ```
