@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Play_Space_Task__c</fullName>
+    <externalId>false</externalId>
+    <label>Play Space Task</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Benches</fullName>
+                <default>false</default>
+                <label>Benches</label>
+            </value>
+            <value>
+                <fullName>Murals</fullName>
+                <default>false</default>
+                <label>Murals</label>
+            </value>
+            <value>
+                <fullName>Playground Stencils</fullName>
+                <default>false</default>
+                <label>Playground Stencils</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

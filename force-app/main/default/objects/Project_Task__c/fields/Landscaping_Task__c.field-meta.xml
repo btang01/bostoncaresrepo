@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Landscaping_Task__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Pick all applicable types of landscaping for this task.  Note that you can also assign these separately to individual tasks.</inlineHelpText>
+    <label>Landscaping Task</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Plant Annuals</fullName>
+                <default>false</default>
+                <label>Plant Annuals</label>
+            </value>
+            <value>
+                <fullName>Plant Perennials</fullName>
+                <default>false</default>
+                <label>Plant Perennials</label>
+            </value>
+            <value>
+                <fullName>Plant Shrubs</fullName>
+                <default>false</default>
+                <label>Plant Shrubs</label>
+            </value>
+            <value>
+                <fullName>Plant Trees</fullName>
+                <default>false</default>
+                <label>Plant Trees</label>
+            </value>
+            <value>
+                <fullName>Clear brush or invasives</fullName>
+                <default>false</default>
+                <label>Clear brush or invasives</label>
+            </value>
+            <value>
+                <fullName>Mulching</fullName>
+                <default>false</default>
+                <label>Mulching</label>
+            </value>
+            <value>
+                <fullName>Weeding</fullName>
+                <default>false</default>
+                <label>Weeding</label>
+            </value>
+            <value>
+                <fullName>Trail Work</fullName>
+                <default>false</default>
+                <label>Trail Work</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

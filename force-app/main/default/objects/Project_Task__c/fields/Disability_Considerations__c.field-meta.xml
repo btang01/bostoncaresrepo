@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disability_Considerations__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Are there any concerns about performing this task by those with disabilities or who are pregnant? If so, are there parts of this task for which they might be better suited?</inlineHelpText>
+    <label>Disability Considerations</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>
