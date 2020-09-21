@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Local_Impact_Area__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>used to populate Volunteer Opportunity field &quot;Impact Area (Local)&quot;.</inlineHelpText>
+    <label>Local Impact Area</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Basic Needs</fullName>
+                <default>false</default>
+                <label>Basic Needs</label>
+            </value>
+            <value>
+                <fullName>Emergency Preparedness/DART</fullName>
+                <default>false</default>
+                <label>Emergency Preparedness/DART</label>
+            </value>
+            <value>
+                <fullName>Ensuring Young People Succeed</fullName>
+                <default>false</default>
+                <label>Ensuring Young People Succeed</label>
+            </value>
+            <value>
+                <fullName>Equipping Adults to Beat Poverty</fullName>
+                <default>false</default>
+                <label>Equipping Adults to Beat Poverty</label>
+            </value>
+            <value>
+                <fullName>Health &amp; Wellness</fullName>
+                <default>false</default>
+                <label>Health &amp; Wellness</label>
+            </value>
+            <value>
+                <fullName>New Volunteer or Project Leader Training</fullName>
+                <default>false</default>
+                <label>New Volunteer or Project Leader Training</label>
+            </value>
+            <value>
+                <fullName>Boston Cares Programming &amp; Support</fullName>
+                <default>false</default>
+                <label>Boston Cares Programming &amp; Support</label>
+            </value>
+            <value>
+                <fullName>Cultural &amp; Environmental Vibrancy</fullName>
+                <default>false</default>
+                <label>Cultural &amp; Environmental Vibrancy</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

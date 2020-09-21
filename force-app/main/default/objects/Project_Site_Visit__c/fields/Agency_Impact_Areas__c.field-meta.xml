@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Agency_Impact_Areas__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Adult Education&quot;),&quot;Adult Education;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Animals&quot;),&quot;Animals;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Arts &amp; Culture&quot;),&quot;Arts &amp; Culture;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Children &amp; Youth Education&quot;),&quot;Children &amp; Youth Education;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Civic &amp; Community&quot;),&quot;Civic &amp; Community;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Disaster &amp; Emergency Services&quot;),&quot;Disaster &amp; Emergency Services;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Environment&quot;),&quot;Environment;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Faith-Based Service&quot;),&quot;Faith-Based Service;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Family Services&quot;),&quot;Family Services;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Health &amp; Wellness&quot;),&quot;Health &amp; Wellness;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Hunger &amp; Homelessness&quot;),&quot;Hunger &amp; Homelessness;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Immigrant &amp; Refugee Services&quot;),&quot;Immigrant &amp; Refugee Services;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;International Service&quot;),&quot;International Service;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Internships &amp; Employment&quot;),&quot;Internships &amp; Employment;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Justice &amp; Legal Services&quot;),&quot;Justice &amp; Legal Services;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Schools&quot;),&quot;Schools;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Senior Services&quot;),&quot;Senior Services;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Sports &amp; Recreation&quot;),&quot;Sports &amp; Recreation;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Technology&quot;),&quot;Technology;&quot;,&quot;&quot;) &amp;
+if(includes(Nonprofit_Agency__r.HOC__Impact_Area__c,&quot;Other&quot;),&quot;Other;&quot;,&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Agency Impact Areas</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
