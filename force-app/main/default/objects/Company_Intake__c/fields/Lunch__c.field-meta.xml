@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lunch__c</fullName>
+    <externalId>false</externalId>
+    <label>Lunch</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Provided by Client</fullName>
+                <default>false</default>
+                <label>Provided by Client</label>
+            </value>
+            <value>
+                <fullName>Purchased Nearby</fullName>
+                <default>false</default>
+                <label>Purchased Nearby</label>
+            </value>
+            <value>
+                <fullName>Mix</fullName>
+                <default>false</default>
+                <label>Mix</label>
+            </value>
+            <value>
+                <fullName>No lunch</fullName>
+                <default>false</default>
+                <label>No lunch</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

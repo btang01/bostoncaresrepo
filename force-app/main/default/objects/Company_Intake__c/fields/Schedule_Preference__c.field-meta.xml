@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Schedule_Preference__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Is there a preference for the day(s) of the week?  Morning or afternoon?</inlineHelpText>
+    <label>Schedule Preference</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Weekday morning</fullName>
+                <default>false</default>
+                <label>Weekday morning</label>
+            </value>
+            <value>
+                <fullName>Weekday afternoon</fullName>
+                <default>false</default>
+                <label>Weekday afternoon</label>
+            </value>
+            <value>
+                <fullName>Weekday evening</fullName>
+                <default>false</default>
+                <label>Weekday evening</label>
+            </value>
+            <value>
+                <fullName>Weekday any time</fullName>
+                <default>false</default>
+                <label>Weekday any time</label>
+            </value>
+            <value>
+                <fullName>Weekend morning</fullName>
+                <default>false</default>
+                <label>Weekend morning</label>
+            </value>
+            <value>
+                <fullName>Weekend afternoon</fullName>
+                <default>false</default>
+                <label>Weekend afternoon</label>
+            </value>
+            <value>
+                <fullName>Weekend evening</fullName>
+                <default>false</default>
+                <label>Weekend evening</label>
+            </value>
+            <value>
+                <fullName>Weekend any time</fullName>
+                <default>false</default>
+                <label>Weekend any time</label>
+            </value>
+            <value>
+                <fullName>Monday morning</fullName>
+                <default>false</default>
+                <label>Monday morning</label>
+            </value>
+            <value>
+                <fullName>Monday afternoon</fullName>
+                <default>false</default>
+                <label>Monday afternoon</label>
+            </value>
+            <value>
+                <fullName>Monday evening</fullName>
+                <default>false</default>
+                <label>Monday evening</label>
+            </value>
+            <value>
+                <fullName>Monday any time</fullName>
+                <default>false</default>
+                <label>Monday any time</label>
+            </value>
+            <value>
+                <fullName>Tuesday morning</fullName>
+                <default>false</default>
+                <label>Tuesday morning</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

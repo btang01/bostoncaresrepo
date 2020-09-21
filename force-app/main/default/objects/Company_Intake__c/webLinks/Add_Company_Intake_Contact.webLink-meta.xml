@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Add_Company_Intake_Contact</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Add Company Intake Contact</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/a0p/e?
+CF00NK0000001anlC={! Company_Intake__c.Company__c }
+&amp;CF00NK0000001amKP={!Company_Intake__c.Name}
+&amp;CF00NK0000001amKP_lkid={!Company_Intake__c.Id}</url>
+</WebLink>

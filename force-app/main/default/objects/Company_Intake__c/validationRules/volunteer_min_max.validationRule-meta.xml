@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>volunteer_min_max</fullName>
+    <active>true</active>
+    <errorConditionFormula>Number_of_Volunteers_minimum__c &gt;  Number_of_Volunteers_maximum__c</errorConditionFormula>
+    <errorDisplayField>Number_of_Volunteers_minimum__c</errorDisplayField>
+    <errorMessage>Minimum volunteers cannot exceed Maximum volunteers.</errorMessage>
+</ValidationRule>
