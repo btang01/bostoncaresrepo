@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Self_Reporting_Unique_Opportunity</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(
+    OR(
+        AND(
+            HOC__Volunteer_Leader_Approval_Manager_Email__c== PRIORVALUE(HOC__Volunteer_Leader_Approval_Manager_Email__c), 
+            HOC__Volunteer_Leader_Approval_Manager__c == PRIORVALUE(HOC__Volunteer_Leader_Approval_Manager__c), 
+            HOC__Opportunity_Approval_Manager_Email__c == PRIORVALUE(HOC__Opportunity_Approval_Manager_Email__c), 
+            HOC__Opportunity_Approval_Manager__c == PRIORVALUE(HOC__Opportunity_Approval_Manager__c), 
+            HOC__Guest_Volunteers_Attended__c== PRIORVALUE(HOC__Guest_Volunteers_Attended__c),
+            HOC__Guest_Volunteer_Number_Hours_Served__c== PRIORVALUE(HOC__Guest_Volunteer_Number_Hours_Served__c),
+            HOC__Volunteer_Number_Hours_Served__c== PRIORVALUE(HOC__Volunteer_Number_Hours_Served__c),
+            HOC__Total_Confirmed__c== PRIORVALUE(HOC__Total_Confirmed__c),
+            HOC__Total_Connections__c== PRIORVALUE(HOC__Total_Connections__c),
+            HOC__Total_Declined__c== PRIORVALUE(HOC__Total_Declined__c),
+            HOC__Total_not_Attended__c== PRIORVALUE(HOC__Total_not_Attended__c),
+            HOC__Total_Pending__c== PRIORVALUE(HOC__Total_Pending__c),
+            HOC__Total_Unreported__c== PRIORVALUE(HOC__Total_Unreported__c),
+            HOC__Volunteers_Attended__c== PRIORVALUE(HOC__Volunteers_Attended__c),
+            NOT(ISNEW()),
+            OR(
+                Name==&apos;Self-Reported Volunteer Hours&apos;,
+                PRIORVALUE(Name) == &apos;Self-Reported Volunteer Hours&apos;
+            ),
+            IF(
+                ISCHANGED(HOC__Description__c),
+                IF(
+                    HOC__Description__c==&apos;Self-Reported Volunteer Hours for &apos;+HOC__Managing_Organization__r.Name,
+                    false,
+                    true
+                ),
+                true
+            )
+        )
+    ),
+    true,
+    false
+)</errorConditionFormula>
+    <errorMessage>You can’t create, delete or edit an opportunity with this name.</errorMessage>
+</ValidationRule>

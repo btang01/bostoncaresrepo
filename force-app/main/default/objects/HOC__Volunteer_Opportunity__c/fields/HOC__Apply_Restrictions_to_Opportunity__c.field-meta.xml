@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Apply_Restrictions_to_Opportunity__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Apply Restrictions to Opportunity</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>HOC__Registration_Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Apply Restrictions</fullName>
+                <default>false</default>
+                <label>Apply Restrictions</label>
+            </value>
+            <value>
+                <fullName>Do NOT Apply Restrictions</fullName>
+                <default>false</default>
+                <label>Do NOT Apply Restrictions</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Sign Up</controllingFieldValue>
+            <controllingFieldValue>Express Interest</controllingFieldValue>
+            <valueName>Apply Restrictions</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Express Interest</controllingFieldValue>
+            <valueName>Do NOT Apply Restrictions</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

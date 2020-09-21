@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__CheckRegistrationDeadline</fullName>
+    <active>true</active>
+    <errorConditionFormula>HOC__Registration_Deadline__c  &lt; 0</errorConditionFormula>
+    <errorDisplayField>HOC__Registration_Deadline__c</errorDisplayField>
+    <errorMessage>Registration Deadline should not be a negative no.</errorMessage>
+</ValidationRule>

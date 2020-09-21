@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Add_Prerequisite</fullName>
+    <availability>online</availability>
+    <description>Used to create an prerequisite record for this volunteer opportunity.</description>
+    <displayType>button</displayType>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>page</linkType>
+    <masterLabel>Add Prerequisite</masterLabel>
+    <openType>newWindow</openType>
+    <page>HOC__redirectVoToPrerequisite</page>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+</WebLink>

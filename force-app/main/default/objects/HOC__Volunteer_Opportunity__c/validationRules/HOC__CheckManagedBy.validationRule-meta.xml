@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__CheckManagedBy</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISCHANGED( HOC__Managed_By__c )</errorConditionFormula>
+    <errorDisplayField>HOC__Managed_By__c</errorDisplayField>
+    <errorMessage>Value once set cannot be changed</errorMessage>
+</ValidationRule>

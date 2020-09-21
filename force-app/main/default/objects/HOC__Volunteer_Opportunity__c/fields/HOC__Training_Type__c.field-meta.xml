@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Training_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Training Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>HOC__Activity_Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Volunteer Leadership</fullName>
+                <default>false</default>
+                <label>Volunteer Leadership</label>
+            </value>
+            <value>
+                <fullName>Volunteer Management</fullName>
+                <default>false</default>
+                <label>Volunteer Management</label>
+            </value>
+            <value>
+                <fullName>Organizational Development</fullName>
+                <default>false</default>
+                <label>Organizational Development</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Training</controllingFieldValue>
+            <valueName>Volunteer Leadership</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Training</controllingFieldValue>
+            <valueName>Volunteer Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Training</controllingFieldValue>
+            <valueName>Organizational Development</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Training</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

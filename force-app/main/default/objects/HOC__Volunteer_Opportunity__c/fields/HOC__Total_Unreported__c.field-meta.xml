@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Total_Unreported__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Total Unreported</label>
+    <summaryFilterItems>
+        <field>HOC__Connection__c.HOC__Attendance_Status__c</field>
+        <operation>equals</operation>
+        <value>Please Verify</value>
+    </summaryFilterItems>
+    <summaryForeignKey>HOC__Connection__c.HOC__Volunteer_Opportunity__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

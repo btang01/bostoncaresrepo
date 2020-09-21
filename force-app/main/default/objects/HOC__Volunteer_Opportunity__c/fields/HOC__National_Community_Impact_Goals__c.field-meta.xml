@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__National_Community_Impact_Goals__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>National Impact Goals</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Environment - Cultivate greener communities</fullName>
+                <default>false</default>
+                <label>Environment - Cultivate greener communities</label>
+            </value>
+            <value>
+                <fullName>Economy - Grow prosperous neighborhoods</fullName>
+                <default>false</default>
+                <label>Economy - Grow prosperous neighborhoods</label>
+            </value>
+            <value>
+                <fullName>Education - Support kids’ success</fullName>
+                <default>false</default>
+                <label>Education - Support kids’ success</label>
+            </value>
+            <value>
+                <fullName>Emergency - Preparedness, Response and Recovery</fullName>
+                <default>false</default>
+                <label>Emergency - Preparedness, Response and Recovery</label>
+            </value>
+            <value>
+                <fullName>Veterans and Military Families</fullName>
+                <default>false</default>
+                <label>Veterans and Military Families</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

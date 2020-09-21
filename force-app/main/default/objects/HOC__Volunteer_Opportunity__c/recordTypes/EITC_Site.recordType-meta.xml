@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EITC_Site</fullName>
+    <active>true</active>
+    <description>Only use this record type for sites hosting EITC volunteers.</description>
+    <label>EITC Site</label>
+    <picklistValues>
+        <picklist>HOC__Activity_Type__c</picklist>
+        <values>
+            <fullName>Academy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recognition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Social</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Training</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Age_Groups_Served__c</picklist>
+        <values>
+            <fullName>Adult %2818-65%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>All ages</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Children %26 Youth %28under 18%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Seniors %28over 65%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Apply_Restrictions_to_Opportunity__c</picklist>
+        <values>
+            <fullName>Apply Restrictions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Do NOT Apply Restrictions</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Available_Languages__c</picklist>
+        <values>
+            <fullName>English</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Genders_Served__c</picklist>
+        <values>
+            <fullName>All Genders Served</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Female Only</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Male Only</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__HON_Signature_Initiatives__c</picklist>
+        <values>
+            <fullName>Corporate Season of Service %28Fall%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Created for Give a Day%2E Get a Disney Day</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HandsOn Schools %28annual%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kids Care</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Neighboring Initiative %28annual%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VIRE- Grant Program</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Impact_Area_Local__c</picklist>
+        <values>
+            <fullName>Basic Needs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Boston Cares Programming %26 Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cultural %26 Environmental Vibrancy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Emergency Preparedness%2FDART</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ensuring Young People Succeed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Equipping Adults to Beat Poverty</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Health %26 Wellness</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Volunteer or Project Leader Training</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>None</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Managed_By__c</picklist>
+        <values>
+            <fullName>Affiliate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__National_Community_Impact_Goals__c</picklist>
+        <values>
+            <fullName>Economy - Grow prosperous neighborhoods</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Education - Support kids%E2%80%99 success</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Emergency - Preparedness%2C Response and Recovery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Environment - Cultivate greener communities</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__National_Service_Events__c</picklist>
+        <values>
+            <fullName>9%2F11 National Day of Service and Remembrance %28Sept%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Earth Day                                  %28April%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Family Volunteer Day                 %28Nov%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Global Youth Service Day           %28April%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Make a Difference Day   %28Oct%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Martin Luther King Jr%2E Day    %28Jan%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>National Volunteer Week       %28April%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Opportunity_Characteristics__c</picklist>
+        <values>
+            <fullName>Holiday Opportunity</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Populations_Served__c</picklist>
+        <values>
+            <fullName>Animals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Families</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Homeless</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Immigrants%2C Refugees or Ethnic Groups</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LGBT%28Lesbian%2C Gay%2C Bisexual%2CTransgender%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low-income Communities</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Military%2FVeterans</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Offenders%2FEx-offenders</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>People with Disabilities</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>People with Health-based Concerns</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Visitors %26 Travelers</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Primary_Impact_Area__c</picklist>
+        <values>
+            <fullName>Adult Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Animals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Arts %26 Culture</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Children %26 Youth Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Civic %26 Community</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Disaster %26 Emergency Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Environment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Faith-Based Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Family Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Health %26 Wellness</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hunger %26 Homelessness</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Immigrant %26 Refugee Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>International Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Internships %26 Employment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Justice %26 Legal Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Schools</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Senior Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sports %26 Recreation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technology</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Program_Area_Local__c</picklist>
+        <values>
+            <fullName>Calendar</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Citizen Academy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Corps</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DART</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EITC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Grapevine</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hands at Work</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>None</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ServiceWorks</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Skills Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TeamWorks</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Youth %26 Family</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Registration_Type__c</picklist>
+        <values>
+            <fullName>Express Interest</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sign Up</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Schedule_Type__c</picklist>
+        <values>
+            <fullName>Date %26 Time Specific</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>To Be Scheduled</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Secondary_Impact_Area__c</picklist>
+        <values>
+            <fullName>Adult Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Animals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Arts %26 Culture</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Children %26 Youth Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Civic %26 Community</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Disaster %26 Emergency Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Environment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Faith-Based Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Family Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Health %26 Wellness</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hunger %26 Homelessness</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Immigrant %26 Refugee Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>International Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Internships %26 Employment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Justice %26 Legal Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Schools</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Senior Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sports %26 Recreation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technology</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Skill_Category__c</picklist>
+        <values>
+            <fullName>Animal Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Art%2C Culture%2C Recreations %26 Sports</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Board%2FCommittee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business%3A Accounting %26 Finances</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business%3A Administration and Clerical</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business%3A Business Development%2FSales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business%3A Communication%2FPR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business%3A HR%2FKnowledge Management%2FLegal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business%3A Marketing %26 Special Events</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business%3A Strategy %26 Business Plans</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business%3A Technology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Call Center%2FSubstance Abuse%2FTherapy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Civic Partnership%2FAdvocacy%2FLegal Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Construction%2FFacilities Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Disaster%2FEmergency%2FHealth Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Education %26 Children Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Environment %26 Engineering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Family Services %26 Counseling%2FTranslation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shelter%2FFoodBank%2FSpecial Event Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transportation%2FLogistics%2FSupply Chain</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Volunteering Management</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Skilled_Volunteer_Required__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Status__c</picklist>
+        <values>
+            <fullName>Active</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Awaiting Approval</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inactive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Targeted_Volunteer_Recruitment__c</picklist>
+        <values>
+            <fullName>Harnessing skills of Baby Boomers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mobilizing Families and Youth</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tapping Expertise of Skills-Based Volunteers</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Training_Type__c</picklist>
+        <values>
+            <fullName>Organizational Development</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Volunteer Leadership</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Volunteer Management</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Type__c</picklist>
+        <values>
+            <fullName>Activity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Project</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>HOC__Volunteer_Activity_Type__c</picklist>
+        <values>
+            <fullName>Administrative Support%2FClerical</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Building%2FConstruction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Caring for Animals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Caring for People</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cleaning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Collecting%2C Sorting %26 Packaging</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consulting %26 Professional Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Counseling</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Disaster Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Event Organizing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Food Preparation %26 Meal Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fundraising %26 Campaigning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gardening%2FPlanting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hotline%2FInformation Center Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mentoring%2FYouth Development</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Painting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Relations%2FMarketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sports %26 Recreation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tutoring</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Impact_Metric__c</picklist>
+        <values>
+            <fullName>CEV Reach</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Individuals reached</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Individuals tutored</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Items created%2Fdonated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meals created%2Fserved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Secondary_Impact_Metri__c</picklist>
+        <values>
+            <fullName>Adults tutored %28ESOL%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Adults tutored %28hi-set%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Audience size</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Benches created</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Blacktop games%2C tracks%2C maps %28created%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Blacktop games%2C tracks%2C maps %28improved%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bookcases created</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Garden beds created%2C planted%2C restored</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Individuals benefited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meal packages</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Murals painted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Schoolyards%2FParks%2FTrails improved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Spaces painted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Specialty garden items</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Storage bins created</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Students engaged%2C Health Fairs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Students engaged%2C STE%28A%29M Fairs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Toddler Beds</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Twin Beds</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Youth tutored</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

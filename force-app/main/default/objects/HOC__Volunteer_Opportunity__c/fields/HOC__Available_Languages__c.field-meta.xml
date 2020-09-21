@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Available_Languages__c</fullName>
+    <defaultValue>$Setup.HOC__App_Settings__c.HOC__Language__c</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Set all the available languages for this opportunity.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Set all the available languages for this opportunity.</inlineHelpText>
+    <label>Available Languages</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>HOC__Available_Languages</valueSetName>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

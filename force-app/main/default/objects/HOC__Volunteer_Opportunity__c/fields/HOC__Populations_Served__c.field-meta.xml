@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Populations_Served__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Populations served refers to the target populations of individuals (or animals) benefiting from the volunteer opportunity.  These items are set at the national level and can not be altered.</inlineHelpText>
+    <label>Populations Served</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Animals</fullName>
+                <default>false</default>
+                <label>Animals</label>
+            </value>
+            <value>
+                <fullName>Families</fullName>
+                <default>false</default>
+                <label>Families</label>
+            </value>
+            <value>
+                <fullName>Homeless</fullName>
+                <default>false</default>
+                <label>Homeless</label>
+            </value>
+            <value>
+                <fullName>Immigrants, Refugees or Ethnic Groups</fullName>
+                <default>false</default>
+                <label>Immigrants, Refugees or Ethnic Groups</label>
+            </value>
+            <value>
+                <fullName>LGBT(Lesbian, Gay, Bisexual,Transgender)</fullName>
+                <default>false</default>
+                <label>LGBT(Lesbian, Gay, Bisexual,Transgender)</label>
+            </value>
+            <value>
+                <fullName>Low-income Communities</fullName>
+                <default>false</default>
+                <label>Low-income Communities</label>
+            </value>
+            <value>
+                <fullName>Military/Veterans</fullName>
+                <default>false</default>
+                <label>Military/Veterans</label>
+            </value>
+            <value>
+                <fullName>Offenders/Ex-offenders</fullName>
+                <default>false</default>
+                <label>Offenders/Ex-offenders</label>
+            </value>
+            <value>
+                <fullName>People with Disabilities</fullName>
+                <default>false</default>
+                <label>People with Disabilities</label>
+            </value>
+            <value>
+                <fullName>People with Health-based Concerns</fullName>
+                <default>false</default>
+                <label>People with Health-based Concerns</label>
+            </value>
+            <value>
+                <fullName>Visitors &amp; Travelers</fullName>
+                <default>false</default>
+                <label>Visitors &amp; Travelers</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__National_Service_Events__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>National Service Events</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>9/11 National Day of Service and Remembrance (Sept)</fullName>
+                <default>false</default>
+                <label>9/11 National Day of Service and Remembrance (Sept)</label>
+            </value>
+            <value>
+                <fullName>Earth Day                                  (April)</fullName>
+                <default>false</default>
+                <label>Earth Day                                  (April)</label>
+            </value>
+            <value>
+                <fullName>Family Volunteer Day                 (Nov)</fullName>
+                <default>false</default>
+                <label>Family Volunteer Day                 (Nov)</label>
+            </value>
+            <value>
+                <fullName>Global Youth Service Day           (April)</fullName>
+                <default>false</default>
+                <label>Global Youth Service Day           (April)</label>
+            </value>
+            <value>
+                <fullName>Make a Difference Day   (Oct)</fullName>
+                <default>false</default>
+                <label>Make a Difference Day   (Oct)</label>
+            </value>
+            <value>
+                <fullName>Martin Luther King Jr. Day    (Jan)</fullName>
+                <default>false</default>
+                <label>Martin Luther King Jr. Day    (Jan)</label>
+            </value>
+            <value>
+                <fullName>National Volunteer Week       (April)</fullName>
+                <default>false</default>
+                <label>National Volunteer Week       (April)</label>
+            </value>
+            <value>
+                <fullName>Veterans Day (November)</fullName>
+                <default>false</default>
+                <label>Veterans Day (November)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

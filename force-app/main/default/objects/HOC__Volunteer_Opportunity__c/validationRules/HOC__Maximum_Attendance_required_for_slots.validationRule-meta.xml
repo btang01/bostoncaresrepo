@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Maximum_Attendance_required_for_slots</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( AND( ISPICKVAL(HOC__Registration_Type__c, &apos;Sign Up&apos;),  OR(HOC__Maximum_Attendance__c  &lt;= 0,  ISBLANK( HOC__Maximum_Attendance__c ) )) , true, false)</errorConditionFormula>
+    <errorDisplayField>HOC__Maximum_Attendance__c</errorDisplayField>
+    <errorMessage>Maximum Attendance is required and should be greater than or equal to 1.</errorMessage>
+</ValidationRule>

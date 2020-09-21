@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Genders_Served__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Genders Served</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Male Only</fullName>
+                <default>false</default>
+                <label>Male Only</label>
+            </value>
+            <value>
+                <fullName>All Genders Served</fullName>
+                <default>true</default>
+                <label>All Genders Served</label>
+            </value>
+            <value>
+                <fullName>Female Only</fullName>
+                <default>false</default>
+                <label>Female Only</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

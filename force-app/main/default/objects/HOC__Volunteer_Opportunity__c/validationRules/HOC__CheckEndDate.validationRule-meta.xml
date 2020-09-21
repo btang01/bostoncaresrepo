@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__CheckEndDate</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( HOC__End_Date__c &lt;  HOC__Start_Date__c , true, false)</errorConditionFormula>
+    <errorDisplayField>HOC__End_Date__c</errorDisplayField>
+    <errorMessage>End date should be greater than Start date</errorMessage>
+</ValidationRule>

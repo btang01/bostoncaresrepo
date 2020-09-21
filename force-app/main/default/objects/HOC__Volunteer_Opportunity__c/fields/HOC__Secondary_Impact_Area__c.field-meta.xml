@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Secondary_Impact_Area__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Secondary Impact Area</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Adult Education</fullName>
+                <default>false</default>
+                <label>Adult Education</label>
+            </value>
+            <value>
+                <fullName>Animals</fullName>
+                <default>false</default>
+                <label>Animals</label>
+            </value>
+            <value>
+                <fullName>Arts &amp; Culture</fullName>
+                <default>false</default>
+                <label>Arts &amp; Culture</label>
+            </value>
+            <value>
+                <fullName>Children &amp; Youth Education</fullName>
+                <default>false</default>
+                <label>Children &amp; Youth Education</label>
+            </value>
+            <value>
+                <fullName>Civic &amp; Community</fullName>
+                <default>false</default>
+                <label>Civic &amp; Community</label>
+            </value>
+            <value>
+                <fullName>Disaster &amp; Emergency Services</fullName>
+                <default>false</default>
+                <label>Disaster &amp; Emergency Services</label>
+            </value>
+            <value>
+                <fullName>Environment</fullName>
+                <default>false</default>
+                <label>Environment</label>
+            </value>
+            <value>
+                <fullName>Faith-Based Service</fullName>
+                <default>false</default>
+                <label>Faith-Based Service</label>
+            </value>
+            <value>
+                <fullName>Family Services</fullName>
+                <default>false</default>
+                <label>Family Services</label>
+            </value>
+            <value>
+                <fullName>Health &amp; Wellness</fullName>
+                <default>false</default>
+                <label>Health &amp; Wellness</label>
+            </value>
+            <value>
+                <fullName>Hunger &amp; Homelessness</fullName>
+                <default>false</default>
+                <label>Hunger &amp; Homelessness</label>
+            </value>
+            <value>
+                <fullName>Immigrant &amp; Refugee Services</fullName>
+                <default>false</default>
+                <label>Immigrant &amp; Refugee Services</label>
+            </value>
+            <value>
+                <fullName>International Service</fullName>
+                <default>false</default>
+                <label>International Service</label>
+            </value>
+            <value>
+                <fullName>Internships &amp; Employment</fullName>
+                <default>false</default>
+                <label>Internships &amp; Employment</label>
+            </value>
+            <value>
+                <fullName>Justice &amp; Legal Services</fullName>
+                <default>false</default>
+                <label>Justice &amp; Legal Services</label>
+            </value>
+            <value>
+                <fullName>Schools</fullName>
+                <default>false</default>
+                <label>Schools</label>
+            </value>
+            <value>
+                <fullName>Senior Services</fullName>
+                <default>false</default>
+                <label>Senior Services</label>
+            </value>
+            <value>
+                <fullName>Sports &amp; Recreation</fullName>
+                <default>false</default>
+                <label>Sports &amp; Recreation</label>
+            </value>
+            <value>
+                <fullName>Technology</fullName>
+                <default>false</default>
+                <label>Technology</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
