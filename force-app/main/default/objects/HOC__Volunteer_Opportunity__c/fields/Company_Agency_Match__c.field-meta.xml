@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Company_Agency_Match__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <inlineHelpText>links back to the custom info we created to match this company and agency.  please do not edit.</inlineHelpText>
+    <label>Company Agency Match</label>
+    <referenceTo>Company_Agency_Match__c</referenceTo>
+    <relationshipLabel>Volunteer Opportunities</relationshipLabel>
+    <relationshipName>Volunteer_Opportunities</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
