@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__EditionSource__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Used in WF to determine if the record was updated from 3.0.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Used in WF to determine if the record was updated from 3.0.</inlineHelpText>
+    <label>EditionSource</label>
+    <length>50</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

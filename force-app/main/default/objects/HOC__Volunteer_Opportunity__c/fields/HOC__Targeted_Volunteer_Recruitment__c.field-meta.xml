@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Targeted_Volunteer_Recruitment__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Target Volunteer Groups</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Harnessing skills of Baby Boomers</fullName>
+                <default>false</default>
+                <label>Harnessing skills of Baby Boomers</label>
+            </value>
+            <value>
+                <fullName>Mobilizing Families and Youth</fullName>
+                <default>false</default>
+                <label>Mobilizing Families and Youth</label>
+            </value>
+            <value>
+                <fullName>Tapping Expertise of Skills-Based Volunteers</fullName>
+                <default>false</default>
+                <label>Tapping Expertise of Skills-Based Volunteers</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Max_Max_Volunteers__c</fullName>
+    <externalId>false</externalId>
+    <label>Max Max Volunteers</label>
+    <summarizedField>Project_Task__c.Maximum_Volunteers__c</summarizedField>
+    <summaryForeignKey>Project_Task__c.Project_Site_Visit__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

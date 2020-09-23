@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Primary_Language__c</fullName>
+    <defaultValue>$Setup.HOC__App_Settings__c.HOC__Language__c</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Specify the base language for this Opportunity.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Specify the base language for this Opportunity.</inlineHelpText>
+    <label>Primary Language</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>HOC__Available_Languages</valueSetName>
+    </valueSet>
+</CustomField>

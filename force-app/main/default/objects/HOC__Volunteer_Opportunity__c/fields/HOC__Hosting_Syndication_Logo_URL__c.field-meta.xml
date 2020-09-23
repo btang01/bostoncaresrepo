@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Hosting_Syndication_Logo_URL__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Opportunities listed in HandsOn Connect are available for national search through HandsOn Network and other national search sites.  This URL (http://locationofyourlogo.com) is used to include your logo in those searches that incorporate logos.</inlineHelpText>
+    <label>Hosting Syndication Logo URL</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Url</type>
+</CustomField>

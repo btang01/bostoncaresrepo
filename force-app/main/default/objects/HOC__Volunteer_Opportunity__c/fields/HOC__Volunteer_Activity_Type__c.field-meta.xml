@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Volunteer_Activity_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Volunteer Activity Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Administrative Support/Clerical</fullName>
+                <default>false</default>
+                <label>Administrative Support/Clerical</label>
+            </value>
+            <value>
+                <fullName>Building/Construction</fullName>
+                <default>false</default>
+                <label>Building/Construction</label>
+            </value>
+            <value>
+                <fullName>Caring for Animals</fullName>
+                <default>false</default>
+                <label>Caring for Animals</label>
+            </value>
+            <value>
+                <fullName>Caring for People</fullName>
+                <default>false</default>
+                <label>Caring for People</label>
+            </value>
+            <value>
+                <fullName>Cleaning</fullName>
+                <default>false</default>
+                <label>Cleaning</label>
+            </value>
+            <value>
+                <fullName>Collecting, Sorting &amp; Packaging</fullName>
+                <default>false</default>
+                <label>Collecting, Sorting &amp; Packaging</label>
+            </value>
+            <value>
+                <fullName>Consulting &amp; Professional Services</fullName>
+                <default>false</default>
+                <label>Consulting &amp; Professional Services</label>
+            </value>
+            <value>
+                <fullName>Counseling</fullName>
+                <default>false</default>
+                <label>Counseling</label>
+            </value>
+            <value>
+                <fullName>Disaster Services</fullName>
+                <default>false</default>
+                <label>Disaster Services</label>
+            </value>
+            <value>
+                <fullName>Event Organizing</fullName>
+                <default>false</default>
+                <label>Event Organizing</label>
+            </value>
+            <value>
+                <fullName>Food Preparation &amp; Meal Services</fullName>
+                <default>false</default>
+                <label>Food Preparation &amp; Meal Services</label>
+            </value>
+            <value>
+                <fullName>Fundraising &amp; Campaigning</fullName>
+                <default>false</default>
+                <label>Fundraising &amp; Campaigning</label>
+            </value>
+            <value>
+                <fullName>Gardening/Planting</fullName>
+                <default>false</default>
+                <label>Gardening/Planting</label>
+            </value>
+            <value>
+                <fullName>Hotline/Information Center Support</fullName>
+                <default>false</default>
+                <label>Hotline/Information Center Support</label>
+            </value>
+            <value>
+                <fullName>Mentoring/Youth Development</fullName>
+                <default>false</default>
+                <label>Mentoring/Youth Development</label>
+            </value>
+            <value>
+                <fullName>Painting</fullName>
+                <default>false</default>
+                <label>Painting</label>
+            </value>
+            <value>
+                <fullName>Public Relations/Marketing</fullName>
+                <default>false</default>
+                <label>Public Relations/Marketing</label>
+            </value>
+            <value>
+                <fullName>Sports &amp; Recreation</fullName>
+                <default>false</default>
+                <label>Sports &amp; Recreation</label>
+            </value>
+            <value>
+                <fullName>Tutoring</fullName>
+                <default>false</default>
+                <label>Tutoring</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>6</visibleLines>
+</CustomField>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Coordinator_Name_not_Editable</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( AND( (PRIORVALUE( HOC__Volunteer_Coordinator_Name__c ) &lt;&gt; HOC__Volunteer_Coordinator_Name__c ), ( HOC__Opportunity_Coordinator__r.FirstName+&apos; &apos;+ HOC__Opportunity_Coordinator__r.LastName &lt;&gt; HOC__Volunteer_Coordinator_Name__c ),Name!=&apos;Self-Reported Volunteer Hours&apos;) , true, false)</errorConditionFormula>
+    <errorDisplayField>HOC__Volunteer_Coordinator_Name__c</errorDisplayField>
+    <errorMessage>This field is only editable by &quot;Opportunity Coordinator&quot; Lookup</errorMessage>
+</ValidationRule>

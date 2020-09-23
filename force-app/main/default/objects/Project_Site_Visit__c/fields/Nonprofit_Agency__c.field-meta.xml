@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Nonprofit_Agency__c</fullName>
+    <description>This will be pre-filled when launched from that Organization&apos;s page</description>
+    <externalId>false</externalId>
+    <label>Nonprofit Agency</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipName>Site_Visit_Forms</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

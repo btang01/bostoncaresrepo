@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Used_as_Prerequisite__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This field is used to indicate that the volunteer opportunity is used as a prerequisite for one or more volunteer opportunities</description>
+    <externalId>false</externalId>
+    <inlineHelpText>When checked this volunteer opportunity serves as the prerequisite for other volunteer opportunities</inlineHelpText>
+    <label>Used as Prerequisite</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

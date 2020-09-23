@@ -1,0 +1,26 @@
+{
+  "orgName": "Boston Cares",
+  "edition": "Enterprise",
+  "features": [],
+  "settings": {
+    "lightningExperienceSettings": {
+        "enableS1DesktopEnabled": true
+    },
+    "securitySettings": {
+        "passwordPolicies": {
+            "enableSetPasswordInApi": true
+        }
+    },
+    "mobileSettings": {
+        "enableS1EncryptedStoragePref2": false
+    }
+  },
+  "objectSettings": {
+    "account": {
+      "defaultRecordType": "BusinessAccount"
+    },
+    "contact": {
+      "sharingModel": "private"
+    }
+  }
+}

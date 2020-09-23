@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Organization_Served__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Organization Served</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>1 OR 2 OR (3 AND 4)</booleanFilter>
+        <filterItems>
+            <field>Account.HOC__Status__c</field>
+            <operation>equals</operation>
+            <value>Active Partner</value>
+        </filterItems>
+        <filterItems>
+            <field>Account.Type</field>
+            <operation>equals</operation>
+            <value>HOC Customer</value>
+        </filterItems>
+        <filterItems>
+            <field>$Profile.Name</field>
+            <operation>equals</operation>
+            <value>Employee Coordinator</value>
+        </filterItems>
+        <filterItems>
+            <field>$User.Id</field>
+            <operation>equals</operation>
+            <valueField>Account.CreatedById</valueField>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Volunteer Opportunities (Organization Served)</relationshipLabel>
+    <relationshipName>Volunteer_Opportunity_Org_Served</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

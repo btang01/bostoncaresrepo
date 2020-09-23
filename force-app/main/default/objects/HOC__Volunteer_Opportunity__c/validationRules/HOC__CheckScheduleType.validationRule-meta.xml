@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__CheckScheduleType</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( NOT(ISBLANK( PRIORVALUE(  HOC__Schedule_Type__c ))), IF(ISCHANGED( HOC__Schedule_Type__c ), true, false), false)</errorConditionFormula>
+    <errorDisplayField>HOC__Schedule_Type__c</errorDisplayField>
+    <errorMessage>Value once set cannot be changed</errorMessage>
+</ValidationRule>

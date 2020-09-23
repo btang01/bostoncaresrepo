@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Disaster_Opportunity_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Disaster Opportunity Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Emergency Preparedness</fullName>
+                <default>false</default>
+                <label>Emergency Preparedness</label>
+            </value>
+            <value>
+                <fullName>Disaster Response &amp; Recovery</fullName>
+                <default>false</default>
+                <label>Disaster Response &amp; Recovery</label>
+            </value>
+            <value>
+                <fullName>Not Disaster Related</fullName>
+                <default>true</default>
+                <label>Not Disaster Related</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

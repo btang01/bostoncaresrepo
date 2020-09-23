@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sum_Min_Volunteers__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>If project tasks will be concurrent this will be the minimum number required for the project.</inlineHelpText>
+    <label>Sum Min Volunteers</label>
+    <summarizedField>Project_Task__c.Minimum_Volunteers__c</summarizedField>
+    <summaryForeignKey>Project_Task__c.Project_Site_Visit__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

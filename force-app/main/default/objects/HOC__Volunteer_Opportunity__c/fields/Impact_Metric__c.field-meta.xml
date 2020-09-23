@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Impact_Metric__c</fullName>
+    <description>Impact roll-up bucket for annual report</description>
+    <externalId>false</externalId>
+    <label>Impact Metric</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CEV Reach</fullName>
+                <default>false</default>
+                <label>CEV Reach</label>
+            </value>
+            <value>
+                <fullName>Individuals reached</fullName>
+                <default>false</default>
+                <label>Individuals reached</label>
+            </value>
+            <value>
+                <fullName>Individuals tutored</fullName>
+                <default>false</default>
+                <label>Individuals tutored</label>
+            </value>
+            <value>
+                <fullName>Items created/donated</fullName>
+                <default>false</default>
+                <label>Items created/donated</label>
+            </value>
+            <value>
+                <fullName>Meals created/served</fullName>
+                <default>false</default>
+                <label>Meals created/served</label>
+            </value>
+            <value>
+                <fullName>Not enough data</fullName>
+                <default>false</default>
+                <label>Not enough data</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

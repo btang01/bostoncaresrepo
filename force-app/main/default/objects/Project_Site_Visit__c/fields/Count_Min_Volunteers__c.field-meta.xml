@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Count_Min_Volunteers__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Counts the number of rows where min volunteers is recorded, not the number of volunteers in any form.  This is used only to compute an average later.</inlineHelpText>
+    <label>Count Min Volunteers</label>
+    <summaryFilterItems>
+        <field>Project_Task__c.Minimum_Volunteers__c</field>
+        <operation>greaterThan</operation>
+        <value>0</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Project_Task__c.Project_Site_Visit__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

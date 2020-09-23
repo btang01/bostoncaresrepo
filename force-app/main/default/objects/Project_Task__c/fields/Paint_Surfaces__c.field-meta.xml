@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Paint_Surfaces__c</fullName>
+    <externalId>false</externalId>
+    <label>Paint Surfaces</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Plaster</fullName>
+                <default>false</default>
+                <label>Plaster</label>
+            </value>
+            <value>
+                <fullName>Cinderblock</fullName>
+                <default>false</default>
+                <label>Cinderblock</label>
+            </value>
+            <value>
+                <fullName>Brick</fullName>
+                <default>false</default>
+                <label>Brick</label>
+            </value>
+            <value>
+                <fullName>Metal</fullName>
+                <default>false</default>
+                <label>Metal</label>
+            </value>
+            <value>
+                <fullName>Wood</fullName>
+                <default>false</default>
+                <label>Wood</label>
+            </value>
+            <value>
+                <fullName>Door/Window Frames</fullName>
+                <default>false</default>
+                <label>Door/Window Frames</label>
+            </value>
+            <value>
+                <fullName>Doors</fullName>
+                <default>false</default>
+                <label>Doors</label>
+            </value>
+            <value>
+                <fullName>Radiators</fullName>
+                <default>false</default>
+                <label>Radiators</label>
+            </value>
+            <value>
+                <fullName>Baseboard</fullName>
+                <default>false</default>
+                <label>Baseboard</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

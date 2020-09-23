@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disposal_Plan__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>If pertinent to this project specify how waste will be disposed of.</inlineHelpText>
+    <label>Disposal Plan</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

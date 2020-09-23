@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Site3_0_ModifiedBy__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The id of the Contact who modifies this record.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The id of the Contact who modifies this record.</inlineHelpText>
+    <label>Site3.0 ModifiedBy</label>
+    <length>200</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

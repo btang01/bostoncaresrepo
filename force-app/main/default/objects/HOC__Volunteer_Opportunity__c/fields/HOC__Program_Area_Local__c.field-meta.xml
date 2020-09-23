@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Program_Area_Local__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Program Area (Local)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Calendar</fullName>
+                <default>true</default>
+                <label>Calendar</label>
+            </value>
+            <value>
+                <fullName>Citizen Academy</fullName>
+                <default>false</default>
+                <label>Citizen Academy</label>
+            </value>
+            <value>
+                <fullName>Corps</fullName>
+                <default>false</default>
+                <label>Corps</label>
+            </value>
+            <value>
+                <fullName>DART</fullName>
+                <default>false</default>
+                <label>DART</label>
+            </value>
+            <value>
+                <fullName>EITC</fullName>
+                <default>false</default>
+                <label>EITC</label>
+            </value>
+            <value>
+                <fullName>Hands at Work</fullName>
+                <default>false</default>
+                <label>Hands at Work</label>
+            </value>
+            <value>
+                <fullName>Grapevine</fullName>
+                <default>false</default>
+                <label>Grapevine</label>
+            </value>
+            <value>
+                <fullName>Skills Bank</fullName>
+                <default>false</default>
+                <label>Skills Bank</label>
+            </value>
+            <value>
+                <fullName>ServiceWorks</fullName>
+                <default>false</default>
+                <label>ServiceWorks</label>
+            </value>
+            <value>
+                <fullName>TeamWorks</fullName>
+                <default>false</default>
+                <label>TeamWorks</label>
+            </value>
+            <value>
+                <fullName>Youth &amp; Family</fullName>
+                <default>false</default>
+                <label>Youth &amp; Family</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

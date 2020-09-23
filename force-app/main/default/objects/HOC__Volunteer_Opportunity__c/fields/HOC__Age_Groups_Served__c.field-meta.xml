@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Age_Groups_Served__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Age Groups Served</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Children &amp; Youth (under 18)</fullName>
+                <default>false</default>
+                <label>Children &amp; Youth (under 18)</label>
+            </value>
+            <value>
+                <fullName>Adult (18-65)</fullName>
+                <default>false</default>
+                <label>Adult (18-65)</label>
+            </value>
+            <value>
+                <fullName>Seniors (over 65)</fullName>
+                <default>false</default>
+                <label>Seniors (over 65)</label>
+            </value>
+            <value>
+                <fullName>All ages</fullName>
+                <default>false</default>
+                <label>All ages</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

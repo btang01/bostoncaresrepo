@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Secondary_Impact_Metri__c</fullName>
+    <description>Additional impact metric</description>
+    <externalId>false</externalId>
+    <label>Secondary Impact Metric</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Adults tutored (ESOL)</fullName>
+                <default>false</default>
+                <label>Adults tutored (ESOL)</label>
+            </value>
+            <value>
+                <fullName>Adults tutored (hi-set)</fullName>
+                <default>false</default>
+                <label>Adults tutored (hi-set)</label>
+            </value>
+            <value>
+                <fullName>Audience size</fullName>
+                <default>false</default>
+                <label>Audience size</label>
+            </value>
+            <value>
+                <fullName>Benches created</fullName>
+                <default>false</default>
+                <label>Benches created</label>
+            </value>
+            <value>
+                <fullName>Blacktop games, tracks, maps (created)</fullName>
+                <default>false</default>
+                <label>Blacktop games, tracks, maps (created)</label>
+            </value>
+            <value>
+                <fullName>Blacktop games, tracks, maps (improved)</fullName>
+                <default>false</default>
+                <label>Blacktop games, tracks, maps (improved)</label>
+            </value>
+            <value>
+                <fullName>Bookcases created</fullName>
+                <default>false</default>
+                <label>Bookcases created</label>
+            </value>
+            <value>
+                <fullName>Garden beds created, planted, restored</fullName>
+                <default>false</default>
+                <label>Garden beds created, planted, restored</label>
+            </value>
+            <value>
+                <fullName>Individuals benefited</fullName>
+                <default>false</default>
+                <label>Individuals benefited</label>
+            </value>
+            <value>
+                <fullName>Meal packages</fullName>
+                <default>false</default>
+                <label>Meal packages</label>
+            </value>
+            <value>
+                <fullName>Murals painted</fullName>
+                <default>false</default>
+                <label>Murals painted</label>
+            </value>
+            <value>
+                <fullName>Schoolyards/Parks/Trails improved</fullName>
+                <default>false</default>
+                <label>Schoolyards/Parks/Trails improved</label>
+            </value>
+            <value>
+                <fullName>Spaces painted</fullName>
+                <default>false</default>
+                <label>Spaces painted</label>
+            </value>
+            <value>
+                <fullName>Specialty garden items</fullName>
+                <default>false</default>
+                <label>Specialty garden items</label>
+            </value>
+            <value>
+                <fullName>Storage bins created</fullName>
+                <default>false</default>
+                <label>Storage bins created</label>
+            </value>
+            <value>
+                <fullName>Students engaged, Health Fairs</fullName>
+                <default>false</default>
+                <label>Students engaged, Health Fairs</label>
+            </value>
+            <value>
+                <fullName>Students engaged, STE(A)M Fairs</fullName>
+                <default>false</default>
+                <label>Students engaged, STE(A)M Fairs</label>
+            </value>
+            <value>
+                <fullName>Toddler Beds</fullName>
+                <default>false</default>
+                <label>Toddler Beds</label>
+            </value>
+            <value>
+                <fullName>Twin Beds</fullName>
+                <default>false</default>
+                <label>Twin Beds</label>
+            </value>
+            <value>
+                <fullName>Youth tutored</fullName>
+                <default>false</default>
+                <label>Youth tutored</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

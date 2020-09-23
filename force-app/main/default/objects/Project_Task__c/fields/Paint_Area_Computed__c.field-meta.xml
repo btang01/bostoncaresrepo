@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Paint_Area_Computed__c</fullName>
+    <externalId>false</externalId>
+    <formula>if (Height__c &gt; 0,
+  if (and ((Width__c &gt; 0), (Length__c &gt; 0)),
+    Length__c * Height__c * 2 + Width__c * Height__c * 2 + Length__c * Width__c,
+    if (Width__c &gt; 0,
+      Width__c * Height__c,
+      if (Length__c &gt; 0,
+        Length__c * Height__c,
+	0
+      )
+    )
+  ), /* here height is null */
+  if (and ((Width__c &gt; 0), (Length__c &gt; 0)),
+    Length__c * Width__c,
+    0
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Paint Area Computed</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

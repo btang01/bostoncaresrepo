@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Task_Number_validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>Task_Number__c &lt;= 0</errorConditionFormula>
+    <errorDisplayField>Task_Number__c</errorDisplayField>
+    <errorMessage>Task Number should be a positive number.</errorMessage>
+</ValidationRule>

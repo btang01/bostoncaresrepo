@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Registration_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Registration Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>HOC__Schedule_Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Sign Up</fullName>
+                <default>false</default>
+                <label>Sign Up</label>
+            </value>
+            <value>
+                <fullName>Express Interest</fullName>
+                <default>false</default>
+                <label>Express Interest</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Date &amp; Time Specific</controllingFieldValue>
+            <valueName>Sign Up</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Date &amp; Time Specific</controllingFieldValue>
+            <controllingFieldValue>To Be Scheduled</controllingFieldValue>
+            <controllingFieldValue>Individually Scheduled</controllingFieldValue>
+            <valueName>Express Interest</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

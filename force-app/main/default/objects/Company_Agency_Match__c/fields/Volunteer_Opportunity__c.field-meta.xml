@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Volunteer_Opportunity__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <inlineHelpText>connects us to the opportunity we generated</inlineHelpText>
+    <label>Volunteer Opportunity</label>
+    <referenceTo>HOC__Volunteer_Opportunity__c</referenceTo>
+    <relationshipLabel>Company Agency Matches</relationshipLabel>
+    <relationshipName>Company_Agency_Matches</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

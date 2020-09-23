@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Skill_Category__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Skill Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Animal Services</fullName>
+                <default>false</default>
+                <label>Animal Services</label>
+            </value>
+            <value>
+                <fullName>Art, Culture, Recreations &amp; Sports</fullName>
+                <default>false</default>
+                <label>Art, Culture, Recreations &amp; Sports</label>
+            </value>
+            <value>
+                <fullName>Board/Committee</fullName>
+                <default>false</default>
+                <label>Board/Committee</label>
+            </value>
+            <value>
+                <fullName>Business: Accounting &amp; Finances</fullName>
+                <default>false</default>
+                <label>Business: Accounting &amp; Finances</label>
+            </value>
+            <value>
+                <fullName>Business: Administration and Clerical</fullName>
+                <default>false</default>
+                <label>Business: Administration and Clerical</label>
+            </value>
+            <value>
+                <fullName>Business: Business Development/Sales</fullName>
+                <default>false</default>
+                <label>Business: Business Development/Sales</label>
+            </value>
+            <value>
+                <fullName>Business: Communication/PR</fullName>
+                <default>false</default>
+                <label>Business: Communication/PR</label>
+            </value>
+            <value>
+                <fullName>Business: HR/Knowledge Management/Legal</fullName>
+                <default>false</default>
+                <label>Business: HR/Knowledge Management/Legal</label>
+            </value>
+            <value>
+                <fullName>Business: Marketing &amp; Special Events</fullName>
+                <default>false</default>
+                <label>Business: Marketing &amp; Special Events</label>
+            </value>
+            <value>
+                <fullName>Business: Strategy &amp; Business Plans</fullName>
+                <default>false</default>
+                <label>Business: Strategy &amp; Business Plans</label>
+            </value>
+            <value>
+                <fullName>Business: Technology</fullName>
+                <default>false</default>
+                <label>Business: Technology</label>
+            </value>
+            <value>
+                <fullName>Call Center/Substance Abuse/Therapy</fullName>
+                <default>false</default>
+                <label>Call Center/Substance Abuse/Therapy</label>
+            </value>
+            <value>
+                <fullName>Civic Partnership/Advocacy/Legal Service</fullName>
+                <default>false</default>
+                <label>Civic Partnership/Advocacy/Legal Service</label>
+            </value>
+            <value>
+                <fullName>Construction/Facilities Management</fullName>
+                <default>false</default>
+                <label>Construction/Facilities Management</label>
+            </value>
+            <value>
+                <fullName>Disaster/Emergency/Health Services</fullName>
+                <default>false</default>
+                <label>Disaster/Emergency/Health Services</label>
+            </value>
+            <value>
+                <fullName>Education &amp; Children Support</fullName>
+                <default>false</default>
+                <label>Education &amp; Children Support</label>
+            </value>
+            <value>
+                <fullName>Environment &amp; Engineering</fullName>
+                <default>false</default>
+                <label>Environment &amp; Engineering</label>
+            </value>
+            <value>
+                <fullName>Family Services &amp; Counseling/Translation</fullName>
+                <default>false</default>
+                <label>Family Services &amp; Counseling/Translation</label>
+            </value>
+            <value>
+                <fullName>Shelter/FoodBank/Special Event Support</fullName>
+                <default>false</default>
+                <label>Shelter/FoodBank/Special Event Support</label>
+            </value>
+            <value>
+                <fullName>Transportation/Logistics/Supply Chain</fullName>
+                <default>false</default>
+                <label>Transportation/Logistics/Supply Chain</label>
+            </value>
+            <value>
+                <fullName>Volunteering Management</fullName>
+                <default>false</default>
+                <label>Volunteering Management</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

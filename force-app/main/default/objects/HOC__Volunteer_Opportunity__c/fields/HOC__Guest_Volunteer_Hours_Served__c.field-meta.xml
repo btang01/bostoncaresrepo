@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HOC__Guest_Volunteer_Hours_Served__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Old Guest Volunteer Hours Served</label>
+    <summarizedField>HOC__Connection__c.HOC__Guest_Hours_Served__c</summarizedField>
+    <summaryFilterItems>
+        <field>HOC__Connection__c.HOC__Attendance_Status__c</field>
+        <operation>equals</operation>
+        <value>Attended (and Hours Verified)</value>
+    </summaryFilterItems>
+    <summaryForeignKey>HOC__Connection__c.HOC__Volunteer_Opportunity__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
