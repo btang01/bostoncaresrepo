@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EndDateTime__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISBLANK(Occurrence__c),  
+TEXT(MONTH(VolunteerOpportunity__r.HOC__End_Date__c))+&quot;/&quot; +TEXT(DAY(VolunteerOpportunity__r.HOC__End_Date__c))+&quot;/&quot; +TEXT(YEAR(VolunteerOpportunity__r.HOC__End_Date__c)),
+TEXT(MONTH(DATEVALUE(Occurrence__r.HOC__End_Date_Time__c )))+&quot;/&quot; +TEXT(DAY(DATEVALUE(Occurrence__r.HOC__End_Date_Time__c )))+&quot;/&quot; +TEXT(YEAR(DATEVALUE(Occurrence__r.HOC__End_Date_Time__c ))) + &quot; &quot; + TEXT(VALUE(MID(TEXT(TIMEVALUE(Occurrence__r.HOC__End_Date_Time__c )), 0,2)) -  $CustomMetadata.BostonCaresSetting__mdt.DefaultBostonCaresSettings.TimezoneOffset__c) + MID(TEXT(TIMEVALUE(Occurrence__r.HOC__End_Date_Time__c )), 3,3))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>End Date/Time</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

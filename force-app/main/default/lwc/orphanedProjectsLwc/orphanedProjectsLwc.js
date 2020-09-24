@@ -1,5 +1,6 @@
 import { LightningElement, wire, track, api } from 'lwc';
 import getOrphanedProjects from '@salesforce/apex/OrphanedProjectController.getOrphanedProjects';
+//import getOrphanedVolOpps from '@salesforce/apex/OrphanedProjectController.getOrphanedVolOpps';
 import { updateRecord } from 'lightning/uiRecordApi';
 import { refreshApex } from '@salesforce/apex';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
@@ -9,19 +10,19 @@ import VLEMAIL_FIELD from '@salesforce/schema/OrphanedProject__c.VolunteerLeader
 const COLS_EDIT = [
     { label: 'Volunteer Opportunity', fieldName: 'OpportunityName'},
     { label: 'Location', fieldName: 'LocationName'},
-    { label: 'Start Date/Time', fieldName: 'StartDateTime', type: 'Datetime'},
-    { label: 'End Date/Time', fieldName: 'EndDateTime', type: 'Datetime'},
+    { label: 'Level', fieldName: 'Level'},
+    { label: 'Start Date/Time', fieldName: 'StartDateTime'},
+    { label: 'End Date/Time', fieldName: 'EndDateTime'},
     { label: 'Volunteer Leader Email', fieldName: 'VolunteerLeaderEmail__c', type: 'Email', editable: true}
-   // { label: 'Volunteer Leader', fieldName: 'VolunteerLeader__c', type:'lookup', editable: true}
 ];
 
 const COLS_READ = [
     { label: 'Volunteer Opportunity', fieldName: 'OpportunityName'},
     { label: 'Location', fieldName: 'LocationName'},
-    { label: 'Start Date/Time', fieldName: 'StartDateTime', type: 'Datetime'},
-    { label: 'End Date/Time', fieldName: 'EndDateTime', type: 'Datetime'},
+    { label: 'Level', fieldName: 'Level'},
+    { label: 'Start Date/Time', fieldName: 'StartDateTime'},
+    { label: 'End Date/Time', fieldName: 'EndDateTime'},
     { label: 'Volunteer Leader Email', fieldName: 'VolunteerLeaderEmail__c', type: 'Email'}
-   // { label: 'Volunteer Leader', fieldName: 'VolunteerLeader__c', type:'lookup', editable: true}
 ];
 
 export default class OrphanedProjectsLwc extends LightningElement {
@@ -50,6 +51,9 @@ export default class OrphanedProjectsLwc extends LightningElement {
 
         console.log('RECORDINPUTS', recordInputs);
 
+        /* Note: the updateRecord() function only works if the guest profile has VA/MA to the OrphanedProject__c object.
+         * R/U/VA was not enough. I had to add D/MA in order for this to work.
+         */
         const promises = recordInputs.map(recordInput => updateRecord(recordInput));
         Promise.all(promises)
         .then(() => {
@@ -81,16 +85,18 @@ export default class OrphanedProjectsLwc extends LightningElement {
             this.orphanedProjects = orphans.map((p) => 
                 Object.assign({}, p, {OpportunityName: p.VolunteerOpportunity__r.Name, 
                     LocationName: p.Location__r.Name,
-                    StartDateTime: p.Occurrence__r.HOC__Start_Date_Time__c,
-                    EndDateTime: p.Occurrence__r.HOC__End_Date_Time__c
+                    Level: p.Level__c,
+                    StartDateTime: p.StartDateTime__c,
+                    EndDateTime: p.EndDateTime__c
                 })
             );
 
             this.claimedProjects = claimed.map((p) => 
                 Object.assign({}, p, {OpportunityName: p.VolunteerOpportunity__r.Name, 
                     LocationName: p.Location__r.Name,
-                    StartDateTime: p.Occurrence__r.HOC__Start_Date_Time__c,
-                    EndDateTime: p.Occurrence__r.HOC__End_Date_Time__c
+                    Level: p.Level__c,
+                    StartDateTime: p.StartDateTime__c,
+                    EndDateTime: p.EndDateTime__c
                 })
             );
 
