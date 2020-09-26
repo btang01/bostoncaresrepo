@@ -15,7 +15,7 @@ global class OrphanedProjectController {
     */
     @AuraEnabled(cacheable=false)
     global static List<OrphanedProject__c> getOrphanedProjects() {
-        return [SELECT Id, VolunteerOpportunity__r.Name, Location__r.Name, VolunteerLeaderEmail__c,
+        return [SELECT Id, VolunteerOpportunity__r.Name, Location__r.Name, VolunteerLeader__c, VolunteerLeader__r.Name,
                 Level__c, StartDateTime__c, EndDateTime__c
                 FROM OrphanedProject__c];
     }
