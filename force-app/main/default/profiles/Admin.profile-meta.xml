@@ -28,6 +28,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>OrphanedProject__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>OrphanedProject__c.VolunteerLeader__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -36,6 +41,17 @@
         <field>OrphanedProject__c.VolunteerOpportunity__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <layoutAssignments>
+        <layout>OrphanedProject__c-Occurrence Layout</layout>
+        <recordType>OrphanedProject__c.Orphaned_Occurrence</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OrphanedProject__c-Volunteer Opportunity Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OrphanedProject__c-Volunteer Opportunity Layout</layout>
+        <recordType>OrphanedProject__c.Orphaned_Opportunity</recordType>
+    </layoutAssignments>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>

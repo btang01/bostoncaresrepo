@@ -3,4 +3,19 @@
     <fullName>Orphaned_Opportunity</fullName>
     <active>true</active>
     <label>Orphaned Opportunity</label>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending BC Approval</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VL Needed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
 </RecordType>
