@@ -43,14 +43,7 @@
     </fieldPermissions>
     <layoutAssignments>
         <layout>OrphanedProject__c-Occurrence Layout</layout>
-        <recordType>OrphanedProject__c.Orphaned_Occurrence</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>OrphanedProject__c-Volunteer Opportunity Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>OrphanedProject__c-Volunteer Opportunity Layout</layout>
-        <recordType>OrphanedProject__c.Orphaned_Opportunity</recordType>
+        <recordType>OrphanedProject__c.OrphanedOccurrence</recordType>
     </layoutAssignments>
     <objectPermissions>
         <allowCreate>false</allowCreate>
@@ -63,12 +56,12 @@
     </objectPermissions>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>OrphanedProject__c.Orphaned_Occurrence</recordType>
+        <recordType>OrphanedProject__c.OrphanedOccurrence</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <recordType>OrphanedProject__c.Orphaned_Opportunity</recordType>
+        <recordType>OrphanedProject__c.OrphanedOpportunity</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <userLicense>Overage Customer Portal Manager Custom</userLicense>

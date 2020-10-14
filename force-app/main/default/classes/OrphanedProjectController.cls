@@ -22,6 +22,12 @@ global class OrphanedProjectController {
           (6) Volunteer Leader = VolunteerLeader__r.Name
           (7) Alternate Volunteer Leader = ?
           (8) Partner Staff as VL = ?
+
+    * 4. Going forward, in order for BC to open up an Occurrence for VL to claim, BC would need to 
+         create an Occurrence record first, and then use the NewVolunteerLeaderNeeds flow to generate VL Needs.
+         This is a change compared to how the Google Sheet works. 
+    * 5. Given a Volunteer Opportunity, BC would decide to either share the entire Volunteer Opportunity for VLs to grab,
+         or share the occurrences for VLs to grab, but it would never be both.
     */
     @AuraEnabled(cacheable=false)
     global static List<OrphanedProject__c> getOrphanedProjects() {
