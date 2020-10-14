@@ -35,11 +35,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>OrphanedProject__c.VolunteerLeaderEmail__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>OrphanedProject__c.VolunteerLeader__c</field>
         <readable>true</readable>
@@ -58,6 +53,16 @@
         <object>OrphanedProject__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>OrphanedProject__c.Orphaned_Occurrence</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>OrphanedProject__c.Orphaned_Opportunity</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <userLicense>Overage Customer Portal Manager Custom</userLicense>
     <userPermissions>
         <enabled>true</enabled>

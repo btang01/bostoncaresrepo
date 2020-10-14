@@ -10,7 +10,7 @@ import Id from '@salesforce/user/Id';
 
 const COLS_EDIT = [
     { label: 'Volunteer Opportunity', fieldName: 'OpportunityName'},
-    { label: 'Location', fieldName: 'LocationName'},
+    { label: 'Location', fieldName: 'LocationName',wrapText: true },
     { label: 'Level', fieldName: 'Level'},
     { label: 'Start Date/Time', fieldName: 'StartDateTime'},
     { label: 'End Date/Time', fieldName: 'EndDateTime'},
@@ -26,7 +26,7 @@ const COLS_EDIT = [
 
 const COLS_READ = [
     { label: 'Volunteer Opportunity', fieldName: 'OpportunityName'},
-    { label: 'Location', fieldName: 'LocationName'},
+    { label: 'Location', fieldName: 'LocationName',wrapText: true },
     { label: 'Level', fieldName: 'Level'},
     { label: 'Start Date/Time', fieldName: 'StartDateTime'},
     { label: 'End Date/Time', fieldName: 'EndDateTime'},
@@ -73,7 +73,7 @@ export default class OrphanedProjectsLwc extends LightningElement {
 
             this.orphanedProjects = orphans.map((p) => 
                 Object.assign({}, p, {OpportunityName: p.VolunteerOpportunity__r.Name, 
-                    LocationName: p.Location__r.Name,
+                    LocationName: p.Location__c,
                     Level: p.Level__c,
                     StartDateTime: p.StartDateTime__c,
                     EndDateTime: p.EndDateTime__c
@@ -82,7 +82,7 @@ export default class OrphanedProjectsLwc extends LightningElement {
 
             this.claimedProjects = claimed.map((p) => 
                 Object.assign({}, p, {OpportunityName: p.VolunteerOpportunity__r.Name, 
-                    LocationName: p.Location__r.Name,
+                    LocationName: p.Location__c,
                     Level: p.Level__c,
                     StartDateTime: p.StartDateTime__c,
                     EndDateTime: p.EndDateTime__c,

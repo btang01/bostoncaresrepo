@@ -153,14 +153,13 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
-    <label>Orphaned Project</label>
+    <label>VL Need</label>
     <nameField>
-        <label>Orphaned Project Name</label>
+        <label>VL Need Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Orphaned Projects</pluralLabel>
+    <pluralLabel>VL Needs</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
-    <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>
 </CustomObject>

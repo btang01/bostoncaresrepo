@@ -6,7 +6,6 @@
     <externalId>false</externalId>
     <label>Volunteer Opportunity</label>
     <referenceTo>HOC__Volunteer_Opportunity__c</referenceTo>
-    <relationshipLabel>Orphaned Projects</relationshipLabel>
     <relationshipName>OrphanedProjects</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>

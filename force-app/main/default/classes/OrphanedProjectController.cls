@@ -12,38 +12,23 @@ global class OrphanedProjectController {
      *    to quickly generate an Orphaned Project record on the volunteer opportunity level, 
      *    or to quickly generate an Orphaned Project record for each Ocurrence records under a 
      *    given volunteer opportunity.
+     * 3. Here are the assumptions around which Salesforce field(s) correspond to the
+     *    excel columns:
+     *    (1) Orgnization Served = VolunteerOpportunity__r.HOC__Organization_Served_Name__c
+     *    (2) Activity = VolunteerOpportunity__r.Name
+     *    (3) Location = Location__c
+          (4) Monthly Days = ?
+          (5) Time = ?
+          (6) Volunteer Leader = VolunteerLeader__r.Name
+          (7) Alternate Volunteer Leader = ?
+          (8) Partner Staff as VL = ?
     */
     @AuraEnabled(cacheable=false)
     global static List<OrphanedProject__c> getOrphanedProjects() {
-        return [SELECT Id, VolunteerOpportunity__r.Name, Location__r.Name, VolunteerLeader__c, VolunteerLeader__r.Name,
-                Level__c, StartDateTime__c, EndDateTime__c
+        return [SELECT Id, VolunteerOpportunity__r.Name,
+                VolunteerLeader__c, VolunteerLeader__r.Name,
+                Level__c, StartDateTime__c, EndDateTime__c,
+                Location__c
                 FROM OrphanedProject__c];
-    }
-
-    /*
-     * Method used to retrieve volunteer opportunities that are currently unclaimed/orphaned,
-     * as indicated by the HOC__Opportunity_Coordinator__c field being null.
-     * TODO: confirm assumption that HOC__Opportunity_Coordinator__c & HOC__Volunteer_Coordinator_Email__c
-     * are indeed being used to track Volunteer Leaders on a Volunteer Opportunity level.
-     * TODO: confirm whether OWD for HOC__Volunteer_Opportunity__c can be changed to Public Read/Write.
-     * It is currently set to Private, so likely not.
-     */
-    @AuraEnabled(cacheable=false)
-    global static List<HOC__Volunteer_Opportunity__c> getOrphanedVolOpps() {
-        return [SELECT Id, Name, HOC__Default_Location__r.Name, HOC__Volunteer_Coordinator_Email__c,
-                HOC__Start_Date__c, HOC__End_Date__c, HOC__Schedule_Type__c, HOC__Organization_Served__r.Name,
-                (SELECT Id, HOC__Start_Date_Time__c, HOC__End_Date_Time__c,
-                 HOC__Opportunity_Coordinator__c, HOC__Volunteer_Coordinator_Email__c
-                 FROM HOC__Occurence__r),
-                (SELECT Id, HOC__Start_Date_Time__c, HOC__Contact_Email__c, HOC__Volunteer_Opportunity__c
-                 FROM HOC__Connection__r
-                 WHERE HOC__Role__c = 'Volunteer Leader' AND
-                       HOC__Status__c = 'Confirmed' AND
-                       HOC__Attendance_Status__c = 'Please Verify')
-                FROM HOC__Volunteer_Opportunity__c WHERE HOC__Opportunity_Coordinator__c = NULL];
-    }
-
-    class orphanedProject {
-        
     }
 }

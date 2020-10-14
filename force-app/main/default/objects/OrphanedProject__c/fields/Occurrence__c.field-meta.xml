@@ -5,7 +5,6 @@
     <externalId>false</externalId>
     <label>Occurrence</label>
     <referenceTo>HOC__Occurrence__c</referenceTo>
-    <relationshipLabel>Orphaned Projects</relationshipLabel>
     <relationshipName>OrphanedProjects</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
