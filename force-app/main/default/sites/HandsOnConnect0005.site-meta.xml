@@ -14,11 +14,6 @@
     <clickjackProtectionLevel>AllowAllFraming</clickjackProtectionLevel>
     <contentSniffingProtection>false</contentSniffingProtection>
     <cspUpgradeInsecureRequests>false</cspUpgradeInsecureRequests>
-    <customWebAddresses>
-        <certificate>HOC_Site</certificate>
-        <domainName>www.bostoncares.org</domainName>
-        <primary>true</primary>
-    </customWebAddresses>
     <enableAuraRequests>true</enableAuraRequests>
     <favoriteIcon>HOC_favicon</favoriteIcon>
     <fileNotFoundPage>HOC__FileNotFound</fileNotFoundPage>
