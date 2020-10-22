@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Create new needs to find volunteer leaders for this volunteer opportunity.</description>
+    <flowDefinition>NewVolunteerLeaderNeeds</flowDefinition>
+    <label>New VL Needs</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>
