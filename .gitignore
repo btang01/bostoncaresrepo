@@ -36,3 +36,6 @@ $RECYCLE.BIN/
 
 # Visual Studio Code
 .vscode/
+
+# All local history files
+.history/*

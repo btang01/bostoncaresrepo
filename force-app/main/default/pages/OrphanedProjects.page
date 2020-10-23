@@ -1,0 +1,14 @@
+<apex:page showHeader="false" sidebar="false">
+    <apex:includeLightning />    
+    <div id="lwcId" />    
+    <script>
+    $Lightning.use("c:orphanedProjectApp", function() {
+        $Lightning.createComponent("c:orphanedProjectsLwc",
+          {},
+          "lwcId",
+          function(cmp) {
+              console.log('component added to visualforce');
+          });
+    });
+    </script>
+</apex:page>

@@ -6,7 +6,6 @@
     <externalId>false</externalId>
     <label>Volunteer Leader</label>
     <referenceTo>Contact</referenceTo>
-    <relationshipLabel>Orphaned Projects</relationshipLabel>
     <relationshipName>OrphanedProjects</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>

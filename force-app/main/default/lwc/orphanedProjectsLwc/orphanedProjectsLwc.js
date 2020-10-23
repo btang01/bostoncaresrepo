@@ -1,66 +1,59 @@
 import { LightningElement, wire, track, api } from 'lwc';
 import getOrphanedProjects from '@salesforce/apex/OrphanedProjectController.getOrphanedProjects';
-import { updateRecord } from 'lightning/uiRecordApi';
+//import getOrphanedVolOpps from '@salesforce/apex/OrphanedProjectController.getOrphanedVolOpps';
+import { updateRecord, getRecord } from 'lightning/uiRecordApi';
 import { refreshApex } from '@salesforce/apex';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import ID_FIELD from '@salesforce/schema/OrphanedProject__c.Id';
-import VLEMAIL_FIELD from '@salesforce/schema/OrphanedProject__c.VolunteerLeaderEmail__c';
+import VL_FIELD from '@salesforce/schema/OrphanedProject__c.VolunteerLeader__c';
+import Id from '@salesforce/user/Id';
 
 const COLS_EDIT = [
     { label: 'Volunteer Opportunity', fieldName: 'OpportunityName'},
-    { label: 'Location', fieldName: 'LocationName'},
-    { label: 'Start Date/Time', fieldName: 'StartDateTime', type: 'Datetime'},
-    { label: 'End Date/Time', fieldName: 'EndDateTime', type: 'Datetime'},
-    { label: 'Volunteer Leader Email', fieldName: 'VolunteerLeaderEmail__c', type: 'Email', editable: true}
-   // { label: 'Volunteer Leader', fieldName: 'VolunteerLeader__c', type:'lookup', editable: true}
+    { label: 'Location', fieldName: 'LocationName',wrapText: true },
+    { label: 'Level', fieldName: 'Level'},
+    { label: 'Start Date/Time', fieldName: 'StartDateTime'},
+    { label: 'End Date/Time', fieldName: 'EndDateTime'},
+    {type: "button", typeAttributes: {  
+        label: 'Claim',  
+        name: 'Claim',  
+        title: 'Claim',  
+        disabled: false,  
+        value: 'claim',  
+        iconPosition: 'left'  
+    }}
 ];
 
 const COLS_READ = [
     { label: 'Volunteer Opportunity', fieldName: 'OpportunityName'},
-    { label: 'Location', fieldName: 'LocationName'},
-    { label: 'Start Date/Time', fieldName: 'StartDateTime', type: 'Datetime'},
-    { label: 'End Date/Time', fieldName: 'EndDateTime', type: 'Datetime'},
-    { label: 'Volunteer Leader Email', fieldName: 'VolunteerLeaderEmail__c', type: 'Email'}
-   // { label: 'Volunteer Leader', fieldName: 'VolunteerLeader__c', type:'lookup', editable: true}
+    { label: 'Location', fieldName: 'LocationName',wrapText: true },
+    { label: 'Level', fieldName: 'Level'},
+    { label: 'Start Date/Time', fieldName: 'StartDateTime'},
+    { label: 'End Date/Time', fieldName: 'EndDateTime'},
+    { label: 'Volunteer Leader', fieldName: 'VLName'}
+];
+
+const USER_FIELDS = [
+    'User.Name',
+    'User.Contact.Id',
+    'User.Contact.Name'
 ];
 
 export default class OrphanedProjectsLwc extends LightningElement {
+    userId = Id;
     orphanedProjects;
     claimedProjects;
     @track error;
     @track columns_edit = COLS_EDIT;
     @track columns_read = COLS_READ;
-    @track draftValues = [];
     @api isLoaded = false;
     @api successful = false;
 
+    @wire(getRecord, { recordId: '$userId', fields: USER_FIELDS })
+    user;
+
     connectedCallback(){
        this.handleRefresh();
-    }
-
-    handleSave(event) {
-        this.isLoaded = !this.isLoaded;
-
-        const recordInputs = event.detail.draftValues.slice().map(draft => {
-            const fields = {};
-            fields[ID_FIELD.fieldApiName] = draft.Id;
-            fields[VLEMAIL_FIELD.fieldApiName] = draft.VolunteerLeaderEmail__c;
-            return {fields};
-        });
-
-        console.log('RECORDINPUTS', recordInputs);
-
-        const promises = recordInputs.map(recordInput => updateRecord(recordInput));
-        Promise.all(promises)
-        .then(() => {
-            this.isLoaded = !this.isLoaded;
-            this.draftValues = [];
-            this.successful = true;
-            this.handleRefresh();
-        }).catch(error => {
-            this.isLoaded = !this.isLoaded;
-            this.error = error.body.message;
-        });
     }
 
     handleCloseSuccess(event) {
@@ -75,22 +68,25 @@ export default class OrphanedProjectsLwc extends LightningElement {
         getOrphanedProjects()
         .then(data => {
             console.log(data);
-            var orphans = data.filter(p => !p.VolunteerLeaderEmail__c);
-            var claimed = data.filter(p => p.VolunteerLeaderEmail__c != null);
+            var orphans = data.filter(p => !p.VolunteerLeader__c);
+            var claimed = data.filter(p => p.VolunteerLeader__c != null);
 
             this.orphanedProjects = orphans.map((p) => 
                 Object.assign({}, p, {OpportunityName: p.VolunteerOpportunity__r.Name, 
-                    LocationName: p.Location__r.Name,
-                    StartDateTime: p.Occurrence__r.HOC__Start_Date_Time__c,
-                    EndDateTime: p.Occurrence__r.HOC__End_Date_Time__c
+                    LocationName: p.Location__c,
+                    Level: p.Level__c,
+                    StartDateTime: p.StartDateTime__c,
+                    EndDateTime: p.EndDateTime__c
                 })
             );
 
             this.claimedProjects = claimed.map((p) => 
                 Object.assign({}, p, {OpportunityName: p.VolunteerOpportunity__r.Name, 
-                    LocationName: p.Location__r.Name,
-                    StartDateTime: p.Occurrence__r.HOC__Start_Date_Time__c,
-                    EndDateTime: p.Occurrence__r.HOC__End_Date_Time__c
+                    LocationName: p.Location__c,
+                    Level: p.Level__c,
+                    StartDateTime: p.StartDateTime__c,
+                    EndDateTime: p.EndDateTime__c,
+                    VLName: p.VolunteerLeader__r.Name
                 })
             );
 
@@ -101,6 +97,27 @@ export default class OrphanedProjectsLwc extends LightningElement {
             this.isLoaded = true;
             this.orphanedProjects = undefined;
             this.claimedProjects = undefined;
+        });
+    }
+
+    handleClaim(event) {
+        this.isLoaded = !this.isLoaded;
+
+        const fields = {};
+        fields[ID_FIELD.fieldApiName] = event.detail.row.Id;
+        fields[VL_FIELD.fieldApiName] = this.user.data.fields.Contact.value.id; 
+        const recordInput = { fields };
+
+        console.log('RECORDINPUT', recordInput);
+
+        updateRecord(recordInput)
+        .then(() => {
+            this.isLoaded = !this.isLoaded;
+            this.successful = true;
+            this.handleRefresh();
+        }).catch(error => {
+            this.isLoaded = !this.isLoaded;
+            this.error = error.body.message;
         });
     }
 }

@@ -7,8 +7,7 @@
                         key-field="Id"
                         data={orphanedProjects}
                         columns={columns_edit}
-                        onsave={handleSave}
-                        draft-values={draftValues}
+                        onrowaction={handleClaim}
                         hide-checkbox-column>
                     </lightning-datatable>
                 </template>
