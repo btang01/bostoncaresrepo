@@ -155,8 +155,9 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <label>VL Need</label>
     <nameField>
-        <label>VL Need Name</label>
-        <type>Text</type>
+        <displayFormat>VLN-{0000000}</displayFormat>
+        <label>VL Need ID</label>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>VL Needs</pluralLabel>
     <searchLayouts/>
